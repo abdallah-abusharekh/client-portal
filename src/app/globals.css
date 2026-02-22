@@ -18,8 +18,6 @@
   --color-background-sky: var(--background-sky);
 }
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 body {
