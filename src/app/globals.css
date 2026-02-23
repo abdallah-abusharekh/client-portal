@@ -17,11 +17,7 @@
   --color-background: var(--background);
   --color-background-sky: var(--background-sky);
 }
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+
 body {
   background: var(--background);
   color: var(--text);
