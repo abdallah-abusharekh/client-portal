@@ -1,12 +1,13 @@
-import QuickActions from "@/src/features/dashboard/components/shared/QuickActions";
-import RecentActivity from "@/src/features/dashboard/components/shared/RecentActivity";
-import StatsCards from "@/src/features/dashboard/components/freelancer/StatsCards";
-import ProjectsOverviewSection from "@/src/features/dashboard/components/shared/ProjectsOverviewSection";
+import QuickActions from "@/src/features/dashboard/components/QuickActions";
+import RecentActivity from "@/src/features/dashboard/components/RecentActivity";
+
+import ProjectsOverviewSection from "@/src/features/dashboard/components/ProjectsOverviewSection";
 import {
   activities,
   freelancerProjects,
   freelancerStats,
 } from "@/src/features/dashboard/mocks/dashboard.mock";
+import StatsCards from "./StatsCards";
 
 export default function FreelancerDashboardView() {
   return (

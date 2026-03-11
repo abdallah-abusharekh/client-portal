@@ -1,3 +1,6 @@
+"use client";
+
+import { useAuth } from "@/src/features/auth/contexts/AuthContext";
 import { FiBell, FiMenu } from "react-icons/fi";
 
 type Props = {
@@ -5,8 +8,18 @@ type Props = {
 };
 
 export default function Header({ onMenuClick }: Props) {
+  const { user, logout } = useAuth();
+
+  if (!user) return null;
+
+  const initials = user.name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase();
+
   return (
-    <header className="flex justify-between border-b border-gray-200 items-center px-6 h-16 bg-(--color-background) shadow-sm">
+    <header className="flex justify-between items-center px-6 h-16 bg-(--color-background) shadow-sm">
       <div className="flex items-center gap-4">
         <button
           onClick={onMenuClick}
@@ -17,9 +30,11 @@ export default function Header({ onMenuClick }: Props) {
 
         <div className="flex flex-col">
           <span className="font-semibold text-sm text-(--color-text)">
-            Abdallah Abusharekh
+            {user.name}
           </span>
-          <span className="text-gray-500 text-xs">Freelancer</span>
+          <span className="text-(--color-text-muted) text-xs capitalize">
+            {user.role}
+          </span>
         </div>
       </div>
 
@@ -28,9 +43,12 @@ export default function Header({ onMenuClick }: Props) {
           <FiBell className="text-lg text-(--color-text)" />
         </button>
 
-        <div className="w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm bg-primary-light/30 text-(--color-primary)">
-          AA
-        </div>
+        <button
+          onClick={logout}
+          className="w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm bg-primary/10 text-(--color-primary)"
+        >
+          {initials}
+        </button>
       </div>
     </header>
   );

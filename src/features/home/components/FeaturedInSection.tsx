@@ -1,4 +1,4 @@
-import { Container } from "@/src/shared/Container";
+import { Container } from "@/src/shared/components/Container";
 import { logos } from "../utils/constants";
 
 export function FeaturedInSection() {

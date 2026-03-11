@@ -1,7 +1,6 @@
 import { FiFileText, FiDownload } from "react-icons/fi";
-
-import SectionHeader from "../shared/SectionHeader";
-import { FileItem } from "../../types/dashboard.types";
+import { FileItem } from "../types/dashboard.types";
+import SectionHeader from "./SectionHeader";
 
 type Props = {
   files: FileItem[];

@@ -54,12 +54,13 @@ export const Button = forwardRef<
     size = "md",
     className = "",
     loading = false,
+    ...rest
   } = props;
 
   const classes = `${baseStyles} ${sizes[size]} ${variants[variant]} ${className}`;
 
-  if ("href" in props && props.href) {
-    const { href, ...anchorProps } = props as ButtonAsLink;
+  if ("href" in rest && rest.href) {
+    const { href, ...anchorProps } = rest as ButtonAsLink;
 
     return (
       <Link
@@ -73,7 +74,7 @@ export const Button = forwardRef<
     );
   }
 
-  const buttonProps = props as ButtonAsButton;
+  const buttonProps = rest as ButtonAsButton;
 
   return (
     <button

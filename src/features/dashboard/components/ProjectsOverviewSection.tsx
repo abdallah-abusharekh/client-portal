@@ -1,6 +1,6 @@
 import SectionHeader from "./SectionHeader";
 import ProjectCard from "./ProjectCard";
-import { Project } from "../../types/dashboard.types";
+import { Project } from "../types/dashboard.types";
 
 type Props = {
   title?: string;

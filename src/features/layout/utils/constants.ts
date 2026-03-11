@@ -7,7 +7,7 @@ import {
   FiCalendar,
   FiUser,
 } from "react-icons/fi";
-import { NavItem } from "../types/dashboard.types";
+import { NavItem } from "../types/layout";
 
 export const primaryNav: NavItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: FiHome },

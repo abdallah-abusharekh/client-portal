@@ -1,5 +1,5 @@
-import { Button } from "@/src/shared/Button";
-import { Container } from "@/src/shared/Container";
+import { Button } from "@/src/shared/components/Button";
+import { Container } from "@/src/shared/components/Container";
 import { features } from "../utils/constants";
 
 export function FeaturesSection() {
