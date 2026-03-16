@@ -1,5 +1,5 @@
+import Button from "@/src/shared/components/Button";
 import { Container } from "@/src/shared/components/Container";
-import { Button } from "@/src/shared/components/Button";
 
 export function CTASection() {
   return (

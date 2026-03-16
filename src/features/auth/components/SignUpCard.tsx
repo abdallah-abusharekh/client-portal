@@ -7,11 +7,12 @@ import RoleSelector from "./RoleLoginButtons";
 import { UserRole } from "../types/user.types";
 
 import Logo from "@/src/shared/components/Logo";
-import { Button } from "@/src/shared/components/Button";
+
 import BasicFields from "./BasicFields";
 
 import { FiUser } from "react-icons/fi";
 import { useAuth } from "../contexts/AuthContext";
+import Button from "@/src/shared/components/Button";
 
 export default function SignUpCard() {
   const router = useRouter();
