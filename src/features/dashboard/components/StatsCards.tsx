@@ -1,33 +1,40 @@
-import { Stat } from "../../types/dashboard.types";
+import StatCard from "./StatCard";
+import { FiDollarSign, FiFolder, FiCheckSquare, FiClock } from "react-icons/fi";
 
-type Props = {
-  stats: Stat[];
-};
-
-export default function StatsCards({ stats }: Props) {
+export default function StatsGrid() {
   return (
-    <div className="gap-4 grid sm:grid-cols-2 lg:grid-cols-4">
-      {stats.map((stat) => {
-        const Icon = stat.icon;
+    <div className="gap-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      <StatCard
+        title="Total Earnings"
+        value="$45,600"
+        icon={FiDollarSign}
+        trend="+12%"
+        trendLabel="from last month"
+      />
 
-        return (
-          <div
-            key={stat.id}
-            className="flex justify-between items-center bg-(--color-background) shadow-sm hover:shadow-md p-5 rounded-xl transition"
-          >
-            <div>
-              <p className="text-gray-500 text-sm">{stat.label}</p>
-              <p className="mt-1 text-2xl font-semibold text-(--color-text)">
-                {stat.value}
-              </p>
-            </div>
+      <StatCard
+        title="Active Projects"
+        value="3"
+        icon={FiFolder}
+        trend="+0%"
+        trendLabel="this month"
+      />
 
-            <div className="flex justify-center items-center bg-primary-light/20 rounded-lg w-10 h-10">
-              <Icon className="text-lg text-(--color-primary)" />
-            </div>
-          </div>
-        );
-      })}
+      <StatCard
+        title="Tasks Completed"
+        value="18"
+        icon={FiCheckSquare}
+        trend="+25%"
+        trendLabel="from last month"
+      />
+
+      <StatCard
+        title="Hours This Week"
+        value="32"
+        icon={FiClock}
+        trend="-5%"
+        trendLabel="vs last week"
+      />
     </div>
   );
 }
