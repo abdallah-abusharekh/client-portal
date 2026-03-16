@@ -1,116 +1,20 @@
 import {
   Activity,
-  DahsboardProject,
-  FileItem,
+  DashboardStat,
   Project,
-  Stat,
   Task,
 } from "../types/dashboard.types";
+
 import {
-  FiBarChart2,
-  FiCheck,
-  FiAlertTriangle,
-  FiTrendingUp,
+  FiFolder,
+  FiUsers,
+  FiCheckSquare,
+  FiClock,
+  FiDollarSign,
+  FiCheckCircle,
+  FiMessageSquare,
+  FiUpload,
 } from "react-icons/fi";
-
-export const freelancerStats: Stat[] = [
-  {
-    id: "1",
-    label: "Active Projects",
-    value: 3,
-    icon: FiBarChart2,
-  },
-  {
-    id: "2",
-    label: "Tasks Completed",
-    value: 19,
-    icon: FiCheck,
-  },
-  {
-    id: "3",
-    label: "Pending Tasks",
-    value: 13,
-    icon: FiAlertTriangle,
-  },
-  {
-    id: "4",
-    label: "This Month",
-    value: "$4,200",
-    icon: FiTrendingUp,
-  },
-];
-export const freelancerProjects: DahsboardProject[] = [
-  {
-    id: "1",
-    title: "E-commerce Website",
-    ownerLabel: "Client",
-    ownerName: "TechCorp Inc.",
-    progress: 80,
-    completedTasks: 8,
-    totalTasks: 12,
-    dueDate: "2024-02-15",
-    status: "in progress",
-  },
-  {
-    id: "2",
-    title: "Mobile App Development",
-    ownerLabel: "Client",
-    ownerName: "StartupXYZ",
-    progress: 40,
-    completedTasks: 4,
-    totalTasks: 10,
-    dueDate: "2024-03-10",
-    status: "planning",
-  },
-];
-
-export const customerProjects: DahsboardProject[] = [
-  {
-    id: "1",
-    title: "E-commerce Website",
-    ownerLabel: "Owner",
-    ownerName: "Abdallah Abusharekh",
-    progress: 75,
-    completedTasks: 8,
-    totalTasks: 12,
-    dueDate: "2024-02-15",
-    status: "in progress",
-  },
-];
-
-export const activities: Activity[] = [
-  {
-    id: "1",
-    title: "Task 'Homepage Design' marked as completed",
-    subtitle: "E-commerce Website",
-    time: "2 hours ago",
-  },
-  {
-    id: "2",
-    title: "New comment from TechCorp Inc.",
-    subtitle: "Mobile App Development",
-    time: "4 hours ago",
-  },
-];
-
-export const customerFiles: FileItem[] = [
-  {
-    id: "1",
-    name: "Homepage-Design-v2.fig",
-    project: "E-commerce Website",
-    author: "John Doe",
-    time: "2 hours ago",
-  },
-  {
-    id: "2",
-    name: "Logo-Concepts.pdf",
-    project: "Brand Identity",
-    author: "Sarah Wilson",
-    time: "1 day ago",
-  },
-];
-
-/////////////////////////////////////////////////////////
 
 import { Deadline } from "../types/dashboard.types";
 
@@ -212,3 +116,156 @@ export const tasks: Task[] = [
     assigneeAvatar: "/avatars/avatar4.png",
   },
 ];
+
+export const customerStats: DashboardStat[] = [
+  {
+    title: "Active Projects",
+    value: "4",
+    icon: "projects",
+    trend: "+20%",
+    trendLabel: "from last month",
+  },
+  {
+    title: "Freelancers",
+    value: "3",
+    icon: "users",
+    trend: "+0%",
+    trendLabel: "this month",
+  },
+  {
+    title: "Completed Tasks",
+    value: "24",
+    icon: "tasks",
+    trend: "+15%",
+    trendLabel: "from last month",
+  },
+  {
+    title: "Hours Logged",
+    value: "128",
+    icon: "hours",
+    trend: "+8%",
+    trendLabel: "this week",
+  },
+];
+
+export const freelancerStats: DashboardStat[] = [
+  {
+    title: "Total Earnings",
+    value: "$45,600",
+    icon: "earnings",
+    trend: "+12%",
+    trendLabel: "from last month",
+  },
+  {
+    title: "Active Projects",
+    value: "3",
+    icon: "projects",
+    trend: "+0%",
+    trendLabel: "this month",
+  },
+  {
+    title: "Tasks Completed",
+    value: "18",
+    icon: "tasks",
+    trend: "+25%",
+    trendLabel: "from last month",
+  },
+  {
+    title: "Hours This Week",
+    value: "32",
+    icon: "hours",
+    trend: "-5%",
+    trendLabel: "vs last week",
+  },
+];
+
+export const statIconMap = {
+  projects: FiFolder,
+  users: FiUsers,
+  tasks: FiCheckSquare,
+  hours: FiClock,
+  earnings: FiDollarSign,
+};
+
+export const freelancers = [
+  {
+    id: "1",
+    name: "Alex Chen",
+    role: "Full-Stack Development",
+    avatar: "/avatars/avatar1.png",
+    activeProjects: 2,
+  },
+  {
+    id: "2",
+    name: "Marcus Johnson",
+    role: "UI/UX Design",
+    avatar: "/avatars/avatar2.png",
+    activeProjects: 1,
+  },
+  {
+    id: "3",
+    name: "Lisa Park",
+    role: "Brand Identity",
+    avatar: "/avatars/avatar3.png",
+    activeProjects: 1,
+  },
+];
+
+export const activities: Activity[] = [
+  {
+    id: "1",
+    type: "update",
+    user: "Alex Chen",
+    avatar: "https://i.pravatar.cc/100?img=12",
+    action: "updated project status",
+    project: "E-Commerce Platform Redesign",
+    date: "Jul 8",
+  },
+  {
+    id: "2",
+    type: "task",
+    user: "Marcus Johnson",
+    avatar: "https://i.pravatar.cc/100?img=33",
+    action: "completed task",
+    project: "E-Commerce Platform Redesign",
+    description: '"Design homepage mockups"',
+    date: "Jul 8",
+  },
+  {
+    id: "3",
+    type: "comment",
+    user: "Sarah Mitchell",
+    avatar: "https://i.pravatar.cc/100?img=22",
+    action: "left a comment",
+    project: "E-Commerce Platform Redesign",
+    date: "Jul 8",
+  },
+  {
+    id: "4",
+    type: "upload",
+    user: "Marcus Johnson",
+    avatar: "https://i.pravatar.cc/100?img=33",
+    action: "uploaded new files",
+    project: "Brand Identity Package",
+    date: "Jul 7",
+  },
+];
+
+export const activityIcons = {
+  update: {
+    icon: FiFolder,
+    className: "bg-blue-100 text-blue-600",
+  },
+  task: {
+    icon: FiCheckCircle,
+    className: "bg-green-100 text-green-600",
+  },
+  comment: {
+    icon: FiMessageSquare,
+    className: "bg-purple-100 text-purple-600",
+  },
+  upload: {
+    icon: FiUpload,
+    className: "bg-yellow-100 text-yellow-600",
+  },
+};

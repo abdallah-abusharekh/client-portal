@@ -1,37 +1,3 @@
-export type DahsboardProject = {
-  id: string;
-  title: string;
-  ownerLabel?: string;
-  ownerName?: string;
-  progress: number;
-  completedTasks: number;
-  totalTasks: number;
-  dueDate?: string;
-  status: string;
-};
-
-export type Activity = {
-  id: string;
-  title: string;
-  subtitle?: string;
-  time: string;
-};
-
-export type FileItem = {
-  id: string;
-  name: string;
-  project: string;
-  author: string;
-  time: string;
-};
-export type Stat = {
-  id: string;
-  label: string;
-  value: string | number;
-  icon: React.ElementType;
-};
-//////////////////////////////////////////////////////////////
-
 export type DeadlinePriority = "low" | "medium" | "high";
 
 export type Deadline = {
@@ -65,4 +31,27 @@ export type Task = {
   priority: TaskPriority;
   dueDate: string;
   assigneeAvatar: string;
+};
+
+export type StatIcon = "projects" | "users" | "tasks" | "hours" | "earnings";
+
+export type DashboardStat = {
+  title: string;
+  value: string;
+  icon: StatIcon;
+  trend: string;
+  trendLabel: string;
+};
+
+export type ActivityType = "update" | "task" | "comment" | "upload";
+
+export type Activity = {
+  id: string;
+  type: ActivityType;
+  user: string;
+  avatar: string;
+  action: string;
+  project: string;
+  description?: string;
+  date: string;
 };
