@@ -1,32 +1,58 @@
-import { Button } from "@/src/shared/Button";
-import { Container } from "@/src/shared/Container";
-import { features } from "../utils/constants";
+"use client";
+
+import { Container } from "@/src/shared/components/Container";
+import { motion } from "framer-motion";
+import { cardVariants, containerVariants, features } from "../utils/constants";
 
 export function FeaturesSection() {
   return (
-    <section className="bg-(--color-background-sky) py-28">
-      <Container>
-        <h2 className="mb-16 font-semibold text-gray-900 text-2xl text-center">
-          Everything you need to deliver on time
+    <section id="features" className="bg-background py-24">
+      <Container className="flex flex-col items-center text-center">
+        <span className="bg-green-500/10 mb-4 px-4 py-1 rounded-full font-medium text-green-500 text-sm">
+          Features
+        </span>
+
+        <h2 className="font-bold text-text text-3xl md:text-4xl">
+          Everything you need to succeed
         </h2>
 
-        <div className="gap-8 grid md:grid-cols-3">
-          {features.map((feature) => (
-            <div
-              key={feature.title}
-              className="bg-white shadow-sm hover:shadow-md p-6 border border-gray-200 rounded-2xl transition-shadow"
-            >
-              <p className="font-semibold text-gray-900">{feature.title}</p>
-              <p className="mt-2 text-gray-600 text-sm">{feature.desc}</p>
-            </div>
-          ))}
-        </div>
+        <p className="mt-4 mb-16 max-w-2xl text-text/70 text-lg">
+          Powerful tools designed to streamline your workflow and boost
+          productivity
+        </p>
 
-        <div className="flex justify-center mt-16">
-          <Button href="/login" size="lg">
-            Log in to get started
-          </Button>
-        </div>
+        <motion.div
+          className="gap-8 grid md:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          {features.map((feature, i) => {
+            const Icon = feature.icon;
+
+            return (
+              <motion.div
+                key={i}
+                variants={cardVariants}
+                whileHover={{ y: -6 }}
+                className="bg-white p-8 border border-gray-200 rounded-xl"
+              >
+                <div className="flex justify-center items-center bg-primary/10 mb-6 rounded-lg w-12 h-12 text-primary">
+                  <Icon size={22} />
+                </div>
+
+                <h3 className="mb-2 font-semibold text-text text-lg">
+                  {feature.title}
+                </h3>
+
+                <p className="text-text/70 text-sm leading-relaxed">
+                  {feature.description}
+                </p>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </Container>
     </section>
   );

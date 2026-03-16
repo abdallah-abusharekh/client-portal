@@ -1,10 +1,4 @@
-export type NavItem = {
-  label: string;
-  href: string;
-  icon: React.ElementType;
-};
-
-export type Project = {
+export type DahsboardProject = {
   id: string;
   title: string;
   ownerLabel?: string;

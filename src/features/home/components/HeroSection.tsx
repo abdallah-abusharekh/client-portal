@@ -1,51 +1,60 @@
-import { Button } from "@/src/shared/Button";
-import { Container } from "@/src/shared/Container";
+import { Container } from "@/src/shared/components/Container";
+import Nav from "./Nav";
 
 export function HeroSection() {
   return (
-    <section className="bg-(--color-background-sky) py-28">
-      <Container className="items-start gap-16 grid md:grid-cols-2">
-        <div className="space-y-8">
-          <h1 className="font-bold text-gray-900 lg:text-[3.5rem] text-4xl md:text-4xl leading-[1.1] tracking-tight">
-            Professional project management for teams and clients
-          </h1>
+    <section className="bg-background-sky min-h-screen">
+      <Nav />
 
-          <p className="max-w-xl text-gray-600 text-lg leading-relaxed">
-            Track projects, share progress, and collaborate securely in one
-            place-built for freelancers, agencies, and their customers.
-          </p>
-
-          <div className="flex gap-4">
-            <Button href="/login">Log in</Button>
-            <Button href="/features" variant="secondary">
-              Learn more
-            </Button>
-          </div>
-
-          <div className="hidden sm:flex gap-16 pt-10">
-            <div>
-              <p className="font-semibold text-3xl">5,000+</p>
-              <p className="text-gray-500 text-sm">Teams onboarded</p>
-            </div>
-            <div>
-              <p className="font-semibold text-3xl">98%</p>
-              <p className="text-gray-500 text-sm">On-time delivery rate</p>
-            </div>
-            <div>
-              <p className="font-semibold text-3xl">24/7</p>
-              <p className="text-gray-500 text-sm">Secure & available</p>
-            </div>
-          </div>
+      <Container className="flex flex-col items-center pt-38 pb-16 text-center">
+        <div className="bg-primary/10 mb-6 px-4 py-1.5 rounded-full font-medium text-primary text-sm">
+          ⚡ Now with AI-powered insights
         </div>
 
-        {/* Preview */}
-        <div className="hidden sm:block bg-white shadow-xl p-6 border border-gray-200 rounded-2xl">
-          <div className="flex justify-center items-center bg-gray-100 rounded-xl aspect-video text-gray-500 text-sm">
-            Dashboard Preview Placeholder
+        <h1 className="max-w-4xl font-bold text-text text-4xl md:text-6xl leading-tight tracking-tight">
+          Where Clients and <span className="text-primary">Freelancers</span>{" "}
+          Build Success Together
+        </h1>
+
+        <p className="mt-6 max-w-2xl text-text/70 text-lg leading-relaxed">
+          The modern collaboration platform that brings customers and
+          freelancers together. Manage projects, track progress, and deliver
+          exceptional results.
+        </p>
+
+        <div className="flex gap-4 mt-8">
+          <a
+            href="/sign-up"
+            className="flex items-center gap-2 bg-primary hover:bg-primary-dark shadow px-6 py-3 rounded-xl font-medium text-white transition"
+          >
+            Start Free Trial →
+          </a>
+
+          <button className="flex items-center gap-2 bg-white hover:bg-gray-50 px-6 py-3 border border-gray-200 rounded-xl text-text transition">
+            ▶ Watch Demo
+          </button>
+        </div>
+
+        <div className="gap-12 grid grid-cols-2 md:grid-cols-4 mt-16 text-center">
+          <div>
+            <p className="font-bold text-text text-2xl">10K+</p>
+            <p className="text-text/60 text-sm">Active Users</p>
           </div>
-          <p className="mt-4 text-gray-500 text-sm text-center">
-            Preview of your client workspace
-          </p>
+
+          <div>
+            <p className="font-bold text-text text-2xl">$5M+</p>
+            <p className="text-text/60 text-sm">Projects Completed</p>
+          </div>
+
+          <div>
+            <p className="font-bold text-text text-2xl">98%</p>
+            <p className="text-text/60 text-sm">Satisfaction Rate</p>
+          </div>
+
+          <div>
+            <p className="font-bold text-text text-2xl">150+</p>
+            <p className="text-text/60 text-sm">Countries</p>
+          </div>
         </div>
       </Container>
     </section>

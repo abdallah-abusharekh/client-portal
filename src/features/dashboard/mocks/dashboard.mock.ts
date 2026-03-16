@@ -1,4 +1,9 @@
-import { Project, Activity, FileItem, Stat } from "../types/dashboard.types";
+import {
+  Activity,
+  DahsboardProject,
+  FileItem,
+  Stat,
+} from "../types/dashboard.types";
 import {
   FiBarChart2,
   FiCheck,
@@ -32,7 +37,7 @@ export const freelancerStats: Stat[] = [
     icon: FiTrendingUp,
   },
 ];
-export const freelancerProjects: Project[] = [
+export const freelancerProjects: DahsboardProject[] = [
   {
     id: "1",
     title: "E-commerce Website",
@@ -57,7 +62,7 @@ export const freelancerProjects: Project[] = [
   },
 ];
 
-export const customerProjects: Project[] = [
+export const customerProjects: DahsboardProject[] = [
   {
     id: "1",
     title: "E-commerce Website",
