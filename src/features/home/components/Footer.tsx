@@ -1,26 +1,108 @@
+import Logo from "@/src/shared/components/Logo";
 import { Container } from "@/src/shared/components/Container";
-import Link from "next/link";
+import { FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
 
 export function Footer() {
   return (
-    <footer className="py-6 border-gray-200 border-t">
-      <Container className="flex md:flex-row flex-col justify-between items-center gap-4 text-gray-600 text-sm">
-        <p>© 2026 Client Portal</p>
+    <footer className="bg-background py-16 border-gray-200 border-t">
+      <Container>
+        <div className="gap-12 grid md:grid-cols-4">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <Logo />
+              <span className="font-semibold text-text text-lg">
+                Client Portal
+              </span>
+            </div>
 
-        <nav className="flex items-center gap-6">
-          <Link href="/about" className="hover:text-gray-900 transition-colors">
-            About
-          </Link>
-          <Link
-            href="/features"
-            className="hover:text-gray-900 transition-colors"
-          >
-            Features
-          </Link>
-          <Link href="/login" className="hover:text-gray-900 transition-colors">
-            Log in
-          </Link>
-        </nav>
+            <p className="max-w-xs text-text/70 text-sm leading-relaxed">
+              The modern platform for client-freelancer collaboration
+            </p>
+          </div>
+
+          <div>
+            <h4 className="mb-4 font-semibold text-text">Product</h4>
+
+            <ul className="space-y-3 text-text/70 text-sm">
+              <li>
+                <a href="#features" className="hover:text-primary">
+                  Features
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-primary">
+                  Pricing
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-primary">
+                  Integrations
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-4 font-semibold text-text">Company</h4>
+
+            <ul className="space-y-3 text-text/70 text-sm">
+              <li>
+                <a href="#about" className="hover:text-primary">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-primary">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-primary">
+                  Careers
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-4 font-semibold text-text">Legal</h4>
+
+            <ul className="space-y-3 text-text/70 text-sm">
+              <li>
+                <a href="#" className="hover:text-primary">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-primary">
+                  Terms of Service
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="my-12 border-gray-200 border-t"></div>
+
+        <div className="flex md:flex-row flex-col justify-between items-center gap-6">
+          <p className="text-text/60 text-sm">
+            © 2024 Client Portal. All rights reserved.
+          </p>
+
+          <div className="flex items-center gap-4 text-text/60 text-lg">
+            <a href="#" className="hover:text-primary">
+              <FaTwitter />
+            </a>
+
+            <a href="#" className="hover:text-primary">
+              <FaLinkedin />
+            </a>
+
+            <a href="#" className="hover:text-primary">
+              <FaGithub />
+            </a>
+          </div>
+        </div>
       </Container>
     </footer>
   );
