@@ -7,7 +7,7 @@ export function RolesSection() {
   return (
     <section className="bg-background py-24">
       <Container className="flex flex-col items-center text-center">
-        <span className="bg-primary/10 mb-4 px-4 py-1 rounded-full font-medium text-primary text-sm">
+        <span className="bg-purple-500/10 mb-4 px-4 py-1 rounded-full font-medium text-purple-500 text-sm">
           For Everyone
         </span>
 

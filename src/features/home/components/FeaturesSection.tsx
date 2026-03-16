@@ -8,7 +8,7 @@ export function FeaturesSection() {
   return (
     <section id="features" className="bg-background py-24">
       <Container className="flex flex-col items-center text-center">
-        <span className="bg-primary/10 mb-4 px-4 py-1 rounded-full font-medium text-primary text-sm">
+        <span className="bg-green-500/10 mb-4 px-4 py-1 rounded-full font-medium text-green-500 text-sm">
           Features
         </span>
 
@@ -16,7 +16,7 @@ export function FeaturesSection() {
           Everything you need to succeed
         </h2>
 
-        <p className="mt-4 max-w-2xl text-text/70 text-lg">
+        <p className="mt-4 mb-16 max-w-2xl text-text/70 text-lg">
           Powerful tools designed to streamline your workflow and boost
           productivity
         </p>

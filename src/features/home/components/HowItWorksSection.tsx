@@ -5,7 +5,7 @@ export function HowItWorksSection() {
   return (
     <section id="how-it-works" className="bg-background py-24">
       <Container className="flex flex-col items-center text-center">
-        <span className="bg-primary/10 mb-4 px-4 py-1 rounded-full font-medium text-primary text-sm">
+        <span className="bg-yellow-500/10 mb-4 px-4 py-1 rounded-full font-medium text-yellow-500 text-sm">
           How It Works
         </span>
 
