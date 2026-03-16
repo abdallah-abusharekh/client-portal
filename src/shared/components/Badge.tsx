@@ -1,12 +1,13 @@
 type Props = {
   children: React.ReactNode;
-  variant?: "status" | "priority" | "default";
+  variant?: "status" | "priority" | "success" | "default";
 };
 
 export default function Badge({ children, variant = "default" }: Props) {
   const variants = {
     status: "bg-blue-100 text-blue-600",
     priority: "bg-red-100 text-red-600",
+    success: "bg-green-100 text-green-600",
     default: "bg-gray-100 text-gray-600",
   };
 
