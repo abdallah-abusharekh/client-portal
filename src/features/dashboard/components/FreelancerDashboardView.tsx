@@ -1,25 +1,26 @@
-import QuickActions from "@/src/features/dashboard/components/QuickActions";
-import RecentActivity from "@/src/features/dashboard/components/RecentActivity";
-
-import ProjectsOverviewSection from "@/src/features/dashboard/components/ProjectsOverviewSection";
-import {
-  activities,
-  freelancerProjects,
-  freelancerStats,
-} from "@/src/features/dashboard/mocks/dashboard.mock";
-import StatsCards from "./StatsCards";
+import { freelancerStats } from "../mocks/dashboard.mock";
+import DashboardHeader from "./DashboardHeader";
+import CurrentProjectsSection from "./projects/CurrentProjectsSection";
+import StatsGrid from "./stats/StatsCards";
+import TasksSection from "./tasks/TasksSection";
+import FreelancerActivitySection from "./FreelancerActivitySection";
+import { FiCheckCircle } from "react-icons/fi";
+import Button from "@/src/shared/components/Button";
 
 export default function FreelancerDashboardView() {
   return (
     <div className="space-y-10">
-      <StatsCards stats={freelancerStats} />
-      <div className="gap-6 grid lg:grid-cols-3">
-        <ProjectsOverviewSection projects={freelancerProjects} />
-        <div className="space-y-6">
-          <RecentActivity items={activities} />
-          <QuickActions />
-        </div>
+      <div className="flex justify-between items-center">
+        <DashboardHeader name="Alex" />
+        <Button href="/freelancer/tasks" variant="primary">
+          View Tasks <FiCheckCircle className="w-4 h-4" />
+        </Button>
       </div>
+
+      <StatsGrid stats={freelancerStats} />
+      <FreelancerActivitySection />
+      <CurrentProjectsSection />
+      <TasksSection />
     </div>
   );
 }

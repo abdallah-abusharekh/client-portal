@@ -36,7 +36,7 @@ export function FeaturesSection() {
                 key={i}
                 variants={cardVariants}
                 whileHover={{ y: -6 }}
-                className="bg-white p-8 border border-gray-200 rounded-xl"
+                className="flex flex-col justify-center items-center bg-white p-8 border border-gray-200 rounded-xl"
               >
                 <div className="flex justify-center items-center bg-primary/10 mb-6 rounded-lg w-12 h-12 text-primary">
                   <Icon size={22} />

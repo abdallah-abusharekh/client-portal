@@ -6,8 +6,9 @@ import { UserRole } from "../types/user.types";
 import { useAuth } from "../contexts/AuthContext";
 import RoleSelector from "./RoleLoginButtons";
 import Logo from "@/src/shared/components/Logo";
-import { Button } from "@/src/shared/components/Button";
+
 import BasicFields from "./BasicFields";
+import Button from "@/src/shared/components/Button";
 
 const DEMO_CREDENTIALS: Record<UserRole, { email: string; password: string }> =
   {
