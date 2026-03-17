@@ -4,6 +4,7 @@ import {
   LuFolder,
   LuLayoutDashboard,
   LuSettings,
+  LuUser,
   LuUsers,
 } from "react-icons/lu";
 import { RoleNavigation } from "../types/layout";
@@ -16,30 +17,30 @@ export const dashboardNavigation: Record<
     primary: [
       {
         label: "Dashboard",
-        href: "/dashboard",
+        href: "/freelancer/dashboard",
         icon: LuLayoutDashboard,
       },
     ],
     workspace: [
       {
         label: "Projects",
-        href: "/projects",
+        href: "/freelancer/projects",
         icon: LuFolder,
       },
       {
         label: "Tasks",
-        href: "/tasks",
+        href: "/freelancer/tasks",
         icon: LuFileText,
       },
       {
         label: "Notifications",
-        href: "/notifications",
+        href: "/freelancer/notifications",
         icon: LuBell,
       },
       {
         label: "Profile",
-        href: "/profile",
-        icon: LuSettings,
+        href: "/freelancer/profile",
+        icon: LuUser,
       },
     ],
   },
@@ -48,30 +49,30 @@ export const dashboardNavigation: Record<
     primary: [
       {
         label: "Dashboard",
-        href: "/dashboard",
+        href: "/customer/dashboard",
         icon: LuLayoutDashboard,
       },
     ],
     workspace: [
       {
         label: "Projects",
-        href: "/projects",
+        href: "/customer/projects",
         icon: LuFolder,
       },
       {
         label: "Meetings",
-        href: "/meetings",
+        href: "/customer/meetings",
         icon: LuUsers,
       },
       {
         label: "Notifications",
-        href: "/notifications",
+        href: "/customer/notifications",
         icon: LuBell,
       },
       {
         label: "Profile",
-        href: "/profile",
-        icon: LuSettings,
+        href: "/customer/profile",
+        icon: LuUser,
       },
     ],
   },
@@ -80,29 +81,29 @@ export const dashboardNavigation: Record<
     primary: [
       {
         label: "Dashboard",
-        href: "/dashboard",
+        href: "/admin/dashboard",
         icon: LuLayoutDashboard,
       },
     ],
     workspace: [
       {
         label: "Projects",
-        href: "/projects",
+        href: "/admin/projects",
         icon: LuFolder,
       },
       {
         label: "Users",
-        href: "/users",
+        href: "/admin/users",
         icon: LuUsers,
       },
       {
         label: "Notifications",
-        href: "/notifications",
+        href: "/admin/notifications",
         icon: LuBell,
       },
       {
         label: "Settings",
-        href: "/settings",
+        href: "/admin/settings",
         icon: LuSettings,
       },
     ],
