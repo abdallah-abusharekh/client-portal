@@ -2,6 +2,7 @@ import {
   Activity,
   DashboardStat,
   Project,
+  RecentUser,
   Task,
 } from "../types/dashboard.types";
 
@@ -269,3 +270,96 @@ export const activityIcons = {
     className: "bg-yellow-100 text-yellow-600",
   },
 };
+
+export const revenueData = [
+  { month: "Jan", revenue: 80000 },
+  { month: "Feb", revenue: 90000 },
+  { month: "Mar", revenue: 75000 },
+  { month: "Apr", revenue: 105000 },
+  { month: "May", revenue: 115000 },
+  { month: "Jun", revenue: 125000 },
+];
+
+export const userGrowthData = [
+  { month: "Jan", customers: 180, freelancers: 50 },
+  { month: "Feb", customers: 220, freelancers: 60 },
+  { month: "Mar", customers: 280, freelancers: 80 },
+  { month: "Apr", customers: 340, freelancers: 100 },
+  { month: "May", customers: 400, freelancers: 120 },
+  { month: "Jun", customers: 480, freelancers: 140 },
+];
+
+export const recentUsers: RecentUser[] = [
+  {
+    id: "1",
+    name: "Sarah Mitchell",
+    email: "sarah@acme.com",
+    role: "Customer",
+    status: "active",
+    avatar: "/avatars/avatar1.png",
+  },
+  {
+    id: "2",
+    name: "Alex Chen",
+    email: "alex@dev.io",
+    role: "Freelancer",
+    status: "active",
+    avatar: "/avatars/avatar2.png",
+  },
+  {
+    id: "3",
+    name: "Jordan Blake",
+    email: "jordan@clientportal.com",
+    role: "Admin",
+    status: "active",
+    avatar: "/avatars/avatar3.png",
+  },
+  {
+    id: "4",
+    name: "Emma Wilson",
+    email: "emma@startup.co",
+    role: "Customer",
+    status: "active",
+    avatar: "/avatars/avatar4.png",
+  },
+];
+
+export const adminActivities: Activity[] = [
+  {
+    id: "1",
+    type: "update",
+    user: "Alex Chen",
+    avatar: "/avatars/avatar1.png",
+    action: "updated project status",
+    project: "E-Commerce Platform Redesign",
+    date: "Jul 8",
+  },
+  {
+    id: "2",
+    type: "task",
+    user: "Marcus Johnson",
+    avatar: "/avatars/avatar2.png",
+    action: "completed task",
+    project: "E-Commerce Platform Redesign",
+    description: "Design homepage mockups",
+    date: "Jul 8",
+  },
+  {
+    id: "3",
+    type: "comment",
+    user: "Sarah Mitchell",
+    avatar: "/avatars/avatar3.png",
+    action: "left a comment",
+    project: "E-Commerce Platform Redesign",
+    date: "Jul 8",
+  },
+  {
+    id: "4",
+    type: "upload",
+    user: "Marcus Johnson",
+    avatar: "/avatars/avatar4.png",
+    action: "uploaded new files",
+    project: "Brand Identity Package",
+    date: "Jul 7",
+  },
+];

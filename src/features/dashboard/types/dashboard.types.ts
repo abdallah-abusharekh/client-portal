@@ -55,3 +55,16 @@ export type Activity = {
   description?: string;
   date: string;
 };
+
+export type UserRole = "Customer" | "Freelancer" | "Admin";
+
+export type UserStatus = "active" | "pending" | "suspended";
+
+export type RecentUser = {
+  id: string;
+  name: string;
+  email: string;
+  avatar: string;
+  role: UserRole;
+  status: UserStatus;
+};
