@@ -1,19 +1,17 @@
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { FiLock, FiMail } from "react-icons/fi";
 
-export default function BasicFields({
-  setEmail,
-  setPassword,
-  email,
-  password,
-}: {
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-  setPassword: React.Dispatch<React.SetStateAction<string>>;
-  email: string;
-  password: string;
-}) {
+type Props<T extends FieldValues> = {
+  register: UseFormRegister<T>;
+  errors: FieldErrors<T>;
+};
+
+export default function BasicFields<T extends FieldValues>({
+  register,
+  errors,
+}: Props<T>) {
   return (
     <>
-      {" "}
       <div className="space-y-1 w-full">
         <label className="font-medium text-sm">Email Address</label>
 
@@ -21,14 +19,20 @@ export default function BasicFields({
           <FiMail className="mr-2 text-gray-400" />
 
           <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             type="email"
+            placeholder="email@example.com"
             className="bg-transparent outline-none w-full"
+            {...register("email" as any)}
           />
         </div>
+
+        {errors.email && (
+          <p className="text-red-500 text-sm">
+            {errors.email.message as string}
+          </p>
+        )}
       </div>
-      {/* Password */}
+
       <div className="space-y-1 w-full">
         <label className="font-medium text-sm">Password</label>
 
@@ -36,12 +40,18 @@ export default function BasicFields({
           <FiLock className="mr-2 text-gray-400" />
 
           <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             type="password"
+            placeholder="Enter password"
             className="bg-transparent outline-none w-full"
+            {...register("password" as any)}
           />
         </div>
+
+        {errors.password && (
+          <p className="text-red-500 text-sm">
+            {errors.password.message as string}
+          </p>
+        )}
       </div>
     </>
   );
