@@ -19,10 +19,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AppUser | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Load session on mount
   useEffect(() => {
-    const session = authService.getSession();
+    const session = authService.restoreSession();
     if (session) setUser(session);
+
     setLoading(false);
   }, []);
 
@@ -30,9 +30,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setLoading(true);
 
     try {
-      const loggedUser = await authService.login(role);
-      authService.saveSession(loggedUser);
-      setUser(loggedUser);
+      const user = await authService.login(role);
+      setUser(user);
     } finally {
       setLoading(false);
     }
@@ -42,11 +41,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setLoading(true);
 
     try {
-      const newUser = await authService.signup(name, email, role);
-
-      // Optional: auto-login after signup
-      authService.saveSession(newUser);
-      setUser(newUser);
+      const user = await authService.signup(name, email, role);
+      setUser(user);
     } finally {
       setLoading(false);
     }
@@ -57,16 +53,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(null);
   };
 
-  const value: AuthContextType = {
-    user,
-    role: user?.role ?? null,
-    loading,
-    login,
-    signup,
-    logout,
-  };
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        role: user?.role ?? null,
+        loading,
+        login,
+        signup,
+        logout,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export function useAuth() {

@@ -1,5 +1,10 @@
 import { projectsMock } from "../../projects/mocks/projects.mock";
-import { FreelancerUser, CustomerUser, AdminUser } from "../types/user.types";
+import {
+  FreelancerUser,
+  CustomerUser,
+  AdminUser,
+  UserRole,
+} from "../types/user.types";
 
 export const freelancerUser: FreelancerUser = {
   id: "u1",
@@ -38,4 +43,22 @@ export const adminUser: AdminUser = {
   totalUsers: 128,
   totalProjects: 56,
   systemRevenue: 325000,
+};
+
+export const DEMO_CREDENTIALS: Record<
+  UserRole,
+  { email: string; password: string }
+> = {
+  freelancer: {
+    email: "alex@freelance.com",
+    password: "password123",
+  },
+  customer: {
+    email: "sarah@company.com",
+    password: "password123",
+  },
+  admin: {
+    email: "admin@portal.com",
+    password: "password123",
+  },
 };

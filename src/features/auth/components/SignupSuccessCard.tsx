@@ -4,12 +4,10 @@ import { FiMail } from "react-icons/fi";
 export default function SignupSuccessCard() {
   return (
     <div className="flex flex-col items-center gap-5 bg-background shadow-xl px-12 py-10 rounded-2xl w-105 text-center">
-      {/* Icon */}
       <div className="flex justify-center items-center bg-primary-light/20 rounded-full w-16 h-16 text-primary">
         <FiMail size={26} />
       </div>
 
-      {/* Text */}
       <div className="space-y-2">
         <h1 className="font-semibold text-xl">Verify your email</h1>
 
@@ -19,7 +17,6 @@ export default function SignupSuccessCard() {
         </p>
       </div>
 
-      {/* Button */}
       <Button href="/sign-in" className="w-full">
         Go to Sign In
       </Button>

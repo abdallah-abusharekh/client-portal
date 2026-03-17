@@ -2,29 +2,19 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import { UserRole } from "../types/user.types";
 import { useAuth } from "../contexts/AuthContext";
+import { DEMO_CREDENTIALS } from "../mocks/users.mock";
+import { signInSchema, SignInFormValues } from "../schemas/auth.schema";
+
 import RoleSelector from "./RoleLoginButtons";
-import Logo from "@/src/shared/components/Logo";
-
 import BasicFields from "./BasicFields";
-import Button from "@/src/shared/components/Button";
 
-const DEMO_CREDENTIALS: Record<UserRole, { email: string; password: string }> =
-  {
-    freelancer: {
-      email: "alex@freelance.com",
-      password: "password123",
-    },
-    customer: {
-      email: "sarah@company.com",
-      password: "password123",
-    },
-    admin: {
-      email: "admin@portal.com",
-      password: "password123",
-    },
-  };
+import Logo from "@/src/shared/components/Logo";
+import Button from "@/src/shared/components/Button";
 
 export default function SignInCard() {
   const { login, loading } = useAuth();
@@ -32,25 +22,31 @@ export default function SignInCard() {
 
   const [role, setRole] = useState<UserRole>("freelancer");
 
-  const [email, setEmail] = useState(DEMO_CREDENTIALS.freelancer.email);
-  const [password, setPassword] = useState(
-    DEMO_CREDENTIALS.freelancer.password,
-  );
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<SignInFormValues>({
+    resolver: zodResolver(signInSchema),
+    defaultValues: {
+      email: DEMO_CREDENTIALS.freelancer.email,
+      password: DEMO_CREDENTIALS.freelancer.password,
+    },
+  });
 
   const handleRoleChange = (newRole: UserRole) => {
     setRole(newRole);
 
     const creds = DEMO_CREDENTIALS[newRole];
 
-    setEmail(creds.email);
-    setPassword(creds.password);
+    setValue("email", creds.email);
+    setValue("password", creds.password);
   };
 
-  const handleLogin = async () => {
+  const onSubmit = async (data: SignInFormValues) => {
     try {
       await login(role);
-
-      // redirect to role dashboard
       router.push(`/${role}/dashboard`);
     } catch (error) {
       console.error("Login failed", error);
@@ -58,10 +54,12 @@ export default function SignInCard() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 bg-background shadow-xl px-12 py-8 rounded-2xl">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col items-center gap-4 bg-background shadow-xl px-12 py-8 rounded-2xl"
+    >
       <Logo />
 
-      {/* Title */}
       <div className="mb-4 text-center">
         <h1 className="font-semibold text-2xl">Client Portal</h1>
         <p className="text-gray-500 text-sm">
@@ -69,18 +67,19 @@ export default function SignInCard() {
         </p>
       </div>
 
-      {/* Role Selector */}
       <RoleSelector role={role} onChange={handleRoleChange} />
 
-      <BasicFields
-        email={email}
-        password={password}
-        setEmail={setEmail}
-        setPassword={setPassword}
-      />
+      <BasicFields register={register} errors={errors} />
 
-      {/* Login Button */}
-      <Button onClick={handleLogin} loading={loading} className="w-full">
+      {errors.email && (
+        <p className="text-red-500 text-sm">{errors.email.message}</p>
+      )}
+
+      {errors.password && (
+        <p className="text-red-500 text-sm">{errors.password.message}</p>
+      )}
+
+      <Button type="submit" loading={loading} className="w-full">
         Sign In
       </Button>
 
@@ -93,6 +92,6 @@ export default function SignInCard() {
           Sign Up
         </span>
       </p>
-    </div>
+    </form>
   );
 }
