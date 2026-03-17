@@ -1,4 +1,4 @@
-import { Button } from "@/src/shared/components/Button";
+import Button from "@/src/shared/components/Button";
 import { FiMail } from "react-icons/fi";
 
 export default function SignupSuccessCard() {

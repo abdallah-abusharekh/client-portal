@@ -9,7 +9,7 @@ export default function ActivityItem({ activity }: Props) {
   const { icon: Icon, className } = activityIcons[activity.type];
 
   return (
-    <div className="flex justify-between items-start py-4">
+    <div className="flex justify-between items-start hover:bg-gray-50 py-4">
       <div className="flex items-start gap-4">
         <div
           className={`flex items-center justify-center w-10 h-10 rounded-lg ${className}`}

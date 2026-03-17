@@ -12,7 +12,7 @@ export default function FreelancersWidget() {
         {freelancers.map((freelancer) => (
           <div
             key={freelancer.id}
-            className="flex justify-between items-center"
+            className="flex justify-between items-center hover:bg-gray-50"
           >
             <div className="flex items-center gap-3">
               <Image
