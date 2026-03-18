@@ -1,7 +1,11 @@
 import { FiPlus } from "react-icons/fi";
 import Button from "@/src/shared/components/Button";
 
-export default function ProjectsHeader() {
+type Props = {
+  onCreate: () => void;
+};
+
+export default function ProjectsHeader({ onCreate }: Props) {
   return (
     <div className="flex justify-between items-start">
       <div>
@@ -11,7 +15,7 @@ export default function ProjectsHeader() {
         </p>
       </div>
 
-      <Button className="flex items-center gap-2">
+      <Button onClick={onCreate} className="flex items-center gap-2">
         <FiPlus />
         New Project
       </Button>
