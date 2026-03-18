@@ -8,20 +8,6 @@ export type Deadline = {
   priority: DeadlinePriority;
 };
 
-export type Project = {
-  id: string;
-  title: string;
-  description: string;
-  status: "in-progress" | "completed" | "paused";
-  priority: "low" | "medium" | "high";
-  tags: string[];
-  progress: number;
-  budget: number;
-  spent: number;
-  dueDate: string;
-  clientAvatar: string;
-};
-
 export type TaskPriority = "low" | "medium" | "high";
 
 export type Task = {

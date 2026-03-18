@@ -1,7 +1,6 @@
 import {
   Activity,
   DashboardStat,
-  Project,
   RecentUser,
   Task,
 } from "../types/dashboard.types";
@@ -50,37 +49,6 @@ export const chartData = [
   { month: "Apr", earnings: 8200 },
   { month: "May", earnings: 9400 },
   { month: "Jun", earnings: 8700 },
-];
-
-export const projects: Project[] = [
-  {
-    id: "1",
-    title: "E-Commerce Platform Redesign",
-    description:
-      "Complete redesign of the existing e-commerce platform with modern UI/UX.",
-    status: "in-progress",
-    priority: "high",
-    tags: ["Design", "Development"],
-    progress: 65,
-    budget: 15000,
-    spent: 9750,
-    dueDate: "Aug 15",
-    clientAvatar: "/avatars/avatar1.png",
-  },
-  {
-    id: "2",
-    title: "Mobile App Development",
-    description:
-      "Native mobile application for iOS and Android with real-time sync.",
-    status: "in-progress",
-    priority: "high",
-    tags: ["Mobile", "React Native"],
-    progress: 40,
-    budget: 25000,
-    spent: 10000,
-    dueDate: "Oct 30",
-    clientAvatar: "/avatars/avatar2.png",
-  },
 ];
 
 export const tasks: Task[] = [

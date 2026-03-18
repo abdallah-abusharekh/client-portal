@@ -1,27 +1,46 @@
-export const PROJECT_STATUSES = [
-  "active",
-  "completed",
-  "on_hold",
-  "cancelled",
-] as const;
+export type ProjectStatus = "in-progress" | "review" | "completed" | "paused";
 
-export type ProjectStatus = (typeof PROJECT_STATUSES)[number];
+export type ProjectPriority = "low" | "medium" | "high";
 
-export interface Project {
+export type ProjectMember = {
   id: string;
   name: string;
+  avatar: string;
+};
+
+export type ProjectClient = {
+  id: string;
+  name: string;
+  avatar: string;
+};
+
+export type ProjectTag = {
+  label: string;
+  type: "tech" | "category";
+};
+
+export type Project = {
+  id: string;
+
+  title: string;
   description: string;
 
-  clientId: string;
-  clientName: string;
-
-  budget: number;
   status: ProjectStatus;
+  priority: ProjectPriority;
 
   progress: number;
-  startDate: string;
-  dueDate: string;
-  createdAt: string;
 
-  teamSize: number;
-}
+  budget: number;
+  spent: number;
+
+  dueDate: string;
+
+  client: ProjectClient;
+
+  members: ProjectMember[];
+
+  tags: ProjectTag[];
+
+  createdAt: string;
+  updatedAt: string;
+};
