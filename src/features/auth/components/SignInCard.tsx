@@ -26,6 +26,7 @@ export default function SignInCard() {
     register,
     handleSubmit,
     setValue,
+    setError,
     formState: { errors },
   } = useForm<SignInFormValues>({
     resolver: zodResolver(signInSchema),
@@ -46,10 +47,13 @@ export default function SignInCard() {
 
   const onSubmit = async (data: SignInFormValues) => {
     try {
-      await login(role);
-      router.push(`/${role}/dashboard`);
-    } catch (error) {
-      console.error("Login failed", error);
+      const user = await login(data.email, data.password);
+
+      router.push(`/${user.role}/dashboard`);
+    } catch (err: any) {
+      setError("root", {
+        message: err.message || "Invalid credentials",
+      });
     }
   };
 
@@ -70,15 +74,11 @@ export default function SignInCard() {
       <RoleSelector role={role} onChange={handleRoleChange} />
 
       <BasicFields register={register} errors={errors} />
-
-      {errors.email && (
-        <p className="text-red-500 text-sm">{errors.email.message}</p>
+      {errors.root && (
+        <div className="bg-red-50 px-3 py-2 border border-red-200 rounded-lg w-full text-red-600 text-sm">
+          {errors.root.message}
+        </div>
       )}
-
-      {errors.password && (
-        <p className="text-red-500 text-sm">{errors.password.message}</p>
-      )}
-
       <Button type="submit" loading={loading} className="w-full">
         Sign In
       </Button>

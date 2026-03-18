@@ -11,8 +11,8 @@ import {
 
 import { AppUser, UserRole } from "../types/user.types";
 
-export async function login(role: UserRole): Promise<AppUser> {
-  const user = await loginRepository(role);
+export async function login(email: string, password: string): Promise<AppUser> {
+  const user = await loginRepository(email, password);
 
   saveSession(user);
 

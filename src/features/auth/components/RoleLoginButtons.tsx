@@ -24,6 +24,7 @@ export default function RoleSelector({ role, onChange }: Props) {
 
           return (
             <button
+              type="button"
               key={r.value}
               onClick={() => onChange(r.value as UserRole)}
               className={`flex flex-col items-center justify-center gap-2 rounded-xl border py-2 px-4 transition
