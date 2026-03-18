@@ -10,6 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
   size?: Size;
   loading?: boolean;
+  loader?: string;
 }
 
 const base =
@@ -33,6 +34,7 @@ export default function Button({
   variant = "primary",
   size = "md",
   loading = false,
+  loader = "Loading...",
   className = "",
   ...props
 }: ButtonProps) {
@@ -48,7 +50,7 @@ export default function Button({
 
   return (
     <button className={styles} disabled={loading || props.disabled} {...props}>
-      {loading ? "Loading..." : children}
+      {loading ? loader : children}
     </button>
   );
 }

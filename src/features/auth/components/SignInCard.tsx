@@ -79,7 +79,12 @@ export default function SignInCard() {
           {errors.root.message}
         </div>
       )}
-      <Button type="submit" loading={loading} className="w-full">
+      <Button
+        type="submit"
+        loading={loading}
+        loader="Signing In..."
+        className="w-full"
+      >
         Sign In
       </Button>
 

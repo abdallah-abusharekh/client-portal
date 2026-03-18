@@ -85,7 +85,12 @@ export default function SignUpCard() {
 
       <BasicFields register={register} errors={errors} />
 
-      <Button type="submit" loading={loading} className="w-full">
+      <Button
+        type="submit"
+        loading={loading}
+        loader="Creating Account..."
+        className="w-full"
+      >
         Create Account
       </Button>
 
