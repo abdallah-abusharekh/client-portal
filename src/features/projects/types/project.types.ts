@@ -44,3 +44,15 @@ export type Project = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type ViewMode = "grid" | "list";
+
+export const statusLabels = {
+  all: "All",
+  "in-progress": "In Progress",
+  review: "Review",
+  completed: "Completed",
+  paused: "Paused",
+} as const;
+
+export type StatusFilter = keyof typeof statusLabels;

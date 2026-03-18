@@ -1,3 +1,7 @@
+import { mapCreateProjectToProject } from "../mappers/mapCreateProjectToProject";
+import { CreateProjectData } from "../schemas/createProject.schema";
+import { Project } from "../types/project.types";
+
 export function formatDate(date: string) {
   return new Date(date).toLocaleDateString("en-US", {
     month: "short",
@@ -17,4 +21,14 @@ export function getProgressColor(progress: number) {
 
 export function formatCurrency(value: number) {
   return `$${value.toLocaleString()}`;
+}
+
+export async function createProjectService(
+  data: CreateProjectData,
+): Promise<Project> {
+  await new Promise((res) => setTimeout(res, 300));
+
+  const project = mapCreateProjectToProject(data);
+
+  return project;
 }
