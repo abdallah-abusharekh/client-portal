@@ -8,7 +8,7 @@ type AuthContextType = {
   user: AppUser | null;
   role: UserRole | null;
   loading: boolean;
-  login: (role: UserRole) => Promise<void>;
+  login: (email: string, password: string) => Promise<AppUser>;
   signup: (name: string, email: string, role: UserRole) => Promise<void>;
   logout: () => void;
 };
@@ -26,12 +26,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setLoading(false);
   }, []);
 
-  const login = async (role: UserRole) => {
+  const login = async (email: string, password: string) => {
     setLoading(true);
 
     try {
-      const user = await authService.login(role);
+      const user = await authService.login(email, password);
       setUser(user);
+      return user;
     } finally {
       setLoading(false);
     }

@@ -1,4 +1,9 @@
-import { freelancerUser, customerUser, adminUser } from "../mocks/users.mock";
+import {
+  freelancerUser,
+  customerUser,
+  adminUser,
+  DEMO_CREDENTIALS,
+} from "../mocks/users.mock";
 import { AppUser, UserRole } from "../types/user.types";
 
 const USERS = {
@@ -7,14 +12,23 @@ const USERS = {
   admin: adminUser,
 };
 
-export async function loginRepository(role: UserRole): Promise<AppUser> {
+export async function loginRepository(
+  email: string,
+  password: string,
+): Promise<AppUser> {
   await new Promise((res) => setTimeout(res, 500));
 
-  const user = USERS[role];
+  const roleEntry = Object.entries(DEMO_CREDENTIALS).find(
+    ([_, creds]) => creds.email === email && creds.password === password,
+  );
 
-  if (!user) {
-    throw new Error("Invalid role");
+  if (!roleEntry) {
+    throw new Error("Invalid email or password");
   }
+
+  const [role] = roleEntry;
+
+  const user = USERS[role as keyof typeof USERS];
 
   return user;
 }
