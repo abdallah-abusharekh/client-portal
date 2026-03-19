@@ -24,16 +24,19 @@ export const projectsMock: Project[] = [
         id: "m1",
         name: "Ahmad",
         avatar: "/avatars/avatar2.png",
+        role: "Project Manager",
       },
       {
         id: "m2",
         name: "Sara",
         avatar: "/avatars/avatar3.png",
+        role: "Lead Developer",
       },
       {
         id: "m3",
         name: "Omar",
         avatar: "/avatars/avatar4.png",
+        role: "UI/UX Designer",
       },
     ],
 
@@ -70,11 +73,13 @@ export const projectsMock: Project[] = [
         id: "m4",
         name: "Lina",
         avatar: "/avatars/avatar3.png",
+        role: "Full Stack Developer",
       },
       {
         id: "m5",
         name: "Kareem",
         avatar: "/avatars/avatar4.png",
+        role: "QA Engineer",
       },
     ],
 
@@ -110,6 +115,7 @@ export const projectsMock: Project[] = [
         id: "m6",
         name: "You",
         avatar: "/avatars/avatar5.png",
+        role: "Freelancer",
       },
     ],
 
@@ -145,21 +151,25 @@ export const projectsMock: Project[] = [
         id: "m7",
         name: "Hassan",
         avatar: "/avatars/avatar1.png",
+        role: "Project Manager",
       },
       {
         id: "m8",
         name: "Maya",
         avatar: "/avatars/avatar2.png",
+        role: "Lead Developer",
       },
       {
         id: "m9",
         name: "Noor",
         avatar: "/avatars/avatar3.png",
+        role: "AI Specialist",
       },
       {
         id: "m10",
         name: "Ali",
         avatar: "/avatars/avatar4.png",
+        role: "Frontend Developer",
       },
     ],
 
@@ -195,11 +205,13 @@ export const projectsMock: Project[] = [
         id: "m11",
         name: "Rami",
         avatar: "/avatars/avatar2.png",
+        role: "Backend Developer",
       },
       {
         id: "m12",
         name: "Dina",
         avatar: "/avatars/avatar3.png",
+        role: "UI/UX Designer",
       },
     ],
 
