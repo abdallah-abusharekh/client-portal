@@ -1,7 +1,12 @@
-import { mapCreateProjectToProject } from "../mappers/mapCreateProjectToProject";
+import { mapCreateProjectToProject } from "../mappers/createProject.mapper";
+import { mapEditProjectToProjectDetails } from "../mappers/editProject.mapper";
 import { projectsMock } from "../mocks/projects.mock";
-import { CreateProjectData } from "../schemas/createProject.schema";
-import { Project, ProjectDetails } from "../types/project.types";
+
+import {
+  Project,
+  ProjectDetails,
+  ProjectFormBase,
+} from "../types/project.types";
 
 export function formatDate(date: string) {
   return new Date(date).toLocaleDateString("en-US", {
@@ -25,13 +30,22 @@ export function formatCurrency(value: number) {
 }
 
 export async function createProjectService(
-  data: CreateProjectData,
+  data: ProjectFormBase,
 ): Promise<Project> {
   await new Promise((res) => setTimeout(res, 300));
 
   const project = mapCreateProjectToProject(data);
 
   return project;
+}
+
+export async function updateProjectService(
+  project: ProjectDetails,
+  data: ProjectFormBase,
+): Promise<ProjectDetails> {
+  await new Promise((res) => setTimeout(res, 300));
+
+  return mapEditProjectToProjectDetails(project, data);
 }
 
 export async function getProjectDetails(
@@ -70,16 +84,18 @@ export async function getProjectDetails(
     activities: [
       {
         id: "1",
-        user: baseProject.members[0],
+        userName: baseProject.members[0].name,
         action: "updated project status",
         date: "2024-07-08",
+        avatar: baseProject.members[0].avatar,
       },
       {
         id: "2",
-        user: baseProject.members[1],
+        userName: baseProject.members[1].name,
         action: "completed task",
         target: "Design homepage mockups",
         date: "2024-07-08",
+        avatar: baseProject.members[1].avatar,
       },
     ],
 

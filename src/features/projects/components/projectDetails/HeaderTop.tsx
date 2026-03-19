@@ -7,9 +7,10 @@ import Dropdown from "@/src/shared/components/Dropdown";
 type Props = {
   project: ProjectDetails;
   onStatusChange: (status: ProjectStatus) => void;
+  onEdit: () => void;
 };
 
-export default function HeaderTop({ project, onStatusChange }: Props) {
+export default function HeaderTop({ project, onStatusChange, onEdit }: Props) {
   return (
     <div className="flex justify-between items-start">
       <div className="space-y-3">
@@ -57,7 +58,12 @@ export default function HeaderTop({ project, onStatusChange }: Props) {
             ]}
           />
         </div>
-        <Button variant="secondary" size="sm" aria-label="Edit project">
+        <Button
+          variant="secondary"
+          size="sm"
+          aria-label="Edit project"
+          onClick={onEdit}
+        >
           <FiEdit2 />
         </Button>
       </div>
