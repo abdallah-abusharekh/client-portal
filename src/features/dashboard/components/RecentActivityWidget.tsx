@@ -1,7 +1,7 @@
 import Card from "@/src/shared/components/Card";
 import ActionLink from "@/src/shared/components/ActionLink";
-import { activities } from "../../mocks/dashboard.mock";
-import ActivityItem from "./ActivityItem";
+import { activities } from "../mocks/dashboard.mock";
+import ActivityList from "../../shared/components/activities/ActivityList";
 
 export default function RecentActivityWidget() {
   return (
@@ -12,10 +12,8 @@ export default function RecentActivityWidget() {
         <ActionLink href="/customer/activity">View All</ActionLink>
       </div>
 
-      <div className="flex-1 px-5">
-        {activities.map((activity) => (
-          <ActivityItem key={activity.id} activity={activity} />
-        ))}
+      <div className="flex-1 px-5 overflow-auto">
+        <ActivityList activities={activities} />
       </div>
     </Card>
   );

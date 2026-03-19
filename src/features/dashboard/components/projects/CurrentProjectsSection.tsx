@@ -1,6 +1,7 @@
 import ActionLink from "@/src/shared/components/ActionLink";
-import { projects } from "../../mocks/dashboard.mock";
-import ProjectCard from "./ProjectCard";
+
+import ProjectCard from "../../../projects/components/projectCard/ProjectCard";
+import { projectsMock } from "@/src/features/projects/mocks/projects.mock";
 
 export default function CurrentProjectsSection() {
   return (
@@ -12,7 +13,7 @@ export default function CurrentProjectsSection() {
       </div>
 
       <div className="gap-6 grid grid-cols-1 md:grid-cols-2">
-        {projects.map((project) => (
+        {projectsMock.slice(0, 2).map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>

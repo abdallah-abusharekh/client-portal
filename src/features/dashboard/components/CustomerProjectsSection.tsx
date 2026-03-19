@@ -1,7 +1,8 @@
 import ActionLink from "@/src/shared/components/ActionLink";
-import { projects } from "../mocks/dashboard.mock";
-import ProjectCard from "./projects/ProjectCard";
+
+import ProjectCard from "../../projects/components/projectCard/ProjectCard";
 import FreelancersWidget from "./FreelancersWidget";
+import { projectsMock } from "../../projects/mocks/projects.mock";
 
 export default function CustomerProjectsSection() {
   return (
@@ -14,7 +15,7 @@ export default function CustomerProjectsSection() {
         </div>
 
         <div className="gap-5 grid grid-cols-1 md:grid-cols-2">
-          {projects.map((project) => (
+          {projectsMock.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>

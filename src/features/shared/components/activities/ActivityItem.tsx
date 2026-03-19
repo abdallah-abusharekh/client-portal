@@ -1,5 +1,5 @@
-import { activityIcons } from "../../mocks/dashboard.mock";
-import { Activity } from "../../types/dashboard.types";
+import { activityIcons } from "@/src/features/dashboard/mocks/dashboard.mock";
+import { Activity } from "../../types/shared.type";
 
 type Props = {
   activity: Activity;
@@ -14,12 +14,12 @@ export default function ActivityItem({ activity }: Props) {
         <div
           className={`flex items-center justify-center w-10 h-10 rounded-lg ${className}`}
         >
-          <Icon />
+          <Icon className="w-4 h-4" />
         </div>
 
         <div className="space-y-1">
           <p className="text-sm">
-            <span className="font-medium">{activity.user}</span>{" "}
+            <span className="font-medium">{activity.userName}</span>{" "}
             <span className="text-gray-500">{activity.action}</span>
           </p>
 
