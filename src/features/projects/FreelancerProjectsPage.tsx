@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import CreateProjectModal from "./components/CreateProjectModal";
+import CreateProjectModal from "./components/forms/create-project/CreateProjectModal";
 import ProjectsGrid from "./components/ProjectsGrid";
 import ProjectsHeader from "./components/ProjectsHeader";
 import ProjectsTabs from "./components/ProjectsTabs";
@@ -10,9 +10,9 @@ import { useCreateProjectModal } from "./hooks/useCreateProjectModal";
 
 import { useProjectsFilters } from "./hooks/useProjectsFilters";
 import { projectsMock } from "./mocks/projects.mock";
-import { CreateProjectData } from "./schemas/createProject.schema";
 import { createProjectService } from "./services/projects.service";
 import toast from "react-hot-toast";
+import { ProjectFormBase } from "./types/project.types";
 
 export default function FreelancerProjectsPage() {
   const [projectsState, setProjectsState] = useState(projectsMock);
@@ -29,7 +29,7 @@ export default function FreelancerProjectsPage() {
 
   const modal = useCreateProjectModal();
 
-  const handleCreateProject = async (data: CreateProjectData) => {
+  const handleCreateProject = async (data: ProjectFormBase) => {
     await toast.promise(createProjectService(data), {
       loading: "Creating project...",
       success: (project) => {

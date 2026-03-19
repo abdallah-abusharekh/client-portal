@@ -1,7 +1,6 @@
-import { Project } from "../types/project.types";
-import { CreateProjectData } from "../schemas/createProject.schema";
+import { Project, ProjectFormBase } from "../types/project.types";
 
-export function mapCreateProjectToProject(data: CreateProjectData): Project {
+export function mapCreateProjectToProject(data: ProjectFormBase): Project {
   return {
     id: crypto.randomUUID(),
 

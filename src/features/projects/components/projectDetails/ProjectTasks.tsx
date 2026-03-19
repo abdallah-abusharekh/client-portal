@@ -1,8 +1,6 @@
 "use client";
 
 import Card from "@/src/shared/components/Card";
-import Button from "@/src/shared/components/Button";
-import { FiPlus } from "react-icons/fi";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -28,12 +26,9 @@ export default function ProjectTasks({ tasks }: Props) {
   return (
     <Card className="p-0">
       <div className="flex justify-between items-center px-6 py-4 border-gray-300 border-b">
-        <h3 className="font-semibold">Project Tasks</h3>
+        <h3 className="font-semibold">Recent Tasks</h3>
 
-        <Button size="sm" className="flex items-center gap-2">
-          <FiPlus />
-          Add Task
-        </Button>
+        <ActionLink href="/freelancer/tasks">See All</ActionLink>
       </div>
 
       <div className="space-y-4 p-4">
@@ -45,8 +40,6 @@ export default function ProjectTasks({ tasks }: Props) {
           />
         ))}
       </div>
-
-      <ActionLink href="/freelancer/tasks">See All</ActionLink>
     </Card>
   );
 }

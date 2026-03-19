@@ -24,7 +24,7 @@ export type Project = {
 
   progress: number;
 
-  budget: number;
+  budget?: number;
   spent: number;
 
   dueDate: string;
@@ -92,4 +92,14 @@ export type ProjectDetails = Project & {
   tasks: ProjectTask[];
   activities: ProjectActivity[];
   files: ProjectFile[];
+};
+
+export type ProjectFormBase = {
+  title: string;
+  description?: string;
+  budget?: number;
+  dueDate?: string;
+  priority: "low" | "medium" | "high";
+  status: "in-progress" | "review" | "completed" | "paused";
+  tags?: string;
 };
