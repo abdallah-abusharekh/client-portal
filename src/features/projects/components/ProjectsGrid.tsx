@@ -1,5 +1,5 @@
 import { Project, ViewMode } from "../types/project.types";
-import ProjectCard from "./project/ProjectCard";
+import ProjectCard from "./projectCard/ProjectCard";
 
 type Props = {
   projects: Project[];
