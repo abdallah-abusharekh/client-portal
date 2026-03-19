@@ -1,5 +1,5 @@
 import { customerStats } from "../mocks/dashboard.mock";
-import RecentActivityWidget from "./activities/RecentActivityWidget";
+import RecentActivityWidget from "./RecentActivityWidget";
 import CustomerProjectsSection from "./CustomerProjectsSection";
 import DashboardHeader from "./DashboardHeader";
 import StatsGrid from "./stats/StatsCards";

@@ -29,19 +29,6 @@ export type DashboardStat = {
   trendLabel: string;
 };
 
-export type ActivityType = "update" | "task" | "comment" | "upload";
-
-export type Activity = {
-  id: string;
-  type: ActivityType;
-  user: string;
-  avatar: string;
-  action: string;
-  project: string;
-  description?: string;
-  date: string;
-};
-
 export type UserRole = "Customer" | "Freelancer" | "Admin";
 
 export type UserStatus = "active" | "pending" | "suspended";
@@ -53,4 +40,12 @@ export type RecentUser = {
   avatar: string;
   role: UserRole;
   status: UserStatus;
+};
+
+export type Freelancer = {
+  id: string;
+  name: string;
+  avatar: string;
+  role: string;
+  activeProjects: number;
 };

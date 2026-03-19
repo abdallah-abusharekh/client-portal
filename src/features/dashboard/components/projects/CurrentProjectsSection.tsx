@@ -1,6 +1,6 @@
 import ActionLink from "@/src/shared/components/ActionLink";
 
-import ProjectCard from "../../../projects/components/project/ProjectCard";
+import ProjectCard from "../../../projects/components/projectCard/ProjectCard";
 import { projectsMock } from "@/src/features/projects/mocks/projects.mock";
 
 export default function CurrentProjectsSection() {

@@ -1,6 +1,6 @@
 import {
-  Activity,
   DashboardStat,
+  Freelancer,
   RecentUser,
   Task,
 } from "../types/dashboard.types";
@@ -17,6 +17,7 @@ import {
 } from "react-icons/fi";
 
 import { Deadline } from "../types/dashboard.types";
+import { Activity } from "../../shared/types/shared.type";
 
 export const deadlines: Deadline[] = [
   {
@@ -156,7 +157,7 @@ export const statIconMap = {
   earnings: FiDollarSign,
 };
 
-export const freelancers = [
+export const freelancers: Freelancer[] = [
   {
     id: "1",
     name: "Alex Chen",
@@ -184,7 +185,7 @@ export const activities: Activity[] = [
   {
     id: "1",
     type: "update",
-    user: "Alex Chen",
+    userName: "Alex Chen",
     avatar: "https://i.pravatar.cc/100?img=12",
     action: "updated project status",
     project: "E-Commerce Platform Redesign",
@@ -193,7 +194,7 @@ export const activities: Activity[] = [
   {
     id: "2",
     type: "task",
-    user: "Marcus Johnson",
+    userName: "Marcus Johnson",
     avatar: "https://i.pravatar.cc/100?img=33",
     action: "completed task",
     project: "E-Commerce Platform Redesign",
@@ -203,7 +204,7 @@ export const activities: Activity[] = [
   {
     id: "3",
     type: "comment",
-    user: "Sarah Mitchell",
+    userName: "Sarah Mitchell",
     avatar: "https://i.pravatar.cc/100?img=22",
     action: "left a comment",
     project: "E-Commerce Platform Redesign",
@@ -212,7 +213,7 @@ export const activities: Activity[] = [
   {
     id: "4",
     type: "upload",
-    user: "Marcus Johnson",
+    userName: "Marcus Johnson",
     avatar: "https://i.pravatar.cc/100?img=33",
     action: "uploaded new files",
     project: "Brand Identity Package",
@@ -296,7 +297,7 @@ export const adminActivities: Activity[] = [
   {
     id: "1",
     type: "update",
-    user: "Alex Chen",
+    userName: "Alex Chen",
     avatar: "/avatars/avatar1.png",
     action: "updated project status",
     project: "E-Commerce Platform Redesign",
@@ -305,7 +306,7 @@ export const adminActivities: Activity[] = [
   {
     id: "2",
     type: "task",
-    user: "Marcus Johnson",
+    userName: "Marcus Johnson",
     avatar: "/avatars/avatar2.png",
     action: "completed task",
     project: "E-Commerce Platform Redesign",
@@ -315,7 +316,7 @@ export const adminActivities: Activity[] = [
   {
     id: "3",
     type: "comment",
-    user: "Sarah Mitchell",
+    userName: "Sarah Mitchell",
     avatar: "/avatars/avatar3.png",
     action: "left a comment",
     project: "E-Commerce Platform Redesign",
@@ -324,7 +325,7 @@ export const adminActivities: Activity[] = [
   {
     id: "4",
     type: "upload",
-    user: "Marcus Johnson",
+    userName: "Marcus Johnson",
     avatar: "/avatars/avatar4.png",
     action: "uploaded new files",
     project: "Brand Identity Package",
