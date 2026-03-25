@@ -1,9 +1,10 @@
 import Badge from "@/src/shared/components/Badge";
 import { FiCalendar, FiMoreHorizontal, FiMoreVertical } from "react-icons/fi";
 import { ProjectTask } from "../../types/project.types";
-import { formatDate } from "../../services/projects.service";
+
 import Image from "next/image";
 import Dropdown from "@/src/shared/components/Dropdown";
+import { formatDate } from "../../utils/project.utils";
 
 type Props = {
   task: ProjectTask;

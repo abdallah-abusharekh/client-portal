@@ -1,59 +1,61 @@
 "use client";
 
 import Card from "@/src/shared/components/Card";
-
 import HeaderTop from "./HeaderTop";
 import HeaderStats from "./HeaderStats";
-import {
-  ProjectDetails,
-  ProjectFormBase,
-  ProjectStatus,
-} from "../../types/project.types";
-import { useState } from "react";
+import { ProjectDetails, ProjectStatus } from "../../types/project.types";
 import toast from "react-hot-toast";
 import { useEditProjectModal } from "../../hooks/useEditProjectModal";
-import { updateProjectService } from "../../services/projects.service";
 import EditProjectModal from "../forms/edit-project/EditProjectModal";
+import { useUpdateProject } from "../../hooks/useUpdateProject";
+import { EditProjectData } from "../../schemas/editProject.schema";
+import Link from "next/link";
+import { BiArrowBack } from "react-icons/bi";
 
 type Props = {
   project: ProjectDetails;
 };
 
 export default function ProjectHeader({ project }: Props) {
-  const [projectState, setProjectState] = useState(project);
+  const editModal = useEditProjectModal();
+  const updateMutation = useUpdateProject(project.id);
 
   function handleStatusChange(status: ProjectStatus) {
-    setProjectState((prev) => ({
-      ...prev,
-      status,
-    }));
-
-    toast.success(`Project moved to ${status.replace("-", " ")}`);
+    updateMutation.mutate({ status } as EditProjectData, {
+      onSuccess: () => {
+        toast.success(`Project moved to ${status.replace("-", " ")}`);
+      },
+      onError: () => {
+        toast.error("Failed to update status");
+      },
+    });
   }
 
-  const editModal = useEditProjectModal();
-
-  const handleUpdateProject = async (data: ProjectFormBase) => {
-    await toast.promise(updateProjectService(projectState, data), {
-      loading: "Updating project...",
-      success: (updatedProject) => {
-        setProjectState(updatedProject);
+  function handleUpdateProject(data: EditProjectData) {
+    updateMutation.mutate(data, {
+      onSuccess: () => {
+        toast.success("Project updated successfully");
         editModal.closeModal();
-        return "Project updated successfully";
       },
-      error: "Failed to update project",
+      onError: () => {
+        toast.error("Failed to update project");
+      },
     });
-  };
+  }
 
   return (
     <div className="space-y-4">
-      <p className="text-gray-500 text-sm">
-        Projects / <span className="text-gray-900">{projectState.title}</span>
+      <p className="flex items-center gap-1 text-gray-500 text-sm">
+        <Link href="/freelancer/projects" className="flex items-center gap-2">
+          <BiArrowBack />
+          Projects /
+        </Link>{" "}
+        <span className="text-gray-900">{project.title}</span>
       </p>
 
       <Card className="space-y-6">
         <HeaderTop
-          project={projectState}
+          project={project}
           onStatusChange={handleStatusChange}
           onEdit={editModal.openModal}
         />
@@ -61,13 +63,13 @@ export default function ProjectHeader({ project }: Props) {
         <EditProjectModal
           open={editModal.open}
           onClose={editModal.closeModal}
-          project={projectState}
+          project={project}
           onUpdate={handleUpdateProject}
         />
 
         <div className="bg-gray-200 h-px" />
 
-        <HeaderStats project={projectState} />
+        <HeaderStats project={project} />
       </Card>
     </div>
   );

@@ -6,7 +6,7 @@ import {
 } from "react-icons/fi";
 import { ProjectDetails } from "../../types/project.types";
 import StatItem from "./StatItem";
-import { formatDate } from "../../services/projects.service";
+import { formatDate } from "../../utils/project.utils";
 
 type Props = {
   project: ProjectDetails;
