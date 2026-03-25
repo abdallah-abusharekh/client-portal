@@ -8,11 +8,11 @@ export function mapEditProjectToProjectDetails(
   return {
     ...project,
 
-    title: data.title,
-    description: data.description || "",
+    title: data.title ?? project.title,
+    description: data.description ?? project.description,
 
-    status: data.status,
-    priority: data.priority,
+    status: data.status ?? project.status,
+    priority: data.priority ?? project.priority,
 
     budget: data.budget ?? project.budget,
     dueDate: data.dueDate ?? project.dueDate,
@@ -25,7 +25,7 @@ export function mapEditProjectToProjectDetails(
         .map((tag) => ({
           label: tag,
           type: "category",
-        })) || [],
+        })) ?? project.tags,
 
     updatedAt: new Date().toISOString(),
 

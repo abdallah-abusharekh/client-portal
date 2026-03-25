@@ -1,6 +1,6 @@
 "use client";
 
-import { FiSearch } from "react-icons/fi";
+import SearchInput from "@/src/shared/components/SearchInput";
 
 type Props = {
   value: string;
@@ -9,15 +9,11 @@ type Props = {
 
 export default function ProjectsSearch({ value, onChange }: Props) {
   return (
-    <div className="flex flex-1 items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg">
-      <FiSearch className="text-gray-400" />
-
-      <input
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder="Search projects..."
-        className="bg-transparent outline-none w-full text-sm"
-      />
-    </div>
+    <SearchInput
+      placeholder="Search projects..."
+      className="w-full"
+      value={value}
+      onChange={onChange}
+    />
   );
 }

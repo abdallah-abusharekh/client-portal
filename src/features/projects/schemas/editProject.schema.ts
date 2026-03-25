@@ -15,3 +15,5 @@ export const editProjectSchema = z.object({
 
   tags: z.string().optional(),
 });
+
+export type EditProjectData = z.infer<typeof editProjectSchema>;

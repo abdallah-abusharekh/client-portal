@@ -1,10 +1,11 @@
 "use client";
 
 import { FiMenu } from "react-icons/fi";
-import { LuPanelLeft, LuSearch } from "react-icons/lu";
+import { LuPanelLeft } from "react-icons/lu";
 
 import HeaderNotifications from "./HeaderNotifications";
 import HeaderUserMenu from "./HeaderUserMenu";
+import SearchInput from "@/src/shared/components/SearchInput";
 
 type Props = {
   onMenuClick: () => void;
@@ -29,15 +30,7 @@ export default function Header({ onMenuClick, onCollapseClick }: Props) {
           <LuPanelLeft className="text-xl text-(--color-text)" />
         </button>
 
-        <div className="hidden sm:block relative">
-          <LuSearch className="top-1/2 left-3 absolute text-gray-400 text-lg -translate-y-1/2" />
-
-          <input
-            type="text"
-            placeholder="Search projects, tasks..."
-            className="pl-10 pr-4 py-2 w-65 rounded-lg border border-gray-200 bg-(--color-background-sky) focus:outline-none focus:ring-2 focus:ring-primary/20"
-          />
-        </div>
+        <SearchInput placeholder="Search projects, tasks..." className="w-65" />
       </div>
 
       <div className="flex items-center gap-6">

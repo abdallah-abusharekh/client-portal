@@ -7,7 +7,7 @@ import ProjectProgress from "./ProjectProgress";
 import ProjectBudget from "./ProjectBudget";
 import ProjectTags from "./ProjectTags";
 import { Project } from "../../types/project.types";
-import { formatDate } from "../../services/projects.service";
+import { formatDate } from "../../utils/project.utils";
 
 type Props = {
   project: Project;

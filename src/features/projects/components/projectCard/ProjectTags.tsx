@@ -1,6 +1,6 @@
 import Badge from "@/src/shared/components/Badge";
 import { Project } from "../../types/project.types";
-import { formatLabel } from "../../services/projects.service";
+import { formatLabel } from "../../utils/project.utils";
 
 type Props = {
   project: Project;
