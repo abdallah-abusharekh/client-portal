@@ -1,43 +1,26 @@
-import { useEffect, useState } from "react";
-import { ProjectDetails } from "../types/project.types";
+import { useQuery } from "@tanstack/react-query";
 import { getProjectDetails } from "../services/projects.service";
+import { ProjectDetails } from "../types/project.types";
+import { projectKeys } from "./projectKeys";
 
 interface UseProjectDetailsResult {
-  project: ProjectDetails | null;
+  project: ProjectDetails | undefined;
   isLoading: boolean;
   error: string | null;
 }
 
 export function useProjectDetails(projectId: string): UseProjectDetailsResult {
-  const [project, setProject] = useState<ProjectDetails | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const query = useQuery({
+    queryKey: projectKeys.details(projectId),
+    queryFn: () => getProjectDetails(projectId),
+    enabled: !!projectId,
 
-  useEffect(() => {
-    if (!projectId) return;
-
-    async function fetchProject() {
-      try {
-        setIsLoading(true);
-        setError(null);
-
-        const data = await getProjectDetails(projectId);
-
-        setProject(data);
-      } catch (err) {
-        console.error(err);
-        setError("Failed to load project details");
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchProject();
-  }, [projectId]);
+    staleTime: 1000 * 60 * 5,
+  });
 
   return {
-    project,
-    isLoading,
-    error,
+    project: query.data,
+    isLoading: query.isLoading,
+    error: query.error ? "Failed to load project details" : null,
   };
 }

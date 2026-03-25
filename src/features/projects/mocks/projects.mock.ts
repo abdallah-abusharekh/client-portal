@@ -1,4 +1,4 @@
-import { Project } from "../types/project.types";
+import { Message, Project, ProjectFile } from "../types/project.types";
 
 export const projectsMock: Project[] = [
   {
@@ -224,4 +224,40 @@ export const projectsMock: Project[] = [
     createdAt: "2026-01-15",
     updatedAt: "2026-03-01",
   },
+];
+
+export const mockFiles: ProjectFile[] = [
+  {
+    id: "file-1",
+    name: "Design_Mockups_v2.fig",
+    size: 12400000, // ~12.4 MB
+    uploadedAt: "2024-07-05T10:30:00Z",
+    url: "https://example.com/files/design.fig",
+  },
+  {
+    id: "file-2",
+    name: "Requirements_Document.pdf",
+    size: 2100000, // ~2.1 MB
+    uploadedAt: "2024-06-15T08:20:00Z",
+    url: "https://example.com/files/requirements.pdf",
+  },
+  {
+    id: "file-3",
+    name: "Brand_Guidelines.pdf",
+    size: 8700000, // ~8.7 MB
+    uploadedAt: "2024-06-10T14:10:00Z",
+    url: "https://example.com/files/brand.pdf",
+  },
+  {
+    id: "file-4",
+    name: "Assets_Pack.zip",
+    size: 45200000, // ~45.2 MB
+    uploadedAt: "2024-06-08T16:45:00Z",
+    url: "https://example.com/files/assets.zip",
+  },
+];
+
+export const mockMessages: Message[] = [
+  { id: "1", user: "Sarah", text: "The designs look great!", time: "2:30 PM" },
+  { id: "2", user: "Alex", text: "I'll add animations 👍", time: "3:00 PM" },
 ];

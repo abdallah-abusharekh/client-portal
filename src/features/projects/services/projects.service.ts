@@ -1,57 +1,38 @@
 import { mapCreateProjectToProject } from "../mappers/createProject.mapper";
 import { mapEditProjectToProjectDetails } from "../mappers/editProject.mapper";
-import { projectsMock } from "../mocks/projects.mock";
-
+import { mockFiles, mockMessages, projectsMock } from "../mocks/projects.mock";
+import { EditProjectData } from "../schemas/editProject.schema";
 import {
+  Message,
   Project,
   ProjectDetails,
+  ProjectFile,
   ProjectFormBase,
 } from "../types/project.types";
-
-export function formatDate(date: string) {
-  return new Date(date).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-  });
-}
-
-export function formatLabel(value: string) {
-  return value.replace("-", " ").replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
-export function getProgressColor(progress: number) {
-  if (progress < 40) return "bg-red-500";
-  if (progress < 80) return "bg-yellow-500";
-  return "bg-(--color-primary)";
-}
-
-export function formatCurrency(value: number) {
-  return `$${value.toLocaleString()}`;
-}
 
 export async function createProjectService(
   data: ProjectFormBase,
 ): Promise<Project> {
   await new Promise((res) => setTimeout(res, 300));
 
-  const project = mapCreateProjectToProject(data);
-
-  return project;
+  return mapCreateProjectToProject(data);
 }
 
 export async function updateProjectService(
-  project: ProjectDetails,
-  data: ProjectFormBase,
+  projectId: string,
+  data: EditProjectData,
 ): Promise<ProjectDetails> {
   await new Promise((res) => setTimeout(res, 300));
 
-  return mapEditProjectToProjectDetails(project, data);
+  const existingProject = await getProjectDetails(projectId);
+
+  return mapEditProjectToProjectDetails(existingProject, data);
 }
 
 export async function getProjectDetails(
   projectId: string,
 ): Promise<ProjectDetails> {
-  // await new Promise((res) => setTimeout(res, 400));
+  await new Promise((res) => setTimeout(res, 400));
 
   const baseProject = projectsMock.find((p) => p.id === projectId);
 
@@ -59,7 +40,7 @@ export async function getProjectDetails(
     throw new Error("Project not found");
   }
 
-  const projectDetails: ProjectDetails = {
+  return {
     ...baseProject,
 
     tasks: [
@@ -101,6 +82,34 @@ export async function getProjectDetails(
 
     files: [],
   };
+}
 
-  return projectDetails;
+let files: ProjectFile[] = [...mockFiles];
+
+export async function getProjectFiles(): Promise<ProjectFile[]> {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(files), 300);
+  });
+}
+
+export async function uploadFile(file: File): Promise<ProjectFile> {
+  return new Promise((resolve) => {
+    const newFile: ProjectFile = {
+      id: Date.now().toString(),
+      name: file.name,
+      size: file.size,
+      uploadedAt: new Date().toISOString(),
+      url: URL.createObjectURL(file),
+    };
+
+    files = [newFile, ...files];
+
+    setTimeout(() => resolve(newFile), 300);
+  });
+}
+
+export async function getProjectMessages(): Promise<Message[]> {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(mockMessages), 500);
+  });
 }
