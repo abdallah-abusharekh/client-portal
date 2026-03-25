@@ -1,11 +1,12 @@
 "use client";
 
+import ErrorState from "@/src/shared/components/ErrorState";
 import ProjectActivity from "./components/projectDetails/ProjectActivity";
-
 import ProjectHeader from "./components/projectDetails/ProjectHeader";
-import { useProjectDetails } from "./hooks/useProjectDetails";
 import ProjectMembers from "./components/projectDetails/ProjectMembers";
-import ProjectTasks from "./components/projectDetails/ProjectTasks";
+import ProjectWorkspace from "./components/projectDetails/ProjectWorkspace";
+import ProjectDetailsSkeleton from "./components/skeletons/ProjectDetailsSkeleton";
+import { useProjectDetails } from "./hooks/useProjectDetails";
 
 type Props = {
   projectId: string;
@@ -14,16 +15,23 @@ type Props = {
 export default function FreelancerProjectDetailsPage({ projectId }: Props) {
   const { project, isLoading, error } = useProjectDetails(projectId);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error || !project) return <div>Error loading project</div>;
+  if (isLoading) return <ProjectDetailsSkeleton />;
+  if (error || !project) {
+    return (
+      <ErrorState
+        title="Failed to load project"
+        message="We couldn't load the project details."
+      />
+    );
+  }
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-6">
       <ProjectHeader project={project} />
 
-      <div className="gap-6 grid grid-cols-1 lg:grid-cols-3">
+      <div className="items-start gap-6 grid grid-cols-1 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <ProjectTasks tasks={project.tasks} />
+          <ProjectWorkspace tasks={project.tasks} />
         </div>
 
         <div className="space-y-6">

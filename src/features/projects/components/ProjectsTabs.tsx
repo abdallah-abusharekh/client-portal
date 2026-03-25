@@ -1,21 +1,24 @@
 "use client";
 
-import { StatusFilter } from "../types/project.types";
 import { motion } from "framer-motion";
 
-type TabItem = {
-  value: StatusFilter;
+type TabItem<T extends string> = {
+  value: T;
   label: string;
-  count: number;
+  count?: number;
 };
 
-type Props = {
-  tabs: TabItem[];
-  active: StatusFilter;
-  onChange: (status: StatusFilter) => void;
+type Props<T extends string> = {
+  tabs: TabItem<T>[];
+  active: T;
+  onChange: (value: T) => void;
 };
 
-export default function ProjectsTabs({ tabs, active, onChange }: Props) {
+export default function ProjectsTabs<T extends string>({
+  tabs,
+  active,
+  onChange,
+}: Props<T>) {
   return (
     <div className="flex items-center bg-gray-100 p-1 rounded-lg w-fit">
       {tabs.map((tab) => {
@@ -47,15 +50,17 @@ export default function ProjectsTabs({ tabs, active, onChange }: Props) {
               {tab.label}
             </span>
 
-            <span
-              className={`relative z-10 text-xs px-2 py-0.5 rounded-full ${
-                isActive
-                  ? "bg-gray-100 text-gray-700"
-                  : "bg-gray-200 text-gray-500"
-              }`}
-            >
-              {tab.count}
-            </span>
+            {tab.count !== undefined && (
+              <span
+                className={`relative z-10 text-xs px-2 py-0.5 rounded-full ${
+                  isActive
+                    ? "bg-gray-100 text-gray-700"
+                    : "bg-gray-200 text-gray-500"
+                }`}
+              >
+                {tab.count}
+              </span>
+            )}
           </button>
         );
       })}

@@ -1,4 +1,4 @@
-import { getProgressColor } from "../../services/projects.service";
+import { getProgressColor } from "../../utils/project.utils";
 
 type Props = {
   progress: number;

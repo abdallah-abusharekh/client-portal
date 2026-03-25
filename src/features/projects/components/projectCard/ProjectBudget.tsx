@@ -1,4 +1,4 @@
-import { formatCurrency } from "../../services/projects.service";
+import { formatCurrency } from "../../utils/project.utils";
 
 type Props = {
   budget: number;

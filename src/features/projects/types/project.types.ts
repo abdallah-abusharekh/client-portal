@@ -82,10 +82,9 @@ export type ProjectActivity = {
 export type ProjectFile = {
   id: string;
   name: string;
-  size: string;
+  size: number;
+  uploadedAt: string;
   url: string;
-  uploadedBy: ProjectMember;
-  createdAt: string;
 };
 
 export type ProjectDetails = Project & {
@@ -102,4 +101,25 @@ export type ProjectFormBase = {
   priority: "low" | "medium" | "high";
   status: "in-progress" | "review" | "completed" | "paused";
   tags?: string;
+};
+
+export type Tab = "tasks" | "files" | "chat";
+
+export type TabItem = {
+  value: Tab;
+  label: string;
+  count?: number;
+};
+
+export type Message = {
+  id: string;
+  user: string;
+  text?: string;
+  file?: {
+    name: string;
+    size: number;
+    url: string;
+    type: string;
+  };
+  time: string;
 };
