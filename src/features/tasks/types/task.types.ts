@@ -10,4 +10,13 @@ export interface Task {
   priority: TaskPriority;
   dueDate?: string;
   avatar?: string;
+  order: number;
 }
+
+export type TaskFormBase = {
+  title: string;
+  description?: string;
+  status: TaskStatus;
+  priority: TaskPriority;
+  dueDate?: string;
+};

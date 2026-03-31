@@ -1,29 +1,13 @@
 import TasksColumn from "./TasksColumn";
-import TasksSkeleton from "./TasksSkeleton";
-import ErrorState from "@/src/shared/components/ErrorState";
 import { TASK_COLUMNS } from "../../constants/task-status";
-import EmptyState from "@/src/shared/components/EmptyState";
-import { Task } from "../../types/task.types";
+import { Task, TaskStatus } from "../../types/task.types";
 
 type Props = {
   tasks: Task[];
-  isLoading?: boolean;
-  isError?: boolean;
+  onAddTask: (status: TaskStatus) => void;
 };
 
-export default function TasksBoard({ tasks, isLoading, isError }: Props) {
-  if (isLoading) return <TasksSkeleton />;
-  if (isError) return <ErrorState />;
-  if (!tasks?.length)
-    return (
-      <EmptyState
-        title="No tasks yet"
-        message="Start by creating your first task to organize your work."
-        actionLabel="Create Task"
-        // onAction={onCreateTask}
-      />
-    );
-
+export default function TasksBoard({ tasks, onAddTask }: Props) {
   return (
     <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
       {TASK_COLUMNS.map((col) => (
@@ -32,6 +16,7 @@ export default function TasksBoard({ tasks, isLoading, isError }: Props) {
           status={col.key}
           title={col.title}
           tasks={tasks.filter((t) => t.status === col.key)}
+          onAddTask={onAddTask}
         />
       ))}
     </div>

@@ -9,15 +9,13 @@ import {
 } from "@dnd-kit/core";
 
 import { useTasks } from "./hooks/useTasks";
-import { useUpdateTask } from "./hooks/useUpdateTask";
 import { useTasksDnD } from "./hooks/useTasksDnD";
 
 import TasksPage from "./components/TasksPage";
 import TaskCard from "./components/task/TaskCard";
 
 export default function TasksPageContainer() {
-  const { data: tasks = [], isLoading, isError } = useTasks();
-  const { mutate: updateTask } = useUpdateTask();
+  const { tasks = [] } = useTasks();
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -26,7 +24,7 @@ export default function TasksPageContainer() {
   );
 
   const { activeTask, handleDragStart, handleDragEnd, handleDragOver } =
-    useTasksDnD(tasks, updateTask);
+    useTasksDnD(tasks);
 
   return (
     <DndContext
@@ -35,7 +33,7 @@ export default function TasksPageContainer() {
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
     >
-      <TasksPage tasks={tasks} isLoading={isLoading} isError={isError} />
+      <TasksPage />
 
       <DragOverlay>
         {activeTask ? (
