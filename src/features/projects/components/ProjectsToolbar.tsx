@@ -1,7 +1,7 @@
 import Card from "@/src/shared/components/Card";
-import ProjectsSearch from "./ProjectsSearch";
 import ViewToggle from "./ViewToggle";
 import { ViewMode } from "../hooks/useProjectsFilters";
+import SearchInput from "@/src/shared/components/SearchInput";
 
 type Props = {
   search: string;
@@ -19,7 +19,12 @@ export default function ProjectsToolbar({
 }: Props) {
   return (
     <Card className="flex items-center gap-4 p-4">
-      <ProjectsSearch value={search} onChange={onSearchChange} />
+      <SearchInput
+        placeholder="Search projects..."
+        className="w-full"
+        value={search}
+        onChange={onSearchChange}
+      />
 
       <ViewToggle view={view} onChange={onViewChange} />
     </Card>

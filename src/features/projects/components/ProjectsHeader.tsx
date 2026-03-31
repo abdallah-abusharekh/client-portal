@@ -1,5 +1,6 @@
 import { FiPlus } from "react-icons/fi";
 import Button from "@/src/shared/components/Button";
+import PageHeader from "../../shared/components/PageHeader";
 
 type Props = {
   onCreate: () => void;
@@ -7,18 +8,15 @@ type Props = {
 
 export default function ProjectsHeader({ onCreate }: Props) {
   return (
-    <div className="flex justify-between items-start">
-      <div>
-        <h1 className="font-semibold text-2xl">Projects</h1>
-        <p className="text-gray-500 text-sm">
-          Manage and track all your projects
-        </p>
-      </div>
-
-      <Button onClick={onCreate} className="flex items-center gap-2">
-        <FiPlus />
-        New Project
-      </Button>
-    </div>
+    <PageHeader
+      title="Projects"
+      subtitle="Manage and track all your projects"
+      action={
+        <Button onClick={onCreate} className="flex items-center gap-2">
+          <FiPlus />
+          New Project
+        </Button>
+      }
+    />
   );
 }

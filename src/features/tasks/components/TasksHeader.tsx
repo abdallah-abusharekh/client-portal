@@ -1,18 +1,18 @@
 import Button from "@/src/shared/components/Button";
 import { FiPlus } from "react-icons/fi";
+import PageHeader from "../../shared/components/PageHeader";
 
-export default function TasksHeader() {
+export default function TasksHeader({ onCreate }: { onCreate: () => void }) {
   return (
-    <div className="flex md:flex-row flex-col md:justify-between md:items-center gap-4">
-      <div>
-        <h1 className="font-semibold text-xl">Tasks</h1>
-        <p className="text-gray-500 text-sm">Manage and organize your work</p>
-      </div>
-
-      <Button className="flex items-center gap-2">
-        <FiPlus />
-        New Task
-      </Button>
-    </div>
+    <PageHeader
+      title="Tasks"
+      subtitle="Manage and organize your tasks efficiently"
+      action={
+        <Button onClick={onCreate} className="flex items-center gap-2">
+          <FiPlus />
+          New Task
+        </Button>
+      }
+    />
   );
 }
