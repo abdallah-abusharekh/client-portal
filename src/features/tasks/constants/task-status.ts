@@ -8,21 +8,21 @@ export const TASK_COLUMNS: {
   {
     key: "TODO",
     title: "To Do",
-    color: "bg-gray-400",
+    color: "bg-orange-100",
   },
   {
     key: "IN_PROGRESS",
     title: "In Progress",
-    color: "bg-blue-500",
+    color: "bg-sky-100",
   },
   {
     key: "REVIEW",
     title: "Review",
-    color: "bg-purple-500",
+    color: "bg-purple-100",
   },
   {
     key: "COMPLETED",
     title: "Completed",
-    color: "bg-green-500",
+    color: "bg-green-100",
   },
 ];

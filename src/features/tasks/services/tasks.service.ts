@@ -98,3 +98,14 @@ export function insertTaskAtTop(tasks: Task[], newTask: Task): Task[] {
 
   return [...otherTasks, newTask, ...shifted];
 }
+
+export function getRandomColumnColor() {
+  const colors = [
+    "bg-blue-100",
+    "bg-green-100",
+    "bg-yellow-100",
+    "bg-purple-100",
+  ];
+
+  return colors[Math.floor(Math.random() * colors.length)];
+}

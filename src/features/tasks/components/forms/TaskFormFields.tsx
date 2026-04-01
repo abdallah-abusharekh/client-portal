@@ -6,14 +6,12 @@ import { TaskFormBase } from "../../types/task.types";
 type Props = {
   register: UseFormRegister<TaskFormBase>;
   errors: FieldErrors<TaskFormBase>;
-  hideStatus?: boolean;
   hideDueDate?: boolean;
 };
 
 export default function TaskFormFields({
   register,
   errors,
-  hideStatus,
   hideDueDate,
 }: Props) {
   return (
@@ -94,29 +92,6 @@ export default function TaskFormFields({
           )}
         </div>
       </div>
-
-      {/* Status */}
-      {!hideStatus && (
-        <div>
-          <label className="block font-medium text-gray-700 text-sm">
-            Status
-          </label>
-          <select
-            {...register("status")}
-            className="mt-1 px-3 py-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary w-full text-sm transition"
-          >
-            <option value="TODO">To Do</option>
-            <option value="IN_PROGRESS">In Progress</option>
-            <option value="REVIEW">Review</option>
-            <option value="COMPLETED">Completed</option>
-          </select>
-          {errors.status && (
-            <p className="mt-1 text-red-500 text-xs">
-              {String(errors.status.message)}
-            </p>
-          )}
-        </div>
-      )}
     </div>
   );
 }
