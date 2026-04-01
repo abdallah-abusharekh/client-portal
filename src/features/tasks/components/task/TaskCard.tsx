@@ -4,12 +4,14 @@ import { CSS } from "@dnd-kit/utilities";
 import { useSortable } from "@dnd-kit/sortable";
 import { Task } from "../../types/task.types";
 import Badge from "@/src/shared/components/Badge";
+import { FiEdit2 } from "react-icons/fi";
 
 type Props = {
   task: Task;
+  onEdit: (task: Task) => void;
 };
 
-function TaskCard({ task }: Props) {
+function TaskCard({ task, onEdit }: Props) {
   const {
     attributes,
     listeners,
@@ -37,7 +39,15 @@ function TaskCard({ task }: Props) {
         ${isDragging ? "invisible" : ""}
       `}
     >
-      <h4 className="font-medium text-sm">{task.title}</h4>
+      <div className="flex justify-between items-center">
+        <h4 className="font-medium text-sm">{task.title}</h4>
+        <button
+          onClick={() => onEdit(task)}
+          className="hover:bg-gray-200 p-1 rounded-md transition"
+        >
+          <FiEdit2 className="text-gray-500 text-sm" />
+        </button>
+      </div>
 
       <p className="mt-1 text-gray-500 text-xs line-clamp-2">
         {task.description}

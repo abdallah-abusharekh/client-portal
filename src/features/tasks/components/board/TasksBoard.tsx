@@ -5,9 +5,10 @@ import { Task, TaskStatus } from "../../types/task.types";
 type Props = {
   tasks: Task[];
   onAddTask: (status: TaskStatus) => void;
+  openEditModal: (task: Task) => void;
 };
 
-export default function TasksBoard({ tasks, onAddTask }: Props) {
+export default function TasksBoard({ tasks, onAddTask, openEditModal }: Props) {
   return (
     <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
       {TASK_COLUMNS.map((col) => (
@@ -17,6 +18,7 @@ export default function TasksBoard({ tasks, onAddTask }: Props) {
           title={col.title}
           tasks={tasks.filter((t) => t.status === col.key)}
           onAddTask={onAddTask}
+          openEditModal={openEditModal}
         />
       ))}
     </div>

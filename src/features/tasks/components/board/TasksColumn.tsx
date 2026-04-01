@@ -14,6 +14,7 @@ type Props = {
   tasks: Task[];
   status: TaskStatus;
   onAddTask: (status: TaskStatus) => void;
+  openEditModal: (task: Task) => void;
 };
 
 export default function TasksColumn({
@@ -21,6 +22,7 @@ export default function TasksColumn({
   tasks,
   status,
   onAddTask,
+  openEditModal,
 }: Props) {
   const { setNodeRef, isOver } = useDroppable({
     id: status,
@@ -52,7 +54,7 @@ export default function TasksColumn({
       >
         <div className="flex flex-col gap-3">
           {sortedTasks.map((task) => (
-            <TaskCard key={task.id} task={task} />
+            <TaskCard key={task.id} task={task} onEdit={openEditModal} />
           ))}
         </div>
       </SortableContext>

@@ -16,13 +16,18 @@ import ErrorState from "@/src/shared/components/ErrorState";
 import EmptyState from "@/src/shared/components/EmptyState";
 import { useCreateTask } from "../hooks/useCreateTask";
 import TasksSkeleton from "./board/TasksSkeleton";
+import { useEditTaskModal } from "../hooks/useEditTaskModal";
+import EditTaskModal from "./modals/EditTaskModal";
+import { useEditTask } from "../hooks/useEditTask";
 
 export default function TasksPage() {
   const { tasks, isLoading, isError, refetch } = useTasks();
 
   const { mutate: createTask } = useCreateTask();
+  const { mutate: editTask } = useEditTask();
 
   const modal = useCreateTaskModal();
+  const editModal = useEditTaskModal();
 
   function handleCreateTask(data: TaskFormBase) {
     createTask(data, {
@@ -34,6 +39,26 @@ export default function TasksPage() {
         toast.error("Failed to create task");
       },
     });
+  }
+
+  function handleUpdateTask(data: TaskFormBase) {
+    if (!editModal.task) return;
+
+    editTask(
+      {
+        taskId: editModal.task.id,
+        data,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Task updated successfully");
+          editModal.closeModal();
+        },
+        onError: () => {
+          toast.error("Failed to update task");
+        },
+      },
+    );
   }
 
   return (
@@ -69,8 +94,19 @@ export default function TasksPage() {
       )}
 
       {!isLoading && !isError && tasks.length > 0 && (
-        <TasksBoard tasks={tasks} onAddTask={modal.openWithStatus} />
+        <TasksBoard
+          openEditModal={editModal.openModal}
+          tasks={tasks}
+          onAddTask={modal.openWithStatus}
+        />
       )}
+
+      <EditTaskModal
+        open={editModal.open}
+        onClose={editModal.closeModal}
+        task={editModal.task}
+        onUpdate={handleUpdateTask}
+      />
     </div>
   );
 }
