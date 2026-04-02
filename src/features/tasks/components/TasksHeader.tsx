@@ -1,20 +1,16 @@
-import { FiPlus } from "react-icons/fi";
 import Button from "@/src/shared/components/Button";
+import { FiPlus } from "react-icons/fi";
 import PageHeader from "../../shared/components/PageHeader";
 
-type Props = {
-  onCreate: () => void;
-};
-
-export default function ProjectsHeader({ onCreate }: Props) {
+export default function TasksHeader({ onCreate }: { onCreate: () => void }) {
   return (
     <PageHeader
-      title="Projects"
-      subtitle="Manage and track all your projects"
+      title="Tasks"
+      subtitle="Manage and organize your tasks efficiently"
       action={
         <Button onClick={onCreate} className="flex items-center gap-2">
           <FiPlus />
-          New Project
+          New Task
         </Button>
       }
     />
