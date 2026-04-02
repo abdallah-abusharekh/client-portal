@@ -1,6 +1,7 @@
 export type TaskStatus = string;
 
 export type TaskPriority = "low" | "medium" | "high";
+export type PriorityFilter = "all" | TaskPriority;
 
 export interface Task {
   id: string;
@@ -18,4 +19,9 @@ export type TaskFormBase = {
   description?: string;
   priority: TaskPriority;
   dueDate?: string;
+};
+
+export type Filters = {
+  search: string;
+  priority: PriorityFilter;
 };
