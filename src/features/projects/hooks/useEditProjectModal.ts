@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useModal } from "@/src/shared/hooks/useModal";
 
 export function useEditProjectModal() {
-  const [open, setOpen] = useState(false);
+  const modal = useModal<null>();
 
   return {
-    open,
-    openModal: () => setOpen(true),
-    closeModal: () => setOpen(false),
+    open: modal.open,
+    openModal: modal.openModal,
+    closeModal: modal.closeModal,
   };
 }

@@ -1,24 +1,13 @@
-import { useState } from "react";
+import { useModal } from "@/src/shared/hooks/useModal";
 import { Task } from "../types/task.types";
 
 export function useEditTaskModal() {
-  const [open, setOpen] = useState(false);
-  const [task, setTask] = useState<Task | null>(null);
-
-  function openModal(task: Task) {
-    setTask(task);
-    setOpen(true);
-  }
-
-  function closeModal() {
-    setOpen(false);
-    setTask(null);
-  }
+  const modal = useModal<Task>();
 
   return {
-    open,
-    task,
-    openModal,
-    closeModal,
+    open: modal.open,
+    task: modal.data,
+    openModal: modal.openModal,
+    closeModal: modal.closeModal,
   };
 }

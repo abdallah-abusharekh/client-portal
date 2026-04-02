@@ -1,23 +1,12 @@
-import { useState } from "react";
+import { useModal } from "@/src/shared/hooks/useModal";
 
 export function useDeleteColumnModal() {
-  const [open, setOpen] = useState(false);
-  const [columnKey, setColumnKey] = useState<string | null>(null);
-
-  function openModal(key: string) {
-    setColumnKey(key);
-    setOpen(true);
-  }
-
-  function closeModal() {
-    setOpen(false);
-    setColumnKey(null);
-  }
+  const modal = useModal<string>();
 
   return {
-    open,
-    columnKey,
-    openModal,
-    closeModal,
+    open: modal.open,
+    columnKey: modal.data,
+    openModal: modal.openModal,
+    closeModal: modal.closeModal,
   };
 }

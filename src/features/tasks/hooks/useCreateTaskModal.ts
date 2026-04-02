@@ -1,27 +1,24 @@
-import { useState } from "react";
+import { useModal } from "@/src/shared/hooks/useModal";
 import { TaskStatus } from "../types/task.types";
 
 export function useCreateTaskModal() {
-  const [open, setOpen] = useState(false);
-  const [defaultStatus, setDefaultStatus] = useState<TaskStatus>("TODO");
+  const modal = useModal<TaskStatus>();
 
   function openModal() {
-    setDefaultStatus("TODO");
-    setOpen(true);
+    modal.openModal("TODO");
   }
 
   function openWithStatus(status: TaskStatus) {
-    setDefaultStatus(status);
-    setOpen(true);
+    modal.openModal(status);
   }
 
   function closeModal() {
-    setOpen(false);
+    modal.closeModal();
   }
 
   return {
-    open,
-    defaultStatus,
+    open: modal.open,
+    defaultStatus: modal.data ?? "TODO",
     openModal,
     openWithStatus,
     closeModal,

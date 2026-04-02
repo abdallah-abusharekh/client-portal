@@ -1,16 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useModal } from "@/src/shared/hooks/useModal";
 
 export function useCreateProjectModal() {
-  const [open, setOpen] = useState(false);
-
-  const openModal = () => setOpen(true);
-  const closeModal = () => setOpen(false);
+  const modal = useModal<null>();
 
   return {
-    open,
-    openModal,
-    closeModal,
+    open: modal.open,
+    openModal: modal.openModal,
+    closeModal: modal.closeModal,
   };
 }
