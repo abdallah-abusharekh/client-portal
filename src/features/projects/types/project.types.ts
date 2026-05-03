@@ -24,7 +24,7 @@ export type Project = {
 
   progress: number;
 
-  budget?: number;
+  budget: number;
   spent: number;
 
   dueDate: string;
@@ -96,7 +96,7 @@ export type ProjectDetails = Project & {
 export type ProjectFormBase = {
   title: string;
   description?: string;
-  budget?: number;
+  budget: number;
   dueDate?: string;
   priority: "low" | "medium" | "high";
   status: "in-progress" | "review" | "completed" | "paused";

@@ -1,5 +1,5 @@
-import { Deadline } from "../../types/deadline.types";
 import { FiCalendar } from "react-icons/fi";
+import { Deadline } from "../../types/dashboard.types";
 
 type Props = {
   deadline: Deadline;

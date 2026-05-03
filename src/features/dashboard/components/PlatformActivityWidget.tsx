@@ -2,8 +2,8 @@
 
 import Card from "@/src/shared/components/Card";
 import ActionLink from "@/src/shared/components/ActionLink";
-import ActivityItem from "../../shared/activities/ActivityItem";
 import { adminActivities } from "../mocks/dashboard.mock";
+import ActivityItem from "../../shared/components/activities/ActivityItem";
 
 export default function PlatformActivityWidget() {
   return (

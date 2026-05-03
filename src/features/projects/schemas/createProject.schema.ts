@@ -5,7 +5,7 @@ export const createProjectSchema = z.object({
 
   description: z.string().optional(),
 
-  budget: z.number().optional(),
+  budget: z.number(),
 
   dueDate: z.string().optional(),
 
