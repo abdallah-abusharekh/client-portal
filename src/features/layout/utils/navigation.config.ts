@@ -1,5 +1,6 @@
 import {
   LuBell,
+  LuCalendarDays,
   LuFileText,
   LuFolder,
   LuLayoutDashboard,
@@ -31,6 +32,11 @@ export const dashboardNavigation: Record<
         label: "Tasks",
         href: "/freelancer/tasks",
         icon: LuFileText,
+      },
+      {
+        label: "Meetings",
+        href: "/freelancer/meetings",
+        icon: LuCalendarDays,
       },
       {
         label: "Notifications",
