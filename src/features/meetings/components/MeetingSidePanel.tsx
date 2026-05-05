@@ -18,6 +18,7 @@ import ConfirmModal from "@/src/shared/components/ConfirmModal";
 import { isMeetingPassed, hasConflictWithActiveMeetings } from "../utils/utils";
 import { useMeetings } from "../hooks/useMeetings";
 import { getMeetingDurationMinutes } from "../utils/utils";
+import MeetingDetailsSkeleton from "./skeletons/MeetingDetailsSkeleton";
 
 export default function MeetingSidePanel({
   state,
@@ -47,7 +48,13 @@ export default function MeetingSidePanel({
   if (!state.isOpen) return null;
 
   if (isLoading && selectedMeetingId) {
-    return <div className="p-4">Loading...</div>;
+    return (
+      <div className="z-50 fixed inset-0 flex justify-end bg-black/20">
+        <div className="relative flex flex-col bg-white shadow-xl w-full md:max-w-2xl h-dvh">
+          <MeetingDetailsSkeleton />
+        </div>
+      </div>
+    );
   }
 
   if (selectedMeetingId && !meeting && !isLoading) {
