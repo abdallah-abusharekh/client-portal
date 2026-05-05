@@ -6,10 +6,13 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
+import { EventDropArg } from "@fullcalendar/core";
 import toast from "react-hot-toast";
 
 import { useMeetings } from "../hooks/useMeetings";
 import { getMeetingTimeFromClick, isMeetingPassed } from "../utils/utils";
+import { useUpdateMeeting } from "../hooks/useUpdateMeeting";
+import { handleEventDrop } from "../utils/handleEventDrop";
 import CalendarSkeleton from "./skeletons/CalendarSkeleton";
 export default function CalendarView({
   openView,
@@ -19,6 +22,7 @@ export default function CalendarView({
   openCreate: (start: Date, end: Date) => void;
 }) {
   const { data: meetings = [], isLoading } = useMeetings();
+  const updateMeeting = useUpdateMeeting();
   const [defaultView, setDefaultView] = useState("dayGridMonth");
   const [toolbarRight, setToolbarRight] = useState(
     "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
@@ -64,6 +68,24 @@ export default function CalendarView({
     return meetingStart >= today && meetingStart < tomorrow;
   });
 
+  const onEventDropHandler = (info: EventDropArg) => {
+    handleEventDrop({
+      info,
+      meetings,
+      onUpdateMeeting: (input) => {
+        updateMeeting.mutate(input, {
+          onSuccess: () => {
+            toast.success("Meeting updated successfully");
+          },
+          onError: (error) => {
+            toast.error(error.message || "Failed to update meeting");
+            info.revert();
+          },
+        });
+      },
+    });
+  };
+
   return (
     <div className="space-y-4">
       {/* Today's Meetings Note */}
@@ -94,6 +116,7 @@ export default function CalendarView({
           ]}
           initialView={defaultView}
           height="80vh"
+          editable={true}
           headerToolbar={{
             left: "prev,next today",
             center: "title",
@@ -106,6 +129,7 @@ export default function CalendarView({
 
             openView(id);
           }}
+          eventDrop={onEventDropHandler}
           dateClick={(info) => {
             const { start, end } = getMeetingTimeFromClick(info);
 
