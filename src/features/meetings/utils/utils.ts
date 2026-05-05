@@ -37,10 +37,37 @@ export function normalizeMeetingFormDefaultValues(
     start: defaultValues?.start
       ? toDateTimeLocal(new Date(defaultValues.start))
       : "",
-    end: defaultValues?.end ? toDateTimeLocal(new Date(defaultValues.end)) : "",
+    durationMinutes: defaultValues?.durationMinutes ?? 60,
     participants: defaultValues?.participants ?? [],
     link: defaultValues?.link ?? "",
   };
+}
+
+export function getMeetingDurationMinutes(
+  start: string | Date,
+  end: string | Date,
+) {
+  const startDate = new Date(start);
+  const endDate = new Date(end);
+
+  if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) {
+    return 60;
+  }
+
+  return Math.max(
+    1,
+    Math.round((endDate.getTime() - startDate.getTime()) / 60000),
+  );
+}
+
+export function getMeetingEndFromStartAndDuration(
+  start: string | Date,
+  durationMinutes: number,
+) {
+  const endDate = new Date(start);
+  endDate.setMinutes(endDate.getMinutes() + durationMinutes);
+
+  return toDateTimeLocal(endDate);
 }
 
 export function isMeetingPassed(end: string | Date) {

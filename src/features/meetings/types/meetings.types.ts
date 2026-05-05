@@ -14,7 +14,7 @@ export type MeetingFormValues = {
   title: string;
   description?: string;
   start: string;
-  end: string;
+  durationMinutes: number;
   participants: Participant[];
   link?: string;
 };

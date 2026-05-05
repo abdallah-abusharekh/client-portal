@@ -16,7 +16,11 @@ export const meetingFormSchema = z
       .max(500, "Description must be 500 characters or less")
       .optional(),
     start: z.string().min(1, "Start date and time is required"),
-    end: z.string().min(1, "End date and time is required"),
+    durationMinutes: z
+      .number()
+      .int("Duration must be a whole number")
+      .min(1, "Duration must be at least 1 minute")
+      .max(1440, "Duration must be 1440 minutes or less"),
     participants: z
       .array(participantSchema)
       .min(1, "Select at least one participant"),
@@ -31,13 +35,13 @@ export const meetingFormSchema = z
   })
   .refine(
     (data) => {
-      if (!data.start || !data.end) return true;
+      if (!data.start || !data.durationMinutes) return true;
 
-      return new Date(data.end) > new Date(data.start);
+      return data.durationMinutes > 0;
     },
     {
-      path: ["end"],
-      message: "End date must be after start date",
+      path: ["durationMinutes"],
+      message: "Duration must be greater than zero",
     },
   )
   .refine(

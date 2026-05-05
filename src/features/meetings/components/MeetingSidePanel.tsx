@@ -3,7 +3,10 @@
 import { Meeting, MeetingUIState } from "../types/meetings.types";
 import MeetingDetails from "./MeetingDetails";
 import MeetingForm from "./MeetingForm";
-import { meetingToFormValues } from "../mappers/meetings.mappers";
+import {
+  formValuesToMeeting,
+  meetingToFormValues,
+} from "../mappers/meetings.mappers";
 import { useMeetingById } from "../hooks/useMeetingById";
 import { useCreateMeeting } from "../hooks/useCreateMeeting";
 import { useUpdateMeeting } from "../hooks/useUpdateMeeting";
@@ -14,6 +17,7 @@ import toast from "react-hot-toast";
 import ConfirmModal from "@/src/shared/components/ConfirmModal";
 import { isMeetingPassed, hasConflictWithActiveMeetings } from "../utils/utils";
 import { useMeetings } from "../hooks/useMeetings";
+import { getMeetingDurationMinutes } from "../utils/utils";
 
 export default function MeetingSidePanel({
   state,
@@ -124,10 +128,12 @@ export default function MeetingSidePanel({
                 <MeetingForm
                   defaultValues={meetingToFormValues(meeting)}
                   onSubmit={(data) => {
+                    const meetingData = formValuesToMeeting(data, meeting.id);
+
                     if (
                       hasConflictWithActiveMeetings(
-                        data.start,
-                        data.end,
+                        meetingData.start,
+                        meetingData.end,
                         allMeetings.filter((m) => m.id !== meeting.id),
                       )
                     ) {
@@ -169,13 +175,21 @@ export default function MeetingSidePanel({
               <MeetingForm
                 defaultValues={{
                   start: state.selectedStart?.toISOString(),
-                  end: state.selectedEnd?.toISOString(),
+                  durationMinutes:
+                    state.selectedStart && state.selectedEnd
+                      ? getMeetingDurationMinutes(
+                          state.selectedStart,
+                          state.selectedEnd,
+                        )
+                      : 60,
                 }}
                 onSubmit={(data) => {
+                  const meetingData = formValuesToMeeting(data);
+
                   if (
                     hasConflictWithActiveMeetings(
-                      data.start,
-                      data.end,
+                      meetingData.start,
+                      meetingData.end,
                       allMeetings,
                     )
                   ) {
