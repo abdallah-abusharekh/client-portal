@@ -1,9 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import listPlugin from "@fullcalendar/list";
 import toast from "react-hot-toast";
 
 import { useMeetings } from "../hooks/useMeetings";
@@ -16,6 +18,28 @@ export default function CalendarView({
   openCreate: (start: Date, end: Date) => void;
 }) {
   const { data: meetings = [] } = useMeetings();
+  const [defaultView, setDefaultView] = useState("dayGridMonth");
+  const [toolbarRight, setToolbarRight] = useState(
+    "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+  );
+
+  useEffect(() => {
+    const updateDefaultView = () => {
+      const width = window.innerWidth;
+
+      setDefaultView(width <= 1024 ? "listWeek" : "dayGridMonth");
+      setToolbarRight(
+        width <= 640
+          ? "timeGridDay,listWeek"
+          : "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+      );
+    };
+
+    updateDefaultView();
+    window.addEventListener("resize", updateDefaultView);
+
+    return () => window.removeEventListener("resize", updateDefaultView);
+  }, []);
 
   const calendarEvents = meetings.map((m) => ({
     id: m.id,
@@ -25,15 +49,16 @@ export default function CalendarView({
   }));
 
   return (
-    <div className="bg-white shadow p-4 rounded-xl">
+    <div className="bg-white shadow p-4 rounded-xl meeting-calendar">
       <FullCalendar
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
+        key={defaultView}
+        plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}
+        initialView={defaultView}
         height="80vh"
         headerToolbar={{
           left: "prev,next today",
           center: "title",
-          right: "dayGridMonth,timeGridWeek,timeGridDay",
+          right: toolbarRight,
         }}
         events={calendarEvents}
         eventClick={(info) => {

@@ -72,22 +72,24 @@ export default function MeetingSidePanel({
   }
 
   return (
-    <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/20">
+    <div className="z-50 fixed inset-0 flex justify-end bg-black/20">
       <div
         ref={ref}
-        className="top-0 right-0 z-10 fixed bg-white shadow-xl w-150 h-full overflow-auto"
+        className="relative flex flex-col bg-white shadow-xl w-full md:max-w-2xl h-dvh"
       >
         {mode === "view" && meeting && (
           <>
-            <h1 className="p-4 font-bold text-primary text-2xl">
-              Meeting Details
-            </h1>
-            <MeetingDetails
-              meeting={meeting}
-              onEdit={() => openEdit(meeting.id)}
-              onDelete={() => setOpenConfirm(true)}
-              isPastMeeting={isPastMeeting}
-            />
+            <div className="flex-1 overflow-y-auto">
+              <h1 className="p-4 pr-14 font-bold text-primary text-2xl">
+                Meeting Details
+              </h1>
+              <MeetingDetails
+                meeting={meeting}
+                onEdit={() => openEdit(meeting.id)}
+                onDelete={() => setOpenConfirm(true)}
+                isPastMeeting={isPastMeeting}
+              />
+            </div>
             <ConfirmModal
               open={openConfirm}
               title="Delete Meeting"
@@ -100,98 +102,108 @@ export default function MeetingSidePanel({
         )}
         {mode === "edit" && meeting && (
           <>
-            <button
-              type="button"
-              onClick={() => openView(meeting.id)}
-              className="flex items-center gap-1 px-2 pt-4 pb-0 font-medium text-primary hover:text-primary-dark text-sm transition"
-            >
-              ← Back to Details
-            </button>
-            <h1 className="p-4 font-bold text-primary text-2xl">
-              Update meeting
-            </h1>
-            {isPastMeeting ? (
-              <div className="space-y-3 p-6 text-gray-600 text-sm">
-                <p>This meeting has already passed.</p>
-                <p>You cannot update past meetings.</p>
-              </div>
-            ) : (
+            <div className="flex items-center gap-2 px-4 pt-4 pb-0">
+              <button
+                type="button"
+                onClick={() => openView(meeting.id)}
+                className="flex items-center gap-1 font-medium text-primary hover:text-primary-dark text-sm transition"
+              >
+                ← Back to Details
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto">
+              <h1 className="p-4 font-bold text-primary text-2xl">
+                Update meeting
+              </h1>
+              {isPastMeeting ? (
+                <div className="space-y-3 p-6 text-gray-600 text-sm">
+                  <p>This meeting has already passed.</p>
+                  <p>You cannot update past meetings.</p>
+                </div>
+              ) : (
+                <MeetingForm
+                  defaultValues={meetingToFormValues(meeting)}
+                  onSubmit={(data) => {
+                    if (
+                      hasConflictWithActiveMeetings(
+                        data.start,
+                        data.end,
+                        allMeetings.filter((m) => m.id !== meeting.id),
+                      )
+                    ) {
+                      toast.error(
+                        "The new time slot conflicts with an existing meeting. Please choose a different time.",
+                      );
+                      return;
+                    }
+
+                    updateMeeting.mutate(
+                      {
+                        id: meeting.id,
+                        data,
+                      },
+                      {
+                        onSuccess: () => {
+                          toast.success("Meeting updated successfully");
+                          close();
+                        },
+                        onError: (error) => {
+                          toast.error(
+                            error.message || "Failed to update meeting",
+                          );
+                        },
+                      },
+                    );
+                  }}
+                />
+              )}
+            </div>
+          </>
+        )}
+        {mode === "create" && (
+          <>
+            <div className="flex-1 overflow-y-auto">
+              <h1 className="p-4 font-bold text-primary text-2xl">
+                Create a meeting
+              </h1>
               <MeetingForm
-                defaultValues={meetingToFormValues(meeting)}
+                defaultValues={{
+                  start: state.selectedStart?.toISOString(),
+                  end: state.selectedEnd?.toISOString(),
+                }}
                 onSubmit={(data) => {
                   if (
                     hasConflictWithActiveMeetings(
                       data.start,
                       data.end,
-                      allMeetings.filter((m) => m.id !== meeting.id),
+                      allMeetings,
                     )
                   ) {
                     toast.error(
-                      "The new time slot conflicts with an existing meeting. Please choose a different time.",
+                      "This time slot conflicts with an existing meeting. Please choose a different time.",
                     );
                     return;
                   }
 
-                  updateMeeting.mutate(
-                    {
-                      id: meeting.id,
-                      data,
+                  createMeeting.mutate(data, {
+                    onSuccess: () => {
+                      toast.success("Meeting created successfully");
+                      close();
                     },
-                    {
-                      onSuccess: () => {
-                        toast.success("Meeting updated successfully");
-                        close();
-                      },
-                      onError: (error) => {
-                        toast.error(
-                          error.message || "Failed to update meeting",
-                        );
-                      },
+                    onError: (error) => {
+                      toast.error(error.message || "Failed to create meeting");
                     },
-                  );
+                  });
                 }}
               />
-            )}
+            </div>
           </>
         )}
-        {mode === "create" && (
-          <>
-            <h1 className="p-4 font-bold text-primary text-2xl">
-              Create a meeting
-            </h1>
-            <MeetingForm
-              defaultValues={{
-                start: state.selectedStart?.toISOString(),
-                end: state.selectedEnd?.toISOString(),
-              }}
-              onSubmit={(data) => {
-                if (
-                  hasConflictWithActiveMeetings(
-                    data.start,
-                    data.end,
-                    allMeetings,
-                  )
-                ) {
-                  toast.error(
-                    "This time slot conflicts with an existing meeting. Please choose a different time.",
-                  );
-                  return;
-                }
-
-                createMeeting.mutate(data, {
-                  onSuccess: () => {
-                    toast.success("Meeting created successfully");
-                    close();
-                  },
-                  onError: (error) => {
-                    toast.error(error.message || "Failed to create meeting");
-                  },
-                });
-              }}
-            />
-          </>
-        )}
-        <button onClick={close} className="top-5 right-5 absolute text-sm">
+        <button
+          onClick={close}
+          className="top-4 right-4 z-10 absolute bg-white/90 hover:bg-white shadow-sm p-2 rounded-full text-sm transition"
+          aria-label="Close modal"
+        >
           ✕
         </button>
       </div>
