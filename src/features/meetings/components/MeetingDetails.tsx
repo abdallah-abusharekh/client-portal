@@ -80,6 +80,28 @@ export default function MeetingDetails({
       </Card>
 
       <div className="gap-4 grid grid-cols-1 lg:grid-cols-2">
+        {meeting.link && (
+          <Card className="space-y-2 p-4 border border-gray-100 h-full">
+            <h3 className="font-medium text-gray-900 text-sm uppercase tracking-wide">
+              Meeting Link
+            </h3>
+            {isPastMeeting ? (
+              <p className="text-gray-500 text-sm">
+                Meeting has ended, joining is disabled.
+              </p>
+            ) : (
+              <a
+                href={meeting.link}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block max-w-full text-primary text-sm hover:underline break-all"
+              >
+                {meeting.link}
+              </a>
+            )}
+          </Card>
+        )}
+
         <Card className="space-y-3 p-4 border border-gray-100 h-full">
           <h3 className="font-medium text-gray-900 text-sm uppercase tracking-wide">
             Schedule
@@ -111,28 +133,6 @@ export default function MeetingDetails({
             </div>
           </div>
         </Card>
-
-        {meeting.link && (
-          <Card className="space-y-2 p-4 border border-gray-100 h-full">
-            <h3 className="font-medium text-gray-900 text-sm uppercase tracking-wide">
-              Meeting Link
-            </h3>
-            {isPastMeeting ? (
-              <p className="text-gray-500 text-sm">
-                Meeting has ended, joining is disabled.
-              </p>
-            ) : (
-              <a
-                href={meeting.link}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-block max-w-full text-primary text-sm hover:underline break-all"
-              >
-                {meeting.link}
-              </a>
-            )}
-          </Card>
-        )}
       </div>
 
       <Card className="space-y-3 p-4 border border-gray-100">
