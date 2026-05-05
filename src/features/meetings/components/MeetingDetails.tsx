@@ -68,35 +68,72 @@ export default function MeetingDetails({
 
       <Card className="space-y-3 p-4 border border-gray-100">
         <h3 className="font-medium text-gray-900 text-sm uppercase tracking-wide">
-          Schedule
+          Description
         </h3>
-        <div className="gap-4 grid grid-cols-1 sm:grid-cols-3">
-          <div>
-            <p className="text-gray-500 text-xs uppercase tracking-wide">
-              Date
-            </p>
-            <p className="mt-1 font-medium text-gray-800 text-sm">
-              {scheduleLabel}
-            </p>
-          </div>
-          <div>
-            <p className="text-gray-500 text-xs uppercase tracking-wide">
-              Time
-            </p>
-            <p className="mt-1 font-medium text-gray-800 text-sm">
-              {timeRangeLabel}
-            </p>
-          </div>
-          <div>
-            <p className="text-gray-500 text-xs uppercase tracking-wide">
-              Duration
-            </p>
-            <p className="mt-1 font-medium text-gray-800 text-sm">
-              {durationLabel}
-            </p>
-          </div>
-        </div>
+        {meeting.description ? (
+          <p className="text-gray-600 text-sm leading-6 whitespace-pre-wrap">
+            {meeting.description}
+          </p>
+        ) : (
+          <p className="text-gray-500 text-sm">No description provided.</p>
+        )}
       </Card>
+
+      <div className="gap-4 grid grid-cols-1 lg:grid-cols-2">
+        <Card className="space-y-3 p-4 border border-gray-100 h-full">
+          <h3 className="font-medium text-gray-900 text-sm uppercase tracking-wide">
+            Schedule
+          </h3>
+          <div className="gap-4 grid grid-cols-1 sm:grid-cols-3">
+            <div>
+              <p className="text-gray-500 text-xs uppercase tracking-wide">
+                Date
+              </p>
+              <p className="mt-1 font-medium text-gray-800 text-sm">
+                {scheduleLabel}
+              </p>
+            </div>
+            <div>
+              <p className="text-gray-500 text-xs uppercase tracking-wide">
+                Time
+              </p>
+              <p className="mt-1 font-medium text-gray-800 text-sm">
+                {timeRangeLabel}
+              </p>
+            </div>
+            <div>
+              <p className="text-gray-500 text-xs uppercase tracking-wide">
+                Duration
+              </p>
+              <p className="mt-1 font-medium text-gray-800 text-sm">
+                {durationLabel}
+              </p>
+            </div>
+          </div>
+        </Card>
+
+        {meeting.link && (
+          <Card className="space-y-2 p-4 border border-gray-100 h-full">
+            <h3 className="font-medium text-gray-900 text-sm uppercase tracking-wide">
+              Meeting Link
+            </h3>
+            {isPastMeeting ? (
+              <p className="text-gray-500 text-sm">
+                Meeting has ended, joining is disabled.
+              </p>
+            ) : (
+              <a
+                href={meeting.link}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block max-w-full text-primary text-sm hover:underline break-all"
+              >
+                {meeting.link}
+              </a>
+            )}
+          </Card>
+        )}
+      </div>
 
       <Card className="space-y-3 p-4 border border-gray-100">
         <div className="flex justify-between items-center">
@@ -149,28 +186,6 @@ export default function MeetingDetails({
           <p className="text-gray-500 text-sm">No participants added yet.</p>
         )}
       </Card>
-
-      {meeting.link && (
-        <Card className="space-y-2 p-4 border border-gray-100">
-          <h3 className="font-medium text-gray-900 text-sm uppercase tracking-wide">
-            Meeting Link
-          </h3>
-          {isPastMeeting ? (
-            <p className="text-gray-500 text-sm">
-              Meeting has ended, joining is disabled.
-            </p>
-          ) : (
-            <a
-              href={meeting.link}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-block max-w-full text-primary text-sm hover:underline break-all"
-            >
-              {meeting.link}
-            </a>
-          )}
-        </Card>
-      )}
 
       <div className="flex sm:flex-row flex-col gap-2 mt-auto pt-2">
         <Button

@@ -33,6 +33,7 @@ export function normalizeMeetingFormDefaultValues(
 ): MeetingFormValues {
   return {
     title: defaultValues?.title ?? "",
+    description: defaultValues?.description ?? "",
     start: defaultValues?.start
       ? toDateTimeLocal(new Date(defaultValues.start))
       : "",

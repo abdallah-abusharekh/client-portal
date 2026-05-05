@@ -64,6 +64,27 @@ export default function MeetingForm({ defaultValues, onSubmit }: Props) {
           )}
         </div>
 
+        {/* DESCRIPTION */}
+        <div>
+          <label className="block font-medium text-gray-700 text-sm">
+            Description
+          </label>
+          <textarea
+            {...register("description")}
+            placeholder="Add meeting context, agenda, or notes"
+            rows={4}
+            className="mt-1 px-3 py-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary w-full text-sm transition resize-none"
+          />
+          <p className="mt-1 text-gray-500 text-xs">
+            Optional. Keep it short and useful for attendees.
+          </p>
+          {errors.description && (
+            <p className="mt-1 text-red-600 text-xs">
+              {errors.description.message}
+            </p>
+          )}
+        </div>
+
         {/* START + END */}
         <div className="gap-4 grid grid-cols-1 sm:grid-cols-2">
           <div>

@@ -6,6 +6,7 @@ let mockMeetings: Meeting[] = [
   {
     id: "1",
     title: "Team Sync",
+    description: "Weekly team alignment and blockers review.",
     start: "2026-05-04T10:00",
     end: "2026-05-04T11:00",
     participants: mockParticipants.slice(0, 2),

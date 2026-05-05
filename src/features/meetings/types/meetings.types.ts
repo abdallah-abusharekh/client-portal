@@ -3,6 +3,7 @@ import { useMeetingUIState } from "../hooks/useMeetingUIState";
 export type Meeting = {
   id: string;
   title: string;
+  description?: string;
   start: string;
   end: string;
   participants: Participant[];
@@ -11,6 +12,7 @@ export type Meeting = {
 
 export type MeetingFormValues = {
   title: string;
+  description?: string;
   start: string;
   end: string;
   participants: Participant[];

@@ -10,6 +10,11 @@ const participantSchema = z.object({
 export const meetingFormSchema = z
   .object({
     title: z.string().min(2, "Title must be at least 2 characters"),
+    description: z
+      .string()
+      .trim()
+      .max(500, "Description must be 500 characters or less")
+      .optional(),
     start: z.string().min(1, "Start date and time is required"),
     end: z.string().min(1, "End date and time is required"),
     participants: z
