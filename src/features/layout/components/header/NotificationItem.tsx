@@ -1,13 +1,20 @@
+import { Notification } from "@/src/features/notifications/types/notifications.type";
+import { getNotificationLink } from "@/src/features/notifications/utils/notifications.utils";
 import { clsx } from "clsx";
-import { Notification } from "../../types/layout";
+import Link from "next/link";
 
 export default function NotificationItem({
   notification,
 }: {
   notification: Notification;
 }) {
+  const link = getNotificationLink(notification);
+
   return (
-    <div className="flex items-start gap-3 px-4 py-3 hover:bg-(--color-background-sky) cursor-pointer">
+    <Link
+      href={link || "#"}
+      className="flex items-start gap-3 px-4 py-3 hover:bg-(--color-background-sky) cursor-pointer"
+    >
       <span
         className={clsx(
           "mt-1 rounded-full w-2 h-2 shrink-0",
@@ -20,12 +27,14 @@ export default function NotificationItem({
           {notification.title}
         </p>
 
-        {notification.description && (
-          <p className="text-gray-500 text-xs">{notification.description}</p>
+        {notification.message && (
+          <p className="text-gray-500 text-xs">{notification.message}</p>
         )}
 
-        <span className="text-gray-400 text-xs">{notification.createdAt}</span>
+        <span className="text-gray-400 text-xs">
+          {new Date(notification.date).toLocaleString()}
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }

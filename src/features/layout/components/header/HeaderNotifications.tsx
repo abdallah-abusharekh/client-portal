@@ -1,11 +1,11 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { notifications } from "../../mocks/layout.mock";
 import { useClickOutside } from "@/src/shared/hooks/useClickOutside";
 
 import NotificationsDropdown from "./NotificationsDropdown";
 import NotificationBell from "./NotificationBell";
+import { notifications } from "@/src/features/notifications/mocks/notifications.mock";
 
 export default function HeaderNotifications() {
   const [open, setOpen] = useState(false);
