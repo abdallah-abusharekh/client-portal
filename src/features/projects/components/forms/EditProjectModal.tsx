@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import ProjectFormFields from "../project-form/ProjectFormFields";
+import ProjectFormFields from "./ProjectFormFields";
 import Button from "@/src/shared/components/Button";
 
-import { Project, ProjectFormBase } from "../../../types/project.types";
-import { editProjectSchema } from "../../../schemas/editProject.schema";
+import { Project, ProjectFormBase } from "../../types/project.types";
+import { editProjectSchema } from "../../schemas/editProject.schema";
 
 type Props = {
   open: boolean;

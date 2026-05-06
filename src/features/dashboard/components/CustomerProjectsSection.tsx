@@ -6,8 +6,8 @@ import { projectsMock } from "../../projects/mocks/projects.mock";
 
 export default function CustomerProjectsSection() {
   return (
-    <div className="gap-5 grid grid-cols-1 lg:grid-cols-3">
-      <div className="space-y-4 lg:col-span-2">
+    <div>
+      <div className="space-y-4 lg:col-span-2 mb-6">
         <div className="flex justify-between items-center">
           <h2 className="font-semibold text-lg">Active Projects</h2>
 

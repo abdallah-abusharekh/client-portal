@@ -6,13 +6,14 @@ import HeaderStats from "./HeaderStats";
 import { ProjectDetails, ProjectStatus } from "../../types/project.types";
 import toast from "react-hot-toast";
 import { useEditProjectModal } from "../../hooks/useEditProjectModal";
-import EditProjectModal from "../forms/edit-project/EditProjectModal";
+
 import { useUpdateProject } from "../../hooks/useUpdateProject";
 import { EditProjectData } from "../../schemas/editProject.schema";
 import Link from "next/link";
 import { BiArrowBack, BiCheckCircle } from "react-icons/bi";
 import Button from "@/src/shared/components/Button";
 import { useParams } from "next/navigation";
+import EditProjectModal from "../forms/EditProjectModal";
 
 type Props = {
   project: ProjectDetails;

@@ -8,11 +8,12 @@ import { useProjectsFilters } from "../hooks/useProjectsFilters";
 import { useCreateProjectModal } from "../hooks/useCreateProjectModal";
 import { ProjectFormBase } from "../types/project.types";
 import ProjectsHeader from "./ProjectsHeader";
-import CreateProjectModal from "./forms/create-project/CreateProjectModal";
+
 import ProjectsToolbar from "./ProjectsToolbar";
 import ProjectsTabs from "./ProjectsTabs";
 import ProjectsGridSkeleton from "./skeletons/ProjectsGridSkeleton";
 import ProjectsGrid from "./ProjectsGrid";
+import CreateProjectModal from "./forms/CreateProjectModal";
 
 export default function FreelancerProjectsPage() {
   const { projects, createProject, isLoading, isError, refetch } =

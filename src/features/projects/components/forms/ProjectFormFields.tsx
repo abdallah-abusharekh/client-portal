@@ -1,7 +1,7 @@
 "use client";
 
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { ProjectFormBase } from "../../../types/project.types";
+import { ProjectFormBase } from "../../types/project.types";
 
 type Props = {
   register: UseFormRegister<ProjectFormBase>;
