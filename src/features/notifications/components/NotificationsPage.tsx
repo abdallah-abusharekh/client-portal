@@ -1,6 +1,6 @@
 "use client";
 
-import NotificationsSkeleton from "../components/NotificationsSkeleton";
+import NotificationsSkeleton from "./NotificationsSkeleton";
 import Card from "../../../shared/components/Card";
 import Link from "next/link";
 import EmptyState from "../../../shared/components/EmptyState";

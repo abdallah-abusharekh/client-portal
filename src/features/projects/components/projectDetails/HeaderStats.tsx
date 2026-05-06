@@ -9,15 +9,12 @@ import {
 import { ProjectDetails } from "../../types/project.types";
 import StatItem from "./StatItem";
 import { formatDate } from "../../utils/project.utils";
-import { useAuth } from "@/src/features/auth/contexts/AuthContext";
 
 type Props = {
   project: ProjectDetails;
 };
 
 export default function HeaderStats({ project }: Props) {
-  const { role } = useAuth();
-
   return (
     <div className="space-y-4">
       <div className="gap-6 grid grid-cols-2 md:grid-cols-4">
@@ -28,23 +25,18 @@ export default function HeaderStats({ project }: Props) {
           bg="bg-indigo-100 text-indigo-600"
         />
 
-        {role === "freelancer" && (
-          <>
-            {" "}
-            <StatItem
-              icon={<FiDollarSign />}
-              label="Budget"
-              value={`$${project.budget.toLocaleString()}`}
-              bg="bg-green-100 text-green-600"
-            />
-            <StatItem
-              icon={<FiClock />}
-              label="Spent"
-              value={`$${project.spent.toLocaleString()}`}
-              bg="bg-orange-100 text-orange-600"
-            />
-          </>
-        )}
+        <StatItem
+          icon={<FiDollarSign />}
+          label="Budget"
+          value={`$${project.budget.toLocaleString()}`}
+          bg="bg-green-100 text-green-600"
+        />
+        <StatItem
+          icon={<FiClock />}
+          label="Spent"
+          value={`$${project.spent.toLocaleString()}`}
+          bg="bg-orange-100 text-orange-600"
+        />
 
         <StatItem
           icon={<FiCheckCircle />}
