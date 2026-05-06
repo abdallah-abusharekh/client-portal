@@ -15,6 +15,7 @@ import { useDeleteTaskModal } from "../../hooks/useDeleteTaskModal";
 import { useDeleteTask } from "../../hooks/useDeleteTask";
 import toast from "react-hot-toast";
 import ConfirmModal from "@/src/shared/components/ConfirmModal";
+import { useAuth } from "@/src/features/auth/contexts/AuthContext";
 
 type Props = {
   title: string;
@@ -39,6 +40,7 @@ export default function TasksColumn({
   const { setNodeRef, isOver } = useDroppable({
     id: status,
   });
+  const { role } = useAuth();
   const [openMenu, setOpenMenu] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [columnTitle, setColumnTitle] = useState(title);
@@ -92,23 +94,25 @@ export default function TasksColumn({
           <h3 className={`font-semibold text-sm`}>{columnTitle}</h3>
         )}
 
-        <div className="flex items-center gap-1">
-          {/*  Add Task */}
-          <button
-            onClick={() => onAddTask(status)}
-            className="hover:bg-gray-200 p-1 rounded-md transition"
-          >
-            <FiPlus className="text-gray-600 text-sm" />
-          </button>
+        {role === "freelancer" && (
+          <div className="flex items-center gap-1">
+            {/*  Add Task */}
+            <button
+              onClick={() => onAddTask(status)}
+              className="hover:bg-gray-200 p-1 rounded-md transition"
+            >
+              <FiPlus className="text-gray-600 text-sm" />
+            </button>
 
-          {/* Menu */}
-          <button
-            onClick={() => setOpenMenu((prev) => !prev)}
-            className="hover:bg-gray-200 p-1 rounded-md transition"
-          >
-            <FiMoreVertical className="text-gray-600 text-sm" />
-          </button>
-        </div>
+            {/* Menu */}
+            <button
+              onClick={() => setOpenMenu((prev) => !prev)}
+              className="hover:bg-gray-200 p-1 rounded-md transition"
+            >
+              <FiMoreVertical className="text-gray-600 text-sm" />
+            </button>
+          </div>
+        )}
 
         {/* Dropdown */}
         {openMenu && (
@@ -139,10 +143,23 @@ export default function TasksColumn({
         )}
       </div>
 
-      <SortableContext
-        items={sortedTasks.map((t) => t.id)}
-        strategy={verticalListSortingStrategy}
-      >
+      {role === "freelancer" ? (
+        <SortableContext
+          items={sortedTasks.map((t) => t.id)}
+          strategy={verticalListSortingStrategy}
+        >
+          <div className="flex flex-col gap-3">
+            {sortedTasks.map((task) => (
+              <TaskCard
+                key={task.id}
+                task={task}
+                onEdit={openEditModal}
+                onDelete={deleteModal.openModal}
+              />
+            ))}
+          </div>
+        </SortableContext>
+      ) : (
         <div className="flex flex-col gap-3">
           {sortedTasks.map((task) => (
             <TaskCard
@@ -153,7 +170,7 @@ export default function TasksColumn({
             />
           ))}
         </div>
-      </SortableContext>
+      )}
 
       <ConfirmModal
         open={deleteModal.open}

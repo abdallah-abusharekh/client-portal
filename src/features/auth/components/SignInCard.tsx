@@ -49,7 +49,8 @@ export default function SignInCard() {
     try {
       const user = await login(data.email, data.password);
 
-      router.push(`/${user.role}/dashboard`);
+      if (user.role === "admin") router.push(`/admin/dashboard`);
+      else router.push(`/dashboard`);
     } catch (err: any) {
       setError("root", {
         message: err.message || "Invalid credentials",

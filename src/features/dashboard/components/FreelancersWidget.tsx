@@ -1,7 +1,7 @@
 import Card from "@/src/shared/components/Card";
 import Badge from "@/src/shared/components/Badge";
 import { freelancers } from "../mocks/dashboard.mock";
-import MembersList from "../../shared/components/members/MembersList";
+import MembersList from "./members/MembersList";
 import { Freelancer } from "../types/dashboard.types";
 
 export default function FreelancersWidget() {

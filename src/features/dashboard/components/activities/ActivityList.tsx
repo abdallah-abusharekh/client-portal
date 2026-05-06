@@ -1,4 +1,4 @@
-import { Activity } from "../../types/shared.type";
+import { Activity } from "../../types/dashboard.types";
 import ActivityItem from "./ActivityItem";
 
 type Props = {

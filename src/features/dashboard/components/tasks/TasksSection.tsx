@@ -1,4 +1,3 @@
-import ActionLink from "@/src/shared/components/ActionLink";
 import { tasks } from "../../mocks/dashboard.mock";
 import TaskCard from "./TaskCard";
 
@@ -7,8 +6,6 @@ export default function TasksSection() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="font-semibold text-lg">Your Tasks</h2>
-
-        <ActionLink href="/freelancer/tasks">View All</ActionLink>
       </div>
 
       <div className="gap-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">

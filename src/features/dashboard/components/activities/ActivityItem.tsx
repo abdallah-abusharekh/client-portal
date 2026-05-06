@@ -1,5 +1,5 @@
 import { activityIcons } from "@/src/features/dashboard/mocks/dashboard.mock";
-import { Activity } from "../../types/shared.type";
+import { Activity } from "../../types/dashboard.types";
 
 type Props = {
   activity: Activity;

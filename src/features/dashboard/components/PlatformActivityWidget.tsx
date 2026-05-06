@@ -3,7 +3,7 @@
 import Card from "@/src/shared/components/Card";
 import ActionLink from "@/src/shared/components/ActionLink";
 import { adminActivities } from "../mocks/dashboard.mock";
-import ActivityItem from "../../shared/components/activities/ActivityItem";
+import ActivityItem from "./activities/ActivityItem";
 
 export default function PlatformActivityWidget() {
   return (

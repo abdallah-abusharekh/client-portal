@@ -1,3 +1,7 @@
+"use client";
+
+import { useAuth } from "@/src/features/auth/contexts/AuthContext";
+
 type Props = {
   title: string;
   subtitle?: string;
@@ -5,6 +9,8 @@ type Props = {
 };
 
 export default function PageHeader({ title, subtitle, action }: Props) {
+  const { role } = useAuth();
+
   return (
     <div className="flex md:flex-row flex-col md:justify-between md:items-center gap-4">
       <div>
@@ -12,7 +18,7 @@ export default function PageHeader({ title, subtitle, action }: Props) {
         {subtitle && <p className="text-gray-500 text-sm">{subtitle}</p>}
       </div>
 
-      {action && <div>{action}</div>}
+      {action && role === "freelancer" && <div>{action}</div>}
     </div>
   );
 }

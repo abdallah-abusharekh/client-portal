@@ -1,4 +1,5 @@
 import {
+  Activity,
   DashboardStat,
   Freelancer,
   RecentUser,
@@ -17,7 +18,6 @@ import {
 } from "react-icons/fi";
 
 import { Deadline } from "../types/dashboard.types";
-import { Activity } from "../../shared/types/shared.type";
 
 export const deadlines: Deadline[] = [
   {
@@ -96,13 +96,6 @@ export const customerStats: DashboardStat[] = [
     trendLabel: "from last month",
   },
   {
-    title: "Freelancers",
-    value: "3",
-    icon: "users",
-    trend: "+0%",
-    trendLabel: "this month",
-  },
-  {
     title: "Completed Tasks",
     value: "24",
     icon: "tasks",
@@ -116,16 +109,16 @@ export const customerStats: DashboardStat[] = [
     trend: "+8%",
     trendLabel: "this week",
   },
+  {
+    title: "Freelancers",
+    value: "3",
+    icon: "users",
+    trend: "+0%",
+    trendLabel: "this month",
+  },
 ];
 
 export const freelancerStats: DashboardStat[] = [
-  {
-    title: "Total Earnings",
-    value: "$45,600",
-    icon: "earnings",
-    trend: "+12%",
-    trendLabel: "from last month",
-  },
   {
     title: "Active Projects",
     value: "3",
@@ -146,6 +139,13 @@ export const freelancerStats: DashboardStat[] = [
     icon: "hours",
     trend: "-5%",
     trendLabel: "vs last week",
+  },
+  {
+    title: "Customers",
+    value: "3",
+    icon: "users",
+    trend: "+0%",
+    trendLabel: "this month",
   },
 ];
 

@@ -1,18 +1,18 @@
 "use client";
 
-import CreateProjectModal from "./components/forms/create-project/CreateProjectModal";
-import ProjectsGrid from "./components/ProjectsGrid";
-import ProjectsHeader from "./components/ProjectsHeader";
-import ProjectsTabs from "./components/ProjectsTabs";
-import ProjectsToolbar from "./components/ProjectsToolbar";
-import { useCreateProjectModal } from "./hooks/useCreateProjectModal";
-import { useProjectsFilters } from "./hooks/useProjectsFilters";
-import { useProjects } from "./hooks/useProjects";
 import toast from "react-hot-toast";
-import { ProjectFormBase } from "./types/project.types";
-import ProjectsGridSkeleton from "./components/skeletons/ProjectsGridSkeleton";
 import ErrorState from "@/src/shared/components/ErrorState";
 import EmptyState from "@/src/shared/components/EmptyState";
+import { useProjects } from "../hooks/useProjects";
+import { useProjectsFilters } from "../hooks/useProjectsFilters";
+import { useCreateProjectModal } from "../hooks/useCreateProjectModal";
+import { ProjectFormBase } from "../types/project.types";
+import ProjectsHeader from "./ProjectsHeader";
+import CreateProjectModal from "./forms/create-project/CreateProjectModal";
+import ProjectsToolbar from "./ProjectsToolbar";
+import ProjectsTabs from "./ProjectsTabs";
+import ProjectsGridSkeleton from "./skeletons/ProjectsGridSkeleton";
+import ProjectsGrid from "./ProjectsGrid";
 
 export default function FreelancerProjectsPage() {
   const { projects, createProject, isLoading, isError, refetch } =

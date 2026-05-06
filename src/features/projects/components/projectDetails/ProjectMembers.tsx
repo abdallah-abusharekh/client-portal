@@ -2,7 +2,7 @@ import Card from "@/src/shared/components/Card";
 
 import { FiMessageSquare } from "react-icons/fi";
 import { ProjectMember } from "../../types/project.types";
-import MembersList from "@/src/features/shared/components/members/MembersList";
+import MembersList from "@/src/features/dashboard/components/members/MembersList";
 
 type Props = {
   members: ProjectMember[];

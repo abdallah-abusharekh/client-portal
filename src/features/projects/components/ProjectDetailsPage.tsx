@@ -1,12 +1,12 @@
 "use client";
 
 import ErrorState from "@/src/shared/components/ErrorState";
-import ProjectActivity from "./components/projectDetails/ProjectActivity";
-import ProjectHeader from "./components/projectDetails/ProjectHeader";
-import ProjectMembers from "./components/projectDetails/ProjectMembers";
-import ProjectWorkspace from "./components/projectDetails/ProjectWorkspace";
-import ProjectDetailsSkeleton from "./components/skeletons/ProjectDetailsSkeleton";
-import { useProjectDetails } from "./hooks/useProjectDetails";
+import ProjectActivity from "./projectDetails/ProjectActivity";
+import ProjectHeader from "./projectDetails/ProjectHeader";
+import ProjectMembers from "./projectDetails/ProjectMembers";
+import ProjectWorkspace from "./projectDetails/ProjectWorkspace";
+import ProjectDetailsSkeleton from "./skeletons/ProjectDetailsSkeleton";
+import { useProjectDetails } from "../hooks/useProjectDetails";
 
 type Props = {
   projectId: string;

@@ -7,12 +7,10 @@ import {
   PointerSensor,
   useSensor,
 } from "@dnd-kit/core";
-
-import { useTasks } from "./hooks/useTasks";
-import { useTasksDnD } from "./hooks/useTasksDnD";
-
-import TasksPage from "./components/TasksPage";
-import TaskCard from "./components/task/TaskCard";
+import { useTasks } from "../hooks/useTasks";
+import { useTasksDnD } from "../hooks/useTasksDnD";
+import TasksPage from "./TasksPage";
+import TaskCard from "./task/TaskCard";
 
 export default function TasksPageContainer() {
   const { tasks = [] } = useTasks();
