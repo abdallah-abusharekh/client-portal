@@ -1,4 +1,4 @@
-import { Activity } from "../../shared/types/shared.type";
+import { Activity } from "../../dashboard/types/dashboard.types";
 import { ProjectActivity } from "../types/project.types";
 
 export function mapProjectActivityToActivity(

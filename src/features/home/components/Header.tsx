@@ -1,4 +1,4 @@
-import { Button } from "@/src/shared/components/Button";
+import Button from "@/src/shared/components/Button";
 import { Container } from "@/src/shared/components/Container";
 import Link from "next/link";
 

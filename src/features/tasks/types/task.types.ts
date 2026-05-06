@@ -17,6 +17,7 @@ export interface Task {
 export type TaskFormBase = {
   title: string;
   description?: string;
+  status: TaskStatus;
   priority: TaskPriority;
   dueDate?: string;
 };

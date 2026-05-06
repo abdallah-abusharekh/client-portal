@@ -1,3 +1,5 @@
+"use client";
+
 import { FiCalendar } from "react-icons/fi";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,14 +10,17 @@ import ProjectBudget from "./ProjectBudget";
 import ProjectTags from "./ProjectTags";
 import { Project } from "../../types/project.types";
 import { formatDate } from "../../utils/project.utils";
+import { useAuth } from "@/src/features/auth/contexts/AuthContext";
 
 type Props = {
   project: Project;
 };
 
 export default function ProjectCard({ project }: Props) {
+  const { role } = useAuth();
+
   return (
-    <Link href={`/freelancer/projects/${project.id}`}>
+    <Link href={`/projects/${project.id}`}>
       <Card className="flex flex-col hover:shadow-md p-5 h-full transition hover:-translate-y-0.5 cursor-pointer">
         <div className="flex-1 space-y-4">
           <div>
@@ -29,7 +34,9 @@ export default function ProjectCard({ project }: Props) {
           <ProjectTags project={project} />
           <ProjectProgress progress={project.progress} />
 
-          <ProjectBudget budget={project.budget} spent={project.spent} />
+          {role === "freelancer" && (
+            <ProjectBudget budget={project.budget} spent={project.spent} />
+          )}
         </div>
 
         <div className="flex justify-between items-center mt-4">

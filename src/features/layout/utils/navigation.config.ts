@@ -1,5 +1,6 @@
 import {
   LuBell,
+  LuCalendarDays,
   LuFileText,
   LuFolder,
   LuLayoutDashboard,
@@ -17,29 +18,29 @@ export const dashboardNavigation: Record<
     primary: [
       {
         label: "Dashboard",
-        href: "/freelancer/dashboard",
+        href: "/dashboard",
         icon: LuLayoutDashboard,
       },
     ],
     workspace: [
       {
         label: "Projects",
-        href: "/freelancer/projects",
+        href: "/projects",
         icon: LuFolder,
       },
       {
-        label: "Tasks",
-        href: "/freelancer/tasks",
-        icon: LuFileText,
+        label: "Meetings",
+        href: "/meetings",
+        icon: LuCalendarDays,
       },
       {
         label: "Notifications",
-        href: "/freelancer/notifications",
+        href: "/notifications",
         icon: LuBell,
       },
       {
         label: "Profile",
-        href: "/freelancer/profile",
+        href: "/profile",
         icon: LuUser,
       },
     ],
@@ -49,29 +50,29 @@ export const dashboardNavigation: Record<
     primary: [
       {
         label: "Dashboard",
-        href: "/customer/dashboard",
+        href: "/dashboard",
         icon: LuLayoutDashboard,
       },
     ],
     workspace: [
       {
         label: "Projects",
-        href: "/customer/projects",
+        href: "/projects",
         icon: LuFolder,
       },
       {
         label: "Meetings",
-        href: "/customer/meetings",
+        href: "/meetings",
         icon: LuUsers,
       },
       {
         label: "Notifications",
-        href: "/customer/notifications",
+        href: "/notifications",
         icon: LuBell,
       },
       {
         label: "Profile",
-        href: "/customer/profile",
+        href: "/profile",
         icon: LuUser,
       },
     ],

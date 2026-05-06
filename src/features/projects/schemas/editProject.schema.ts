@@ -9,7 +9,7 @@ export const editProjectSchema = z.object({
 
   priority: z.enum(["low", "medium", "high"]),
 
-  budget: z.number().optional(),
+  budget: z.number(),
 
   dueDate: z.string().optional(),
 

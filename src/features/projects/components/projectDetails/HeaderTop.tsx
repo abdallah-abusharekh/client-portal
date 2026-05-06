@@ -1,8 +1,11 @@
+"use client";
+
 import Badge from "@/src/shared/components/Badge";
 import Button from "@/src/shared/components/Button";
 import { ProjectDetails, ProjectStatus } from "../../types/project.types";
 import { FiEdit2, FiMoreHorizontal } from "react-icons/fi";
 import Dropdown from "@/src/shared/components/Dropdown";
+import { useAuth } from "@/src/features/auth/contexts/AuthContext";
 
 type Props = {
   project: ProjectDetails;
@@ -11,6 +14,8 @@ type Props = {
 };
 
 export default function HeaderTop({ project, onStatusChange, onEdit }: Props) {
+  const { role } = useAuth();
+
   return (
     <div className="flex justify-between items-start">
       <div className="space-y-3">
@@ -34,39 +39,41 @@ export default function HeaderTop({ project, onStatusChange, onEdit }: Props) {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-2">
-        <div className="flex flex-wrap items-center border border-gray-300 rounded-md">
-          <Dropdown
-            trigger={<FiMoreHorizontal className="w-4 h-4 text-gray-500" />}
-            items={[
-              {
-                label: "Move to In Progress",
-                onClick: () => onStatusChange("in-progress"),
-              },
-              {
-                label: "Move to Review",
-                onClick: () => onStatusChange("review"),
-              },
-              {
-                label: "Move to Completed",
-                onClick: () => onStatusChange("completed"),
-              },
-              {
-                label: "Pause Project",
-                onClick: () => onStatusChange("paused"),
-              },
-            ]}
-          />
+      {role === "freelancer" && (
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center border border-gray-300 rounded-md">
+            <Dropdown
+              trigger={<FiMoreHorizontal className="w-4 h-4 text-gray-500" />}
+              items={[
+                {
+                  label: "Move to In Progress",
+                  onClick: () => onStatusChange("in-progress"),
+                },
+                {
+                  label: "Move to Review",
+                  onClick: () => onStatusChange("review"),
+                },
+                {
+                  label: "Move to Completed",
+                  onClick: () => onStatusChange("completed"),
+                },
+                {
+                  label: "Pause Project",
+                  onClick: () => onStatusChange("paused"),
+                },
+              ]}
+            />
+          </div>
+          <Button
+            variant="secondary"
+            size="sm"
+            aria-label="Edit project"
+            onClick={onEdit}
+          >
+            <FiEdit2 />
+          </Button>
         </div>
-        <Button
-          variant="secondary"
-          size="sm"
-          aria-label="Edit project"
-          onClick={onEdit}
-        >
-          <FiEdit2 />
-        </Button>
-      </div>
+      )}
     </div>
   );
 }

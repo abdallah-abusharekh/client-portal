@@ -1,7 +1,7 @@
 import Card from "@/src/shared/components/Card";
 import type { ProjectActivity } from "../../types/project.types";
 import { mapProjectActivityToActivity } from "../../mappers/projectDetails.mapper";
-import ActivityList from "@/src/features/shared/components/activities/ActivityList";
+import ActivityList from "@/src/features/dashboard/components/activities/ActivityList";
 
 type Props = {
   activities: ProjectActivity[];

@@ -22,7 +22,7 @@ export default function HeaderNotifications() {
         onClick={() => setOpen((prev) => !prev)}
       />
 
-      {open && <NotificationsDropdown />}
+      {open && <NotificationsDropdown onClose={() => setOpen(false)} />}
     </div>
   );
 }

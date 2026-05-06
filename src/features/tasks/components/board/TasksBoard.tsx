@@ -3,6 +3,7 @@
 import TasksColumn from "./TasksColumn";
 import { Task, TaskStatus } from "../../types/task.types";
 import Button from "@/src/shared/components/Button";
+import { useAuth } from "@/src/features/auth/contexts/AuthContext";
 
 type Column = {
   key: string;
@@ -27,6 +28,8 @@ export default function TasksBoard({
   onDeleteColumn,
   onAddColumn,
 }: Props) {
+  const { role } = useAuth();
+
   return (
     <div className="items-start gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
       {columns.map((col) => {
@@ -46,12 +49,14 @@ export default function TasksBoard({
         );
       })}
 
-      <Button
-        onClick={onAddColumn}
-        className="flex justify-center items-center bg-gray-100 hover:bg-gray-200 p-4 rounded-2xl text-gray-600 text-sm transition"
-      >
-        + Add Column
-      </Button>
+      {role === "freelancer" && (
+        <Button
+          onClick={onAddColumn}
+          className="flex justify-center items-center bg-gray-100 hover:bg-gray-200 p-4 rounded-2xl text-gray-600 text-sm transition"
+        >
+          + Add Column
+        </Button>
+      )}
     </div>
   );
 }

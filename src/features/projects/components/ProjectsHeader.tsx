@@ -1,6 +1,6 @@
 import { FiPlus } from "react-icons/fi";
 import Button from "@/src/shared/components/Button";
-import PageHeader from "../../shared/components/PageHeader";
+import PageHeader from "../../../shared/components/PageHeader";
 
 type Props = {
   onCreate: () => void;

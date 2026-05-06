@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/src/features/auth/contexts/AuthContext";
-import { FiSettings, FiLogOut } from "react-icons/fi";
+import { FiLogOut } from "react-icons/fi";
 
 type Props = {
   collapsed?: boolean;
@@ -26,30 +26,25 @@ export default function SidebarUser({ collapsed }: Props) {
         </div>
 
         {!collapsed && (
-          <div className="flex flex-col">
-            <span className="text-sm font-medium text-(--color-text)">
-              {user.name}
-            </span>
+          <div className="flex justify-between items-center w-full">
+            <div className="flex flex-col">
+              <span className="text-sm font-medium text-(--color-text)">
+                {user.name}
+              </span>
 
-            <span className="text-gray-500 text-xs capitalize">
-              {user.role}
-            </span>
+              <span className="text-gray-500 text-xs capitalize">
+                {user.role}
+              </span>
+            </div>
+            <button
+              onClick={logout}
+              className="text-gray-600 hover:text-red-500"
+            >
+              <FiLogOut />
+            </button>
           </div>
         )}
       </div>
-
-      {!collapsed && (
-        <div className="flex justify-between items-center text-sm">
-          <button className="flex items-center gap-2 text-gray-600 hover:text-(--color-primary)">
-            <FiSettings />
-            Settings
-          </button>
-
-          <button onClick={logout} className="text-gray-600 hover:text-red-500">
-            <FiLogOut />
-          </button>
-        </div>
-      )}
     </div>
   );
 }

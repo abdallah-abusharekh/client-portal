@@ -10,13 +10,17 @@ import EditProjectModal from "../forms/edit-project/EditProjectModal";
 import { useUpdateProject } from "../../hooks/useUpdateProject";
 import { EditProjectData } from "../../schemas/editProject.schema";
 import Link from "next/link";
-import { BiArrowBack } from "react-icons/bi";
+import { BiArrowBack, BiCheckCircle } from "react-icons/bi";
+import Button from "@/src/shared/components/Button";
+import { useParams } from "next/navigation";
 
 type Props = {
   project: ProjectDetails;
 };
 
 export default function ProjectHeader({ project }: Props) {
+  const { id } = useParams();
+
   const editModal = useEditProjectModal();
   const updateMutation = useUpdateProject(project.id);
 
@@ -45,13 +49,18 @@ export default function ProjectHeader({ project }: Props) {
 
   return (
     <div className="space-y-4">
-      <p className="flex items-center gap-1 text-gray-500 text-sm">
-        <Link href="/freelancer/projects" className="flex items-center gap-2">
-          <BiArrowBack />
-          Projects /
-        </Link>{" "}
-        <span className="text-gray-900">{project.title}</span>
-      </p>
+      <div className="flex justify-between items-center">
+        <p className="flex items-center gap-1 text-gray-500 text-sm">
+          <Link href="/projects" className="flex items-center gap-2">
+            <BiArrowBack />
+            Projects /
+          </Link>{" "}
+          <span className="text-gray-900">{project.title}</span>
+        </p>
+        <Button href={`/projects/${id}/tasks`} variant="primary">
+          View tasks <BiCheckCircle className="w-4 h-4" />
+        </Button>
+      </div>
 
       <Card className="space-y-6">
         <HeaderTop

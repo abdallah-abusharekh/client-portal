@@ -11,11 +11,11 @@ export default function CustomerProjectsSection() {
         <div className="flex justify-between items-center">
           <h2 className="font-semibold text-lg">Active Projects</h2>
 
-          <ActionLink href="/customer/projects">View All</ActionLink>
+          <ActionLink href="/projects">View All</ActionLink>
         </div>
 
         <div className="gap-5 grid grid-cols-1 md:grid-cols-2">
-          {projectsMock.map((project) => (
+          {projectsMock.slice(0, 2).map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
