@@ -74,7 +74,7 @@ function TaskCard({ task, onEdit, onDelete }: Props) {
       <div className="flex justify-between items-center mt-3">
         <Badge value={task.priority} />
 
-        <TaskMeta dueDate={task.dueDate} avatar={task.avatar} />
+        <TaskMeta dueDate={task.dueDate} assignee={task.assignee} />
       </div>
     </div>
   );

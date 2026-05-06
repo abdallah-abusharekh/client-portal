@@ -34,6 +34,8 @@ export default function EditTaskModal({
         description: task.description,
         priority: task.priority,
         dueDate: task.dueDate,
+        assignee: task.assignee || "",
+        status: task.status,
       });
     }
   }, [task, open, reset]);
@@ -56,7 +58,7 @@ export default function EditTaskModal({
         <h2 className="font-semibold text-lg">Edit Task</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <TaskFormFields register={register} errors={errors} hideDueDate />
+          <TaskFormFields register={register} errors={errors} />
 
           <div className="flex justify-end gap-2 pt-2">
             <Button type="button" variant="secondary" onClick={onClose}>
