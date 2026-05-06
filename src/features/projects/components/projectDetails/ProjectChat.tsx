@@ -20,7 +20,7 @@ export default function ProjectChat() {
   } = useProjectChat();
 
   return (
-    <div className="flex flex-col bg-white shadow-sm rounded-2xl">
+    <div className="flex flex-col bg-white shadow-sm rounded-2xl h-full">
       <div className="px-6 py-4 border-gray-300 border-b">
         <h3 className="font-semibold">Project Discussion</h3>
       </div>
