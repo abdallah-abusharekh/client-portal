@@ -6,6 +6,7 @@ import * as authService from "../services/auth.service";
 
 type AuthContextType = {
   user: AppUser | null;
+  setUser: (user: AppUser | null) => void;
   role: UserRole | null;
   loading: boolean;
   login: (email: string, password: string) => Promise<AppUser>;
@@ -58,6 +59,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     <AuthContext.Provider
       value={{
         user,
+        setUser,
         role: user?.role ?? null,
         loading,
         login,

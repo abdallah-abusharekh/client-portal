@@ -1,28 +1,32 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Message } from "../types/project.types";
 import { getProjectMessages } from "../services/projects.service";
 
 export function useProjectChat() {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const queryClient = useQueryClient();
+
   const [input, setInput] = useState("");
   const [pendingFile, setPendingFile] = useState<File | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    async function fetchMessages() {
-      try {
-        setIsLoading(true);
-        const data = await getProjectMessages();
-        setMessages(data);
-      } finally {
-        setIsLoading(false);
-      }
-    }
+  const { data: messages = [], isLoading } = useQuery({
+    queryKey: ["projectMessages"],
+    queryFn: getProjectMessages,
+  });
 
-    fetchMessages();
-  }, []);
+  const sendMessageMutation = useMutation({
+    mutationFn: async (newMessage: Message) => {
+      return newMessage;
+    },
+    onSuccess: (newMessage) => {
+      queryClient.setQueryData<Message[]>(["projectMessages"], (old = []) => [
+        ...old,
+        newMessage,
+      ]);
+    },
+  });
 
   function handleSend() {
     if (!input.trim() && !pendingFile) return;
@@ -45,7 +49,8 @@ export function useProjectChat() {
       }),
     };
 
-    setMessages((prev) => [...prev, newMessage]);
+    sendMessageMutation.mutate(newMessage);
+
     setInput("");
     setPendingFile(null);
   }
@@ -53,10 +58,6 @@ export function useProjectChat() {
   function handleFileUpload(file: File) {
     setPendingFile(file);
   }
-
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
 
   return {
     messages,
@@ -68,5 +69,6 @@ export function useProjectChat() {
     handleFileUpload,
     bottomRef,
     isLoading,
+    isSending: sendMessageMutation.isPending,
   };
 }

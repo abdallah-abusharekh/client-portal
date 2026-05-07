@@ -4,7 +4,6 @@ import { freelancerStats } from "../mocks/dashboard.mock";
 import DashboardHeader from "./DashboardHeader";
 import CurrentProjectsSection from "./projects/CurrentProjectsSection";
 import StatsGrid from "./stats/StatsCards";
-import TasksSection from "./tasks/TasksSection";
 import FreelancerActivitySection from "./FreelancerActivitySection";
 import Button from "@/src/shared/components/Button";
 import { LuFolderArchive } from "react-icons/lu";
@@ -27,7 +26,6 @@ export default function FreelancerDashboardView() {
       <StatsGrid stats={freelancerStats} />
       <FreelancerActivitySection />
       <CurrentProjectsSection />
-      <TasksSection />
     </div>
   );
 }

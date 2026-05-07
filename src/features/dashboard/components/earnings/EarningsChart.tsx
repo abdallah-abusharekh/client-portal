@@ -1,13 +1,13 @@
 "use client";
 
 import {
-  LineChart,
-  Line,
   XAxis,
   YAxis,
   Tooltip,
   ResponsiveContainer,
   CartesianGrid,
+  Area,
+  AreaChart,
 } from "recharts";
 import { chartData } from "../../mocks/dashboard.mock";
 
@@ -15,7 +15,7 @@ export default function EarningsChart() {
   return (
     <div className="w-full h-64">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={chartData}>
+        <AreaChart data={chartData}>
           <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
 
           <XAxis
@@ -29,14 +29,15 @@ export default function EarningsChart() {
 
           <Tooltip />
 
-          <Line
+          <Area
             type="monotone"
             dataKey="earnings"
             stroke="#2563eb"
+            fill="#2563eb"
+            fillOpacity={0.2}
             strokeWidth={3}
-            dot={false}
           />
-        </LineChart>
+        </AreaChart>
       </ResponsiveContainer>
     </div>
   );

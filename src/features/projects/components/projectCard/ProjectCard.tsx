@@ -10,15 +10,12 @@ import ProjectBudget from "./ProjectBudget";
 import ProjectTags from "./ProjectTags";
 import { Project } from "../../types/project.types";
 import { formatDate } from "../../utils/project.utils";
-import { useAuth } from "@/src/features/auth/contexts/AuthContext";
 
 type Props = {
   project: Project;
 };
 
 export default function ProjectCard({ project }: Props) {
-  const { role } = useAuth();
-
   return (
     <Link href={`/projects/${project.id}`}>
       <Card className="flex flex-col hover:shadow-md p-5 h-full transition hover:-translate-y-0.5 cursor-pointer">
@@ -34,9 +31,7 @@ export default function ProjectCard({ project }: Props) {
           <ProjectTags project={project} />
           <ProjectProgress progress={project.progress} />
 
-          {role === "freelancer" && (
-            <ProjectBudget budget={project.budget} spent={project.spent} />
-          )}
+          <ProjectBudget budget={project.budget} spent={project.spent} />
         </div>
 
         <div className="flex justify-between items-center mt-4">

@@ -40,6 +40,7 @@ export default function CreateTaskModal({
         status: defaultStatus,
         priority: "medium",
         dueDate: new Date().toISOString().split("T")[0],
+        assignee: "",
       });
     }
   }, [open, reset, defaultStatus]);

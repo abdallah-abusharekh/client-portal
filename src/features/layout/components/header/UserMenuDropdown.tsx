@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LuUser, LuLogOut } from "react-icons/lu";
 
 type Props = {
@@ -7,10 +8,13 @@ type Props = {
 export default function UserMenuDropdown({ onLogout }: Props) {
   return (
     <div className="right-0 absolute bg-white shadow-lg mt-2 border border-gray-200 rounded-xl w-48">
-      <button className="rounded-t-xl flex items-center gap-2 w-full px-4 py-2 text-left text-sm hover:bg-(--color-background-sky)">
+      <Link
+        href="/profile"
+        className="rounded-t-xl flex items-center gap-2 w-full px-4 py-2 text-left text-sm hover:bg-(--color-background-sky)"
+      >
         <LuUser className="text-gray-500 text-base" />
         Profile
-      </button>
+      </Link>
 
       <button
         onClick={onLogout}

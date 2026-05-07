@@ -9,6 +9,7 @@ export const tasksDB: Task[] = [
     priority: "high",
     dueDate: "2026-07-25",
     order: 0,
+    assignee: "Omar Bradley",
   },
   {
     id: "2",
@@ -18,6 +19,7 @@ export const tasksDB: Task[] = [
     priority: "medium",
     dueDate: "2026-07-20",
     order: 1,
+    assignee: "George Patton",
   },
 
   {
@@ -28,6 +30,7 @@ export const tasksDB: Task[] = [
     priority: "high",
     dueDate: "2026-07-10",
     order: 0,
+    assignee: "Douglas MacArthur",
   },
   {
     id: "4",
@@ -37,6 +40,7 @@ export const tasksDB: Task[] = [
     priority: "medium",
     dueDate: "2026-07-15",
     order: 1,
+    assignee: "Omar Bradley",
   },
 
   {
@@ -47,6 +51,7 @@ export const tasksDB: Task[] = [
     priority: "medium",
     dueDate: "2026-08-10",
     order: 0,
+    assignee: "George Patton",
   },
 
   {
@@ -57,5 +62,12 @@ export const tasksDB: Task[] = [
     priority: "low",
     dueDate: "2026-06-30",
     order: 0,
+    assignee: "Douglas MacArthur",
   },
+];
+
+export const teamMembers = [
+  "Omar Bradley",
+  "George Patton",
+  "Douglas MacArthur",
 ];

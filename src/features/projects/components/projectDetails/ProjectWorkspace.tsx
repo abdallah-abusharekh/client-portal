@@ -1,31 +1,16 @@
-"use client";
-
-import { useState } from "react";
-
-import ProjectsTabs from "@/src/features/projects/components/ProjectsTabs";
-
-import { ProjectTask, Tab, TabItem } from "../../types/project.types";
+import { ProjectTask } from "../../types/project.types";
 import ProjectTasks from "./ProjectTasks";
 import ProjectFiles from "./ProjectFiles";
 import ProjectChat from "./ProjectChat";
 
 type Props = {
+  activeTab: "tasks" | "files" | "chat";
   tasks: ProjectTask[];
 };
 
-export default function ProjectWorkspace({ tasks }: Props) {
-  const [activeTab, setActiveTab] = useState<Tab>("tasks");
-
-  const tabs: TabItem[] = [
-    { value: "tasks", label: "Tasks", count: tasks.length },
-    { value: "files", label: "Files" },
-    { value: "chat", label: "Chat" },
-  ];
-
+export default function ProjectWorkspace({ activeTab, tasks }: Props) {
   return (
-    <div className="space-y-6">
-      <ProjectsTabs tabs={tabs} active={activeTab} onChange={setActiveTab} />
-
+    <div className="space-y-6 col-start-1 col-end-3 h-full">
       {activeTab === "tasks" && <ProjectTasks tasks={tasks} />}
       {activeTab === "files" && <ProjectFiles />}
       {activeTab === "chat" && <ProjectChat />}

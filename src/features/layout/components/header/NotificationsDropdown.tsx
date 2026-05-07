@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { notifications } from "../../mocks/layout.mock";
 import NotificationItem from "./NotificationItem";
+import { notifications } from "@/src/features/notifications/mocks/notifications.mock";
 
 export default function NotificationsDropdown({
   onClose,
@@ -14,14 +14,14 @@ export default function NotificationsDropdown({
       </div>
 
       <div className="max-h-72 overflow-y-auto">
-        {notifications.map((notif) => (
+        {notifications.slice(0, 3).map((notif) => (
           <NotificationItem key={notif.id} notification={notif} />
         ))}
       </div>
 
       <Link
         onClick={onClose}
-        href="/freelancer/notifications"
+        href="/notifications"
         className="block px-4 py-2 rounded-b-xl text-sm text-center border-t border-gray-200 hover:bg-(--color-background-sky) cursor-pointer"
       >
         View all notifications

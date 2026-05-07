@@ -9,6 +9,8 @@ export interface BaseUser {
   role: UserRole;
   avatarUrl?: string;
   createdAt: string;
+  jobTitle?: string;
+  bio?: string;
 }
 
 export interface FreelancerUser extends BaseUser {

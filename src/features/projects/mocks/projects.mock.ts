@@ -258,6 +258,8 @@ export const mockFiles: ProjectFile[] = [
 ];
 
 export const mockMessages: Message[] = [
-  { id: "1", user: "Sarah", text: "The designs look great!", time: "2:30 PM" },
-  { id: "2", user: "Alex", text: "I'll add animations 👍", time: "3:00 PM" },
+  { id: "1", user: "You", text: "The designs look great!", time: "2:30 PM" },
+  { id: "2", user: "Sarah", text: "I'll add animations 👍", time: "3:00 PM" },
+  { id: "3", user: "You", text: "The designs look great!", time: "2:30 PM" },
+  { id: "4", user: "Sarah", text: "I'll add animations 👍", time: "3:00 PM" },
 ];

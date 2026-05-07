@@ -10,8 +10,8 @@ export interface Task {
   status: TaskStatus;
   priority: TaskPriority;
   dueDate?: string;
-  avatar?: string;
   order: number;
+  assignee?: string;
 }
 
 export type TaskFormBase = {
@@ -20,6 +20,7 @@ export type TaskFormBase = {
   status: TaskStatus;
   priority: TaskPriority;
   dueDate?: string;
+  assignee?: string;
 };
 
 export type Filters = {

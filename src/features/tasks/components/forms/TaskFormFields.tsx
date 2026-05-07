@@ -2,18 +2,14 @@
 
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { TaskFormBase } from "../../types/task.types";
+import { teamMembers } from "../../mocks/tasks.mock";
 
 type Props = {
   register: UseFormRegister<TaskFormBase>;
   errors: FieldErrors<TaskFormBase>;
-  hideDueDate?: boolean;
 };
 
-export default function TaskFormFields({
-  register,
-  errors,
-  hideDueDate,
-}: Props) {
+export default function TaskFormFields({ register, errors }: Props) {
   return (
     <div className="space-y-6">
       {/* Title */}
@@ -51,26 +47,25 @@ export default function TaskFormFields({
         )}
       </div>
 
-      {/* Due Date + Priority */}
-      <div className="gap-4 grid grid-cols-1 sm:grid-cols-2">
+      {/* Due Date + Priority + Assignee */}
+      <div className="gap-2 grid grid-cols-1 sm:grid-cols-3">
         {/* Due Date */}
-        {!hideDueDate && (
-          <div>
-            <label className="block font-medium text-gray-700 text-sm">
-              Due Date
-            </label>
-            <input
-              type="date"
-              {...register("dueDate")}
-              className="mt-1 px-3 py-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary w-full text-sm transition"
-            />
-            {errors.dueDate && (
-              <p className="mt-1 text-red-500 text-xs">
-                {String(errors.dueDate.message)}
-              </p>
-            )}
-          </div>
-        )}
+
+        <div>
+          <label className="block font-medium text-gray-700 text-sm">
+            Due Date
+          </label>
+          <input
+            type="date"
+            {...register("dueDate")}
+            className="mt-1 p-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary w-full text-sm transition"
+          />
+          {errors.dueDate && (
+            <p className="mt-1 text-red-500 text-xs">
+              {String(errors.dueDate.message)}
+            </p>
+          )}
+        </div>
 
         {/* Priority */}
         <div>
@@ -79,7 +74,7 @@ export default function TaskFormFields({
           </label>
           <select
             {...register("priority")}
-            className="mt-1 px-3 py-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary w-full text-sm transition"
+            className="mt-1 p-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary w-full text-sm transition"
           >
             <option value="low">Low</option>
             <option value="medium">Medium</option>
@@ -88,6 +83,29 @@ export default function TaskFormFields({
           {errors.priority && (
             <p className="mt-1 text-red-500 text-xs">
               {String(errors.priority.message)}
+            </p>
+          )}
+        </div>
+
+        {/* Assignee */}
+        <div>
+          <label className="block font-medium text-gray-700 text-sm">
+            Assignee
+          </label>
+          <select
+            {...register("assignee")}
+            className="mt-1 p-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary w-full text-sm transition"
+          >
+            <option value="">Select an assignee</option>
+            {teamMembers.map((member) => (
+              <option key={member} value={member}>
+                {member}
+              </option>
+            ))}
+          </select>
+          {errors.assignee && (
+            <p className="mt-1 text-red-500 text-xs">
+              {String(errors.assignee.message)}
             </p>
           )}
         </div>
