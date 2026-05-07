@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FiUsers, FiActivity } from "react-icons/fi";
 
 export default function AdminDashboardHeader() {
@@ -14,15 +15,21 @@ export default function AdminDashboardHeader() {
       </div>
 
       <div className="flex items-center gap-3">
-        <button className="flex items-center gap-2 bg-white hover:bg-gray-50 shadow-sm px-4 py-2 rounded-lg font-medium text-gray-700 text-sm">
+        <Link
+          href="/admin/users"
+          className="flex items-center gap-2 bg-white hover:bg-gray-50 shadow-sm px-4 py-2 rounded-lg font-medium text-gray-700 text-sm"
+        >
           <FiUsers className="w-4 h-4" />
           Manage Users
-        </button>
+        </Link>
 
-        <button className="flex items-center gap-2 bg-primary hover:bg-primary-dark shadow-sm px-4 py-2 rounded-lg font-medium text-white text-sm">
+        <Link
+          href="/admin/reports"
+          className="flex items-center gap-2 bg-primary hover:bg-primary-dark shadow-sm px-4 py-2 rounded-lg font-medium text-white text-sm"
+        >
           <FiActivity className="w-4 h-4" />
           View Reports
-        </button>
+        </Link>
       </div>
     </div>
   );

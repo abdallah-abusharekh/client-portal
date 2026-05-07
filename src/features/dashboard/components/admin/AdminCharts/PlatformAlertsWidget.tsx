@@ -1,12 +1,16 @@
 "use client";
 
+import ActionLink from "@/src/shared/components/ActionLink";
 import Card from "@/src/shared/components/Card";
 import { FiAlertCircle, FiCheckCircle, FiClock } from "react-icons/fi";
 
 export default function PlatformAlertsWidget() {
   return (
     <Card className="space-y-4 p-6">
-      <h3 className="font-semibold text-gray-900">Platform Alerts</h3>
+      <div className="flex justify-between items-center pb-4 border-gray-200 border-b">
+        <h3 className="font-semibold text-gray-900">Platform Alerts</h3>
+        <ActionLink href="/admin/alerts">View All</ActionLink>
+      </div>
 
       <div className="flex items-start gap-3 bg-yellow-50 p-4 rounded-xl">
         <FiAlertCircle className="mt-1 text-yellow-500" />

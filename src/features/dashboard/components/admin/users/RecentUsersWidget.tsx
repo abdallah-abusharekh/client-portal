@@ -8,10 +8,10 @@ import { recentUsers } from "../../../mocks/dashboard.mock";
 
 export default function RecentUsersWidget() {
   return (
-    <Card className="p-0">
-      <div className="flex justify-between items-center px-6 py-4 border-gray-200 border-b">
+    <Card className="col-start-1 col-end-3 p-6">
+      <div className="flex justify-between items-center pb-4 border-gray-200 border-b">
         <h3 className="font-semibold text-gray-900">Recent Users</h3>
-        <ActionLink href="#">View All</ActionLink>
+        <ActionLink href="/admin/users">View All</ActionLink>
       </div>
 
       <div className="divide-y divide-gray-200">
