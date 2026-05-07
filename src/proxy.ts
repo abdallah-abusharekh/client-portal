@@ -6,7 +6,7 @@ const ADMIN_HOME = "/admin/dashboard";
 const USER_HOME = "/dashboard";
 const SIGN_IN = "/sign-in";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const role = request.cookies.get("client_portal_role")?.value as
     | UserRole
@@ -54,4 +54,3 @@ export const config = {
     "/profile/:path*",
   ],
 };
-
