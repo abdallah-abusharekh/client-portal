@@ -4,7 +4,7 @@ import Button from "./Button";
 import { FiAlertTriangle } from "react-icons/fi";
 
 type Props = {
-  open: boolean;
+  open: boolean | string;
   title: string;
   description?: string;
   confirmText?: string;
@@ -12,7 +12,7 @@ type Props = {
   onConfirm: () => void;
   onClose: () => void;
   loading?: boolean;
-  variant?: "default" | "danger";
+  variant?: "default" | "danger" | "alert";
 };
 
 export default function ConfirmModal({
@@ -29,12 +29,13 @@ export default function ConfirmModal({
   if (!open) return null;
 
   const isDanger = variant === "danger";
+  const isAlert = variant === "alert";
 
   return (
     <div className="z-50 fixed inset-0 flex justify-center items-center">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
+        className="absolute inset-0 bg-black/20 backdrop-blur-[1px]"
         onClick={onClose}
       />
 
@@ -45,6 +46,13 @@ export default function ConfirmModal({
           <div className="flex justify-center">
             <div className="bg-red-100 p-3 rounded-full">
               <FiAlertTriangle className="text-red-600 text-xl" />
+            </div>
+          </div>
+        )}
+        {isAlert && (
+          <div className="flex justify-center">
+            <div className="bg-yellow-100 p-3 rounded-full">
+              <FiAlertTriangle className="text-yellow-600 text-xl" />
             </div>
           </div>
         )}
@@ -64,7 +72,13 @@ export default function ConfirmModal({
           <Button
             onClick={onConfirm}
             loading={loading}
-            className={isDanger ? "bg-red-600 hover:bg-red-700 text-white" : ""}
+            className={
+              isDanger
+                ? "bg-red-600 hover:bg-red-700 text-white"
+                : isAlert
+                  ? "bg-yellow-600 hover:bg-yellow-700 text-white"
+                  : ""
+            }
           >
             {confirmText}
           </Button>
