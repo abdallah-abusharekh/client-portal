@@ -10,11 +10,11 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
-import { revenueData } from "../../mocks/dashboard.mock";
+import { revenueData } from "../../../mocks/dashboard.mock";
 
 export default function RevenueChartWidget() {
   return (
-    <Card className="p-6">
+    <Card className="col-start-1 col-end-3 p-6">
       <div className="flex justify-between items-start mb-6">
         <div>
           <h3 className="font-semibold text-gray-900">Revenue Overview</h3>

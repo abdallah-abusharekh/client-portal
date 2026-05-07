@@ -31,7 +31,7 @@ export default function Select<T extends string>({
   }
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative h-full  ${className}`}>
       <select
         value={value}
         onChange={handleChange}
@@ -39,7 +39,7 @@ export default function Select<T extends string>({
           appearance-none
           px-4 py-2 pr-10
           w-full
-          rounded-xl
+          rounded-lg
           bg-(--color-background-sky)
           border border-gray-200
           text-sm
@@ -47,6 +47,7 @@ export default function Select<T extends string>({
           focus:ring-2 focus:ring-primary/20
           transition
           cursor-pointer
+          h-full
         "
       >
         {placeholder && (

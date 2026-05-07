@@ -18,7 +18,7 @@ export default function QuickStatsWidget() {
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="flex justify-between items-center bg-gray-50 px-4 py-3 rounded-lg"
+            className="flex justify-between items-center bg-gray-50 px-4 py-4 rounded-lg"
           >
             <span className="text-gray-600 text-sm">{stat.label}</span>
 

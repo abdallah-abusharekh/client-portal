@@ -11,6 +11,7 @@ export interface BaseUser {
   createdAt: string;
   jobTitle?: string;
   bio?: string;
+  status?: "active" | "suspended";
 }
 
 export interface FreelancerUser extends BaseUser {

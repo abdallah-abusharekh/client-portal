@@ -243,10 +243,10 @@ export const activityIcons = {
 export const revenueData = [
   { month: "Jan", revenue: 80000 },
   { month: "Feb", revenue: 90000 },
-  { month: "Mar", revenue: 75000 },
-  { month: "Apr", revenue: 105000 },
-  { month: "May", revenue: 115000 },
-  { month: "Jun", revenue: 125000 },
+  { month: "Mar", revenue: 150000 },
+  { month: "Apr", revenue: 120000 },
+  { month: "May", revenue: 100000 },
+  { month: "Jun", revenue: 135000 },
 ];
 
 export const userGrowthData = [
@@ -282,14 +282,6 @@ export const recentUsers: RecentUser[] = [
     role: "Admin",
     status: "active",
     avatar: "/avatars/avatar3.png",
-  },
-  {
-    id: "4",
-    name: "Emma Wilson",
-    email: "emma@startup.co",
-    role: "Customer",
-    status: "active",
-    avatar: "/avatars/avatar4.png",
   },
 ];
 

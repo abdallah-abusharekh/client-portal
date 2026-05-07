@@ -4,7 +4,6 @@ import {
   LuFileText,
   LuFolder,
   LuLayoutDashboard,
-  LuSettings,
   LuUser,
   LuUsers,
 } from "react-icons/lu";
@@ -88,24 +87,29 @@ export const dashboardNavigation: Record<
     ],
     workspace: [
       {
-        label: "Projects",
-        href: "/admin/projects",
-        icon: LuFolder,
-      },
-      {
         label: "Users",
         href: "/admin/users",
         icon: LuUsers,
       },
       {
-        label: "Notifications",
-        href: "/admin/notifications",
+        label: "Projects",
+        href: "/admin/projects",
+        icon: LuFolder,
+      },
+      {
+        label: "Alerts",
+        href: "/admin/alerts",
         icon: LuBell,
       },
       {
-        label: "Settings",
-        href: "/admin/settings",
-        icon: LuSettings,
+        label: "Reports",
+        href: "/admin/reports",
+        icon: LuFileText,
+      },
+      {
+        label: "Profile",
+        href: "/profile",
+        icon: LuUser,
       },
     ],
   },

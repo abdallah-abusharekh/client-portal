@@ -13,29 +13,31 @@ export default function HomePage() {
     <>
       <HeroSection />
 
-      <Reveal>
-        <ProductPreviewSection />
-      </Reveal>
+      <main>
+        <Reveal>
+          <ProductPreviewSection />
+        </Reveal>
 
-      <Reveal>
-        <FeaturesSection />
-      </Reveal>
+        <Reveal>
+          <FeaturesSection />
+        </Reveal>
 
-      <Reveal>
-        <HowItWorksSection />
-      </Reveal>
+        <Reveal>
+          <HowItWorksSection />
+        </Reveal>
 
-      <Reveal>
-        <RolesSection />
-      </Reveal>
+        <Reveal>
+          <RolesSection />
+        </Reveal>
 
-      <Reveal>
-        <TestimonialsSection />
-      </Reveal>
+        <Reveal>
+          <TestimonialsSection />
+        </Reveal>
 
-      <Reveal>
-        <CTASection />
-      </Reveal>
+        <Reveal>
+          <CTASection />
+        </Reveal>
+      </main>
 
       <Footer />
     </>
