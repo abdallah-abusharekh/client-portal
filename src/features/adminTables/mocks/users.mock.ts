@@ -1,4 +1,4 @@
-import { BaseUser } from "../auth/types/user.types";
+import { BaseUser } from "../../auth/types/user.types";
 
 type Users = BaseUser[];
 

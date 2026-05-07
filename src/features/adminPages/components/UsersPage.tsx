@@ -1,11 +1,11 @@
 "use client";
 
-import Table from "../adminTables/Table";
-import UsersFiltersBar from "./components/UsersFiltersBar";
-import { useUsersPageState } from "./hooks/useUsersPageState";
+import UsersFiltersBar from "../components/UsersFiltersBar";
+import { useUsersPageState } from "../hooks/useUsersPageState";
 import { usePagination } from "@/src/shared/hooks/usePagination";
 import Pagination from "@/src/shared/components/Pagination";
 import PageHeader from "@/src/shared/components/PageHeader";
+import Table from "../../adminTables/components/Table";
 
 export default function UsersPage() {
   const {

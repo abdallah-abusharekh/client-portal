@@ -87,14 +87,14 @@ export const dashboardNavigation: Record<
     ],
     workspace: [
       {
-        label: "Projects",
-        href: "/admin/projects",
-        icon: LuFolder,
-      },
-      {
         label: "Users",
         href: "/admin/users",
         icon: LuUsers,
+      },
+      {
+        label: "Projects",
+        href: "/admin/projects",
+        icon: LuFolder,
       },
       {
         label: "Alerts",

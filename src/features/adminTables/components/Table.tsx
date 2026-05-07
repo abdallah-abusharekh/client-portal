@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { BaseUser } from "../auth/types/user.types";
 import { FiPauseCircle, FiPlayCircle, FiTrash2 } from "react-icons/fi";
 import { useState } from "react";
 import ConfirmModal from "@/src/shared/components/ConfirmModal";
 import toast from "react-hot-toast";
+import { BaseUser } from "../../auth/types/user.types";
 
 export default function Table({
   users,

@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
-import { users } from "../../adminTables/users.mock";
 import { BaseUser } from "../../auth/types/user.types";
+import { users } from "../../adminTables/mocks/users.mock";
 
 type StatusFilter = "all" | "active" | "suspended";
 type RoleFilter = "all" | BaseUser["role"];
