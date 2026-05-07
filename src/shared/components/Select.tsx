@@ -31,7 +31,7 @@ export default function Select<T extends string>({
   }
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative h-full  ${className}`}>
       <select
         value={value}
         onChange={handleChange}

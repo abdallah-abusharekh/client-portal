@@ -36,6 +36,7 @@ export type Project = {
   tags: ProjectTag[];
 
   createdAt: string;
+  createdBy?: string;
   updatedAt: string;
 };
 
