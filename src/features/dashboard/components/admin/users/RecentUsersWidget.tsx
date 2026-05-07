@@ -2,8 +2,9 @@
 
 import Card from "@/src/shared/components/Card";
 import ActionLink from "@/src/shared/components/ActionLink";
-import { recentUsers } from "../../mocks/dashboard.mock";
+
 import RecentUserRow from "./RecentUserRow";
+import { recentUsers } from "../../../mocks/dashboard.mock";
 
 export default function RecentUsersWidget() {
   return (

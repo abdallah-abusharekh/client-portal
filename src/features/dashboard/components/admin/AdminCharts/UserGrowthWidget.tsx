@@ -11,7 +11,7 @@ import {
   CartesianGrid,
   Legend,
 } from "recharts";
-import { userGrowthData } from "../../mocks/dashboard.mock";
+import { userGrowthData } from "../../../mocks/dashboard.mock";
 
 export default function UserGrowthWidget() {
   return (

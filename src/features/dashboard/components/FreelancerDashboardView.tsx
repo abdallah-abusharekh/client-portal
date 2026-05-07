@@ -2,12 +2,12 @@
 
 import { freelancerStats } from "../mocks/dashboard.mock";
 import DashboardHeader from "./DashboardHeader";
-import CurrentProjectsSection from "./projects/CurrentProjectsSection";
 import StatsGrid from "./stats/StatsCards";
 import FreelancerActivitySection from "./FreelancerActivitySection";
 import Button from "@/src/shared/components/Button";
 import { LuFolderArchive } from "react-icons/lu";
 import { useAuth } from "../../auth/contexts/AuthContext";
+import CurrentProjectsSection from "./CurrentProjectsSection";
 
 export default function FreelancerDashboardView() {
   const user = useAuth();

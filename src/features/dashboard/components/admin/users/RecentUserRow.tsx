@@ -2,7 +2,7 @@
 
 import Badge from "@/src/shared/components/Badge";
 import Image from "next/image";
-import { RecentUser } from "../../types/dashboard.types";
+import { RecentUser } from "../../../types/dashboard.types";
 
 type Props = {
   user: RecentUser;

@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
-import { revenueData } from "../../mocks/dashboard.mock";
+import { revenueData } from "../../../mocks/dashboard.mock";
 
 export default function RevenueChartWidget() {
   return (
