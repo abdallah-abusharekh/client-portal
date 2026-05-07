@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FiPauseCircle, FiPlayCircle, FiTrash2 } from "react-icons/fi";
+import { FiDownload, FiPauseCircle, FiPlayCircle, FiTrash2 } from "react-icons/fi";
 import { useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import ConfirmModal from "@/src/shared/components/ConfirmModal";
@@ -14,7 +14,7 @@ type RowData = {
   avatarUrl?: string;
 };
 
-type TableVariant = "users" | "projects";
+type TableVariant = "users" | "projects" | "reports" | "default";
 
 const projectStatusClassMap: Record<ProjectStatus, string> = {
   "in-progress": "bg-blue-200 text-blue-700",
@@ -37,6 +37,7 @@ export default function Table({
   allUsersSelected,
   variant = "users",
   onDeleteProject,
+  onDownloadReport,
 }: {
   users: RowData[];
   setUsers?: Dispatch<SetStateAction<BaseUser[]>>;
@@ -46,6 +47,7 @@ export default function Table({
   allUsersSelected?: boolean;
   variant?: TableVariant;
   onDeleteProject?: (projectId: string) => void;
+  onDownloadReport?: (reportId: string) => void;
 }) {
   const [selectedUser, setSelectedUser] = useState<BaseUser | null>(null);
   const [openConfirm, setOpenConfirm] = useState<"delete" | "suspend" | false>(
@@ -91,7 +93,8 @@ export default function Table({
         )
       : [];
   const showRowSelection = variant === "users";
-  const showActions = variant === "users" || variant === "projects";
+  const showActions =
+    variant === "users" || variant === "projects" || variant === "reports";
 
   return (
     <table className="rounded-lg w-full">
@@ -168,8 +171,26 @@ export default function Table({
                           ? "bg-green-200 text-green-500"
                           : val === "suspended"
                             ? "bg-red-200 text-red-500"
+                            : val === "open"
+                              ? "bg-yellow-200 text-yellow-700"
+                              : val === "resolved"
+                                ? "bg-green-200 text-green-700"
                             : projectStatusClassMap[val as ProjectStatus] ||
                               "bg-gray-200 text-gray-700"
+                      }`}
+                    >
+                      {val}
+                    </span>
+                  ) : key === "category" ? (
+                    <span
+                      className={`px-2 py-1 rounded-md text-sm ${
+                        val === "users"
+                          ? "bg-blue-100 text-blue-700"
+                          : val === "projects"
+                            ? "bg-violet-100 text-violet-700"
+                            : val === "finance"
+                              ? "bg-emerald-100 text-emerald-700"
+                              : "bg-gray-100 text-gray-700"
                       }`}
                     >
                       {val}
@@ -268,6 +289,16 @@ export default function Table({
                   }}
                   onClose={() => setSelectedProjectId(null)}
                 />
+              </td>
+            )}
+            {variant === "reports" && (
+              <td className="p-3 border-gray-700 text-sm">
+                <button
+                  onClick={() => onDownloadReport?.(item.id)}
+                  className="text-primary hover:text-primary-dark transition"
+                >
+                  <FiDownload size={18} />
+                </button>
               </td>
             )}
           </tr>

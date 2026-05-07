@@ -98,12 +98,12 @@ export const dashboardNavigation: Record<
       },
       {
         label: "Alerts",
-        href: "/admin/notifications",
+        href: "/admin/alerts",
         icon: LuBell,
       },
       {
         label: "Reports",
-        href: "/admin/settings",
+        href: "/admin/reports",
         icon: LuFileText,
       },
       {
