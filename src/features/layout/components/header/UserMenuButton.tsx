@@ -19,7 +19,7 @@ export default function UserMenuButton({ name, initials, onClick }: Props) {
         {user?.avatarUrl ? (
           <Image
             src={user.avatarUrl}
-            alt={name}
+            alt={user.name}
             className="rounded-full w-full h-full object-cover"
             width={32}
             height={32}

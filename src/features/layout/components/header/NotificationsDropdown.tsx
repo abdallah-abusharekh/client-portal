@@ -21,7 +21,7 @@ export default function NotificationsDropdown({
 
       <Link
         onClick={onClose}
-        href="/freelancer/notifications"
+        href="/notifications"
         className="block px-4 py-2 rounded-b-xl text-sm text-center border-t border-gray-200 hover:bg-(--color-background-sky) cursor-pointer"
       >
         View all notifications

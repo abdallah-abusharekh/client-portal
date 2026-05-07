@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/src/features/auth/contexts/AuthContext";
+import Image from "next/image";
 import { FiLogOut } from "react-icons/fi";
 
 type Props = {
@@ -20,9 +21,19 @@ export default function SidebarUser({ collapsed }: Props) {
 
   return (
     <div className="px-4 py-4 border-gray-200 border-t">
-      <div className="flex items-center gap-3 mb-3">
-        <div className="flex items-center justify-center w-10 h-10 rounded-full font-semibold text-sm bg-primary/10 text-(--color-primary)">
-          {initials}
+      <div className="flex items-center gap-2 mb-3">
+        <div className="flex items-center justify-center w-12 h-10 rounded-full font-semibold text-sm bg-primary/10 text-(--color-primary)">
+          {user?.avatarUrl ? (
+            <Image
+              src={user.avatarUrl}
+              alt={user.name}
+              className="rounded-full w-full h-full object-cover"
+              width={32}
+              height={32}
+            />
+          ) : (
+            initials
+          )}
         </div>
 
         {!collapsed && (
