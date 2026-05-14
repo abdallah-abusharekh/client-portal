@@ -9,7 +9,6 @@ import {
 } from "react-icons/fi";
 import { useState } from "react";
 import ConfirmModal from "@/src/shared/components/ConfirmModal";
-import toast from "react-hot-toast";
 import { BaseUser } from "../../auth/types/user.types";
 import { ProjectStatus } from "../../projects/types/project.types";
 
@@ -20,14 +19,14 @@ type RowData = {
 
 type props = {
   items: RowData[];
-  updateUsersStatus: ({
+  updateUsersStatus?: ({
     ids,
     status,
   }: {
     ids: string[];
     status: "active" | "suspended";
   }) => void;
-  deleteUsers: (ids: { ids: string[] }) => void;
+  deleteUsers?: (variables: { ids: string[] }) => void;
   selectedUserIds?: string[];
   onToggleUserSelection?: (id: string) => void;
   onToggleAllUsersSelection?: () => void;
@@ -72,6 +71,7 @@ export default function Table({
   );
 
   const handleDeleteConfirm = (item: BaseUser) => {
+    if (!deleteUsers) return;
     deleteUsers({
       ids: [item.id],
     });
@@ -79,6 +79,7 @@ export default function Table({
   };
 
   const handleSuspendConfirm = (item: BaseUser) => {
+    if (!updateUsersStatus) return;
     updateUsersStatus({
       ids: [item.id],
       status: "suspended",
@@ -88,6 +89,7 @@ export default function Table({
   };
 
   const handleActivateConfirm = (item: BaseUser) => {
+    if (!updateUsersStatus) return;
     updateUsersStatus({
       ids: [item.id],
       status: "active",
@@ -303,7 +305,6 @@ export default function Table({
                   onConfirm={() => {
                     if (selectedProjectId && onDeleteProject) {
                       onDeleteProject(selectedProjectId);
-                      toast.success("Project deleted successfully");
                     }
                     setSelectedProjectId(null);
                   }}
