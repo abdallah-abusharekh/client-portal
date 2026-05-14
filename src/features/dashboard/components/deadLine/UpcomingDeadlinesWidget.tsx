@@ -1,9 +1,13 @@
 import DeadlineItem from "./DeadlineItem";
 
 import Card from "@/src/shared/components/Card";
-import { deadlines } from "../../mocks/dashboard.mock";
+import type { Deadline } from "../../types/dashboard.types";
 
-export default function UpcomingDeadlinesWidget() {
+type Props = {
+  deadlines: Deadline[];
+};
+
+export default function UpcomingDeadlinesWidget({ deadlines }: Props) {
   return (
     <Card className="flex flex-col h-105">
       {/* Header */}

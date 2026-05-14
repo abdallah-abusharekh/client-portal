@@ -1,8 +1,12 @@
 import ActionLink from "@/src/shared/components/ActionLink";
-import { projectsMock } from "@/src/features/projects/mocks/projects.mock";
 import ProjectCard from "../../projects/components/projectCard/ProjectCard";
+import type { Project } from "../../projects/types/project.types";
 
-export default function CurrentProjectsSection() {
+type Props = {
+  projects: Project[];
+};
+
+export default function CurrentProjectsSection({ projects }: Props) {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -12,7 +16,7 @@ export default function CurrentProjectsSection() {
       </div>
 
       <div className="gap-6 grid grid-cols-1 md:grid-cols-2">
-        {projectsMock.slice(0, 2).map((project) => (
+        {projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
