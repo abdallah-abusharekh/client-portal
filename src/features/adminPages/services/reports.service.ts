@@ -1,5 +1,5 @@
 import { reports, ReportItem } from "../../adminTables/mocks/reports.mock";
-import { delay } from "./delay";
+import { delay } from "../../../shared/utils/delay";
 
 let reportsDB: ReportItem[] = [...reports];
 
@@ -15,7 +15,6 @@ export const reportsService = {
   },
 
   async deleteReports(ids: string[]): Promise<ReportItem[]> {
-    await delay(1000);
     reportsDB = reportsDB.filter((report) => !ids.includes(report.id));
     return reportsDB;
   },

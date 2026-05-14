@@ -1,5 +1,5 @@
 import { alerts, AlertItem } from "../../adminTables/mocks/alerts.mock";
-import { delay } from "./delay";
+import { delay } from "../../../shared/utils/delay";
 
 let alertsDB: AlertItem[] = [...alerts];
 
@@ -13,8 +13,6 @@ export const alertsService = {
     ids: string[],
     status: AlertItem["status"],
   ): Promise<AlertItem[]> {
-    await delay(1000);
-
     alertsDB = alertsDB.map((alert) =>
       ids.includes(alert.id) ? { ...alert, status } : alert,
     );
@@ -23,7 +21,6 @@ export const alertsService = {
   },
 
   async deleteAlerts(ids: string[]): Promise<AlertItem[]> {
-    await delay(1000);
     alertsDB = alertsDB.filter((alert) => !ids.includes(alert.id));
     return alertsDB;
   },

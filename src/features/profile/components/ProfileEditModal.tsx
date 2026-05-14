@@ -41,7 +41,6 @@ export default function ProfileEditModal({ onClose }: { onClose: () => void }) {
   async function onSubmit(data: ProfileEditValues) {
     if (!user) return;
     setSaving(true);
-    await new Promise((res) => setTimeout(res, 500));
     const updatedUser = { ...user, ...data };
     setUser(updatedUser);
     localStorage.setItem("client-portal-session", JSON.stringify(updatedUser));

@@ -1,6 +1,6 @@
 import { projects } from "../../adminTables/mocks/projects.mock";
 import { Project, ProjectStatus } from "../../projects/types/project.types";
-import { delay } from "./delay";
+import { delay } from "../../../shared/utils/delay";
 
 let projectsDB: Project[] = [...projects];
 
@@ -14,8 +14,6 @@ export const projectsService = {
     ids: string[],
     status: ProjectStatus,
   ): Promise<Project[]> {
-    await delay(1000);
-
     projectsDB = projectsDB.map((project) =>
       ids.includes(project.id) ? { ...project, status } : project,
     );
@@ -24,7 +22,6 @@ export const projectsService = {
   },
 
   async deleteProjects(ids: string[]): Promise<Project[]> {
-    await delay(1000);
     projectsDB = projectsDB.filter((project) => !ids.includes(project.id));
     return projectsDB;
   },

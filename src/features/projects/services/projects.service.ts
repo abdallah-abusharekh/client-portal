@@ -10,11 +10,11 @@ import {
   ProjectFormBase,
 } from "../types/project.types";
 
+import { delay } from "../../../shared/utils/delay";
+
 export async function createProjectService(
   data: ProjectFormBase,
 ): Promise<Project> {
-  await new Promise((res) => setTimeout(res, 300));
-
   return mapCreateProjectToProject(data);
 }
 
@@ -22,8 +22,6 @@ export async function updateProjectService(
   projectId: string,
   data: EditProjectData,
 ): Promise<ProjectDetails> {
-  await new Promise((res) => setTimeout(res, 300));
-
   const existingProject = await getProjectDetails(projectId);
 
   return mapEditProjectToProjectDetails(existingProject, data);
@@ -32,7 +30,7 @@ export async function updateProjectService(
 export async function getProjectDetails(
   projectId: string,
 ): Promise<ProjectDetails> {
-  await new Promise((res) => setTimeout(res, 400));
+  await delay(400);
 
   const baseProject = projectsMock.find((p) => p.id === projectId);
 
@@ -87,29 +85,24 @@ export async function getProjectDetails(
 let files: ProjectFile[] = [...mockFiles];
 
 export async function getProjectFiles(): Promise<ProjectFile[]> {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(files), 300);
-  });
+  await delay(300);
+  return files;
 }
 
 export async function uploadFile(file: File): Promise<ProjectFile> {
-  return new Promise((resolve) => {
-    const newFile: ProjectFile = {
-      id: Date.now().toString(),
-      name: file.name,
-      size: file.size,
-      uploadedAt: new Date().toISOString(),
-      url: URL.createObjectURL(file),
-    };
+  const newFile: ProjectFile = {
+    id: Date.now().toString(),
+    name: file.name,
+    size: file.size,
+    uploadedAt: new Date().toISOString(),
+    url: URL.createObjectURL(file),
+  };
 
-    files = [newFile, ...files];
-
-    setTimeout(() => resolve(newFile), 300);
-  });
+  files = [newFile, ...files];
+  return newFile;
 }
 
 export async function getProjectMessages(): Promise<Message[]> {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(mockMessages), 500);
-  });
+  await delay(500);
+  return mockMessages;
 }

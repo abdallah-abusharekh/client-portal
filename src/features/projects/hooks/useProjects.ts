@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { projectsMock } from "../mocks/projects.mock";
 import { createProjectService } from "../services/projects.service";
 import { Project, ProjectFormBase } from "../types/project.types";
+import { delay } from "../../../shared/utils/delay";
 
 export const projectKeys = {
   all: ["projects"] as const,
@@ -15,7 +16,7 @@ export function useProjects() {
   const query = useQuery({
     queryKey: projectKeys.all,
     queryFn: async (): Promise<Project[]> => {
-      await new Promise((res) => setTimeout(res, 400));
+      await delay(400);
       return projectsMock;
     },
   });
