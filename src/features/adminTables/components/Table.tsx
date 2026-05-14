@@ -8,7 +8,6 @@ import {
   FiTrash2,
 } from "react-icons/fi";
 import { useState } from "react";
-import type { Dispatch, SetStateAction } from "react";
 import ConfirmModal from "@/src/shared/components/ConfirmModal";
 import toast from "react-hot-toast";
 import { BaseUser } from "../../auth/types/user.types";
@@ -17,6 +16,25 @@ import { ProjectStatus } from "../../projects/types/project.types";
 type RowData = {
   id: string;
   avatarUrl?: string;
+};
+
+type props = {
+  items: RowData[];
+  updateUsersStatus: ({
+    ids,
+    status,
+  }: {
+    ids: string[];
+    status: "active" | "suspended";
+  }) => void;
+  deleteUsers: (ids: { ids: string[] }) => void;
+  selectedUserIds?: string[];
+  onToggleUserSelection?: (id: string) => void;
+  onToggleAllUsersSelection?: () => void;
+  allUsersSelected?: boolean;
+  variant?: TableVariant;
+  onDeleteProject?: (projectId: string) => void;
+  onDownloadReport?: (reportId: string) => void;
 };
 
 type TableVariant = "users" | "projects" | "reports" | "default";
@@ -35,7 +53,8 @@ function isUserRow(item: RowData): item is BaseUser {
 
 export default function Table({
   items,
-  setUsers,
+  updateUsersStatus,
+  deleteUsers,
   selectedUserIds,
   onToggleUserSelection,
   onToggleAllUsersSelection,
@@ -43,17 +62,7 @@ export default function Table({
   variant = "users",
   onDeleteProject,
   onDownloadReport,
-}: {
-  items: RowData[];
-  setUsers?: Dispatch<SetStateAction<BaseUser[]>>;
-  selectedUserIds?: string[];
-  onToggleUserSelection?: (id: string) => void;
-  onToggleAllUsersSelection?: () => void;
-  allUsersSelected?: boolean;
-  variant?: TableVariant;
-  onDeleteProject?: (projectId: string) => void;
-  onDownloadReport?: (reportId: string) => void;
-}) {
+}: props) {
   const [selectedUser, setSelectedUser] = useState<BaseUser | null>(null);
   const [openConfirm, setOpenConfirm] = useState<"delete" | "suspend" | false>(
     false,
@@ -63,32 +72,28 @@ export default function Table({
   );
 
   const handleDeleteConfirm = (item: BaseUser) => {
-    if (!setUsers) return;
-    setUsers((prev) => prev.filter((prev) => prev.id !== item.id));
+    deleteUsers({
+      ids: [item.id],
+    });
     setOpenConfirm(false);
-    toast.success("User deleted successfully");
   };
 
   const handleSuspendConfirm = (item: BaseUser) => {
-    if (!setUsers) return;
-    setUsers((prev) =>
-      prev.map((user) =>
-        user.id === item.id
-          ? {
-              ...user,
-              status: user.status === "active" ? "suspended" : "active",
-            }
-          : user,
-      ),
-    );
+    updateUsersStatus({
+      ids: [item.id],
+      status: "suspended",
+    });
 
     setOpenConfirm(false);
+  };
 
-    toast.success(
-      item.status === "active"
-        ? "User suspended successfully"
-        : "User activated successfully",
-    );
+  const handleActivateConfirm = (item: BaseUser) => {
+    updateUsersStatus({
+      ids: [item.id],
+      status: "active",
+    });
+
+    setOpenConfirm(false);
   };
 
   const columnKeys =
@@ -241,9 +246,15 @@ export default function Table({
                     variant="alert"
                     title={`${item.status === "active" ? "Suspend" : "Activate"} User`}
                     description={`Are you sure that you want to ${item.status === "active" ? "suspend" : "activate"} this user?`}
-                    onConfirm={() =>
-                      selectedUser && handleSuspendConfirm(selectedUser)
-                    }
+                    onConfirm={() => {
+                      if (!selectedUser) return;
+
+                      if (item.status === "active") {
+                        handleSuspendConfirm(selectedUser);
+                      } else {
+                        handleActivateConfirm(selectedUser);
+                      }
+                    }}
                     onClose={() => {
                       setSelectedUser(null);
                       setOpenConfirm(false);
