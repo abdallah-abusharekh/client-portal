@@ -5,9 +5,16 @@ import Pagination from "@/src/shared/components/Pagination";
 import { usePagination } from "@/src/shared/hooks/usePagination";
 import Table from "../../adminTables/components/Table";
 import ReportsFiltersBar from "./ReportsFiltersBar";
-import { useReportsPageState } from "../hooks/useReportsPageState";
+import { useReportsQuery } from "../hooks/useReportsQuery";
+import { useReportsFilters } from "../hooks/useReportsFilters";
+import { useDownloadReport } from "../hooks/useDownloadReport";
+import ListPageSkeleton from "./ListPageSkeleton";
+import ErrorState from "@/src/shared/components/ErrorState";
+import EmptyState from "@/src/shared/components/EmptyState";
 
 export default function ReportsPage() {
+  const { data = [], isLoading, error } = useReportsQuery();
+
   const {
     search,
     setSearch,
@@ -15,8 +22,9 @@ export default function ReportsPage() {
     setCategoryFilter,
     categoryOptions,
     reportRows,
-    handleDownloadReport,
-  } = useReportsPageState();
+  } = useReportsFilters(data);
+
+  const { mutate: downloadReport } = useDownloadReport();
 
   const {
     currentPage,
@@ -28,6 +36,18 @@ export default function ReportsPage() {
     goToPrevPage,
     goToNextPage,
   } = usePagination(reportRows, { pageSize: 7 });
+
+  if (isLoading) {
+    return <ListPageSkeleton />;
+  }
+
+  if (error) {
+    return <ErrorState message="Failed to fetch reports." />;
+  }
+
+  if (paginatedItems.length === 0) {
+    return <EmptyState message="No reports found." />;
+  }
 
   return (
     <div className="flex flex-col space-y-5 h-full">
@@ -47,7 +67,7 @@ export default function ReportsPage() {
       <Table
         items={paginatedItems}
         variant="reports"
-        onDownloadReport={handleDownloadReport}
+        onDownloadReport={(reportId) => downloadReport({ id: reportId })}
       />
 
       <Pagination
