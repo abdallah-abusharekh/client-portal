@@ -5,9 +5,16 @@ import Pagination from "@/src/shared/components/Pagination";
 import { usePagination } from "@/src/shared/hooks/usePagination";
 import Table from "../../adminTables/components/Table";
 import ProjectsFiltersBar from "./ProjectsFiltersBar";
-import { useProjectsPageState } from "../hooks/useProjectsPageState";
+import { useProjectsQuery } from "../hooks/useProjectsQuery";
+import { useProjectsFilters } from "../hooks/useProjectsFilters";
+import ListPageSkeleton from "./ListPageSkeleton";
+import EmptyState from "@/src/shared/components/EmptyState";
+import ErrorState from "@/src/shared/components/ErrorState";
+import { useDeleteProjects } from "../hooks/useDeleteProjects";
 
 export default function ProjectsPage() {
+  const { data = [], isLoading, error } = useProjectsQuery();
+
   const {
     search,
     setSearch,
@@ -15,8 +22,9 @@ export default function ProjectsPage() {
     setStatusFilter,
     statusOptions,
     projectRows,
-    handleDeleteProject,
-  } = useProjectsPageState();
+  } = useProjectsFilters(data);
+
+  const { mutate: deleteProjects } = useDeleteProjects();
 
   const {
     currentPage,
@@ -28,6 +36,18 @@ export default function ProjectsPage() {
     goToPrevPage,
     goToNextPage,
   } = usePagination(projectRows, { pageSize: 7 });
+
+  if (isLoading) {
+    return <ListPageSkeleton />;
+  }
+
+  if (error) {
+    return <ErrorState message="Failed to fetch projects." />;
+  }
+
+  if (paginatedItems.length === 0) {
+    return <EmptyState message="No projects found." />;
+  }
 
   return (
     <div className="flex flex-col space-y-5 h-full">
@@ -47,7 +67,7 @@ export default function ProjectsPage() {
       <Table
         items={paginatedItems}
         variant="projects"
-        onDeleteProject={handleDeleteProject}
+        onDeleteProject={(projectId) => deleteProjects({ ids: [projectId] })}
       />
 
       <Pagination

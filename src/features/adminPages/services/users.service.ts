@@ -1,7 +1,7 @@
 import { users } from "../../adminTables/mocks/users.mock";
 import { BaseUser } from "../../auth/types/user.types";
 
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+import { delay } from "./delay";
 
 let usersDB = [...users];
 
