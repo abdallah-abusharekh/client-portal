@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import ProjectFormFields from "./ProjectFormFields";
 import Button from "@/src/shared/components/Button";
+import ModalOverlay from "@/src/shared/components/ModalOverlay";
 
 import { createProjectSchema } from "../../schemas/createProject.schema";
 import { ProjectFormBase } from "../../types/project.types";
@@ -49,13 +50,7 @@ export default function CreateProjectModal({ open, onClose, onCreate }: Props) {
   };
 
   return (
-    <div className="z-50 fixed inset-0 flex justify-center items-center">
-      {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-xs h-dvh"
-        onClick={onClose}
-      />
-
+    <ModalOverlay open={open} onClose={onClose}>
       {/* Modal Content */}
       <div className="relative space-y-5 bg-white shadow-lg p-6 rounded-2xl w-full max-w-lg">
         {/* Header */}
@@ -79,6 +74,6 @@ export default function CreateProjectModal({ open, onClose, onCreate }: Props) {
           </div>
         </form>
       </div>
-    </div>
+    </ModalOverlay>
   );
 }

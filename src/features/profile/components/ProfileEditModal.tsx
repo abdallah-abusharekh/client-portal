@@ -8,6 +8,7 @@ import {
 import Card from "../../../shared/components/Card";
 import Button from "../../../shared/components/Button";
 import { useAuth } from "../../auth/contexts/AuthContext";
+import ModalOverlay from "@/src/shared/components/ModalOverlay";
 
 export default function ProfileEditModal({ onClose }: { onClose: () => void }) {
   const { user, setUser } = useAuth();
@@ -40,7 +41,6 @@ export default function ProfileEditModal({ onClose }: { onClose: () => void }) {
   async function onSubmit(data: ProfileEditValues) {
     if (!user) return;
     setSaving(true);
-    await new Promise((res) => setTimeout(res, 500));
     const updatedUser = { ...user, ...data };
     setUser(updatedUser);
     localStorage.setItem("client-portal-session", JSON.stringify(updatedUser));
@@ -49,7 +49,7 @@ export default function ProfileEditModal({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/30 backdrop-blur-xs">
+    <ModalOverlay open={true}>
       <Card className="relative p-6 w-full max-w-md">
         <button
           className="top-2 right-2 absolute text-gray-400 hover:text-gray-600"
@@ -139,6 +139,6 @@ export default function ProfileEditModal({ onClose }: { onClose: () => void }) {
           </Button>
         </form>
       </Card>
-    </div>
+    </ModalOverlay>
   );
 }

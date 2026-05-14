@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import Button from "@/src/shared/components/Button";
+import ModalOverlay from "@/src/shared/components/ModalOverlay";
 
 import { createTaskSchema } from "../../schemas/createTask.schema";
 import { TaskFormBase, TaskStatus } from "../../types/task.types";
@@ -54,13 +55,7 @@ export default function CreateTaskModal({
   };
 
   return (
-    <div className="z-50 fixed inset-0 flex justify-center items-center">
-      {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-xs h-dvh"
-        onClick={onClose}
-      />
-
+    <ModalOverlay open={open} onClose={onClose}>
       {/* Modal */}
       <div className="relative space-y-5 bg-white shadow-lg p-6 rounded-2xl w-full max-w-lg">
         {/* Header */}
@@ -84,6 +79,6 @@ export default function CreateTaskModal({
           </div>
         </form>
       </div>
-    </div>
+    </ModalOverlay>
   );
 }

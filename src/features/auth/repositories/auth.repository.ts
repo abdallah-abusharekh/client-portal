@@ -5,6 +5,7 @@ import {
   DEMO_CREDENTIALS,
 } from "../mocks/users.mock";
 import { AppUser, UserRole } from "../types/user.types";
+import { delay } from "../../../shared/utils/delay";
 
 const USERS = {
   freelancer: freelancerUser,
@@ -16,10 +17,10 @@ export async function loginRepository(
   email: string,
   password: string,
 ): Promise<AppUser> {
-  await new Promise((res) => setTimeout(res, 500));
+  await delay(500);
 
   const roleEntry = Object.entries(DEMO_CREDENTIALS).find(
-    ([_, creds]) => creds.email === email && creds.password === password,
+    ([role, creds]) => creds.email === email && creds.password === password,
   );
 
   if (!roleEntry) {
@@ -38,8 +39,6 @@ export async function signupRepository(
   email: string,
   role: UserRole,
 ): Promise<AppUser> {
-  await new Promise((res) => setTimeout(res, 700));
-
   return {
     id: crypto.randomUUID(),
     name,

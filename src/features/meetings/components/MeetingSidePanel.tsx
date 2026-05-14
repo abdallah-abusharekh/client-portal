@@ -19,6 +19,7 @@ import { isMeetingPassed, hasConflictWithActiveMeetings } from "../utils/utils";
 import { useMeetings } from "../hooks/useMeetings";
 import { getMeetingDurationMinutes } from "../utils/utils";
 import MeetingDetailsSkeleton from "./skeletons/MeetingDetailsSkeleton";
+import ModalOverlay from "@/src/shared/components/ModalOverlay";
 
 export default function MeetingSidePanel({
   state,
@@ -49,11 +50,14 @@ export default function MeetingSidePanel({
 
   if (isLoading && selectedMeetingId) {
     return (
-      <div className="z-50 fixed inset-0 flex justify-end bg-black/20">
-        <div className="relative flex flex-col bg-white shadow-xl w-full md:max-w-2xl h-dvh">
+      <ModalOverlay open={true} containerClassName="justify-end items-stretch">
+        <div
+          ref={ref}
+          className="relative flex flex-col bg-white shadow-xl w-full md:max-w-2xl h-dvh"
+        >
           <MeetingDetailsSkeleton />
         </div>
-      </div>
+      </ModalOverlay>
     );
   }
 
@@ -83,7 +87,11 @@ export default function MeetingSidePanel({
   }
 
   return (
-    <div className="z-50 fixed inset-0 flex justify-end bg-black/20">
+    <ModalOverlay
+      open={true}
+      onClose={close}
+      containerClassName="justify-end items-stretch"
+    >
       <div
         ref={ref}
         className="relative flex flex-col bg-white shadow-xl w-full md:max-w-2xl h-dvh"
@@ -228,6 +236,6 @@ export default function MeetingSidePanel({
           ✕
         </button>
       </div>
-    </div>
+    </ModalOverlay>
   );
 }

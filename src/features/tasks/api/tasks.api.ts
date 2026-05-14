@@ -1,16 +1,16 @@
 import { tasksDB } from "../mocks/tasks.mock";
 import { Task, TaskStatus } from "../types/task.types";
 
-function simulateDelay<T>(data: T, delay = 500): Promise<T> {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (Math.random() < 0.1) {
-        reject(new Error("Network error"));
-      } else {
-        resolve(data);
-      }
-    }, delay);
-  });
+import { delay } from "../../../shared/utils/delay";
+
+async function simulateDelay<T>(data: T, ms = 500): Promise<T> {
+  await delay(ms);
+
+  if (Math.random() < 0.1) {
+    throw new Error("Network error");
+  }
+
+  return data;
 }
 
 export const tasksApi = {
@@ -25,6 +25,8 @@ export const tasksApi = {
       tasksDB[index].status = status;
     }
 
-    return simulateDelay(undefined);
+    if (Math.random() < 0.1) {
+      throw new Error("Network error");
+    }
   },
 };

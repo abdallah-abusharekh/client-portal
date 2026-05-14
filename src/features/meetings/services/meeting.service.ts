@@ -1,6 +1,7 @@
 import { mockParticipants } from "../mocks/meetings.mock";
 import { Meeting } from "../types/meetings.types";
 import { isMeetingPassed, hasConflictWithActiveMeetings } from "../utils/utils";
+import { delay } from "../../../shared/utils/delay";
 
 let mockMeetings: Meeting[] = [
   {
@@ -15,13 +16,13 @@ let mockMeetings: Meeting[] = [
 
 export const meetingService = {
   getById: async (id: string): Promise<Meeting | null> => {
-    await new Promise((r) => setTimeout(r, 200));
+    await delay(200);
 
     return mockMeetings.find((m) => m.id === id) || null;
   },
 
   getAll: async (): Promise<Meeting[]> => {
-    await new Promise((r) => setTimeout(r, 200));
+    await delay(200);
     return mockMeetings;
   },
 

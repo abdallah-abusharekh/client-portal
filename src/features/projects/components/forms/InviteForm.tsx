@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { useClickOutside } from "@/src/shared/hooks/useClickOutside";
 import toast from "react-hot-toast";
+import ModalOverlay from "@/src/shared/components/ModalOverlay";
 
 type Props = {
   open: boolean;
@@ -34,7 +35,7 @@ export default function AddParticipantModal({ open, onClose }: Props) {
   };
 
   return (
-    <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/40 backdrop-blur-[2px]">
+    <ModalOverlay open={open} onClose={onClose}>
       <div
         ref={ref}
         className="space-y-3 bg-white shadow-xl p-5 rounded-xl w-full max-w-md"
@@ -66,6 +67,6 @@ export default function AddParticipantModal({ open, onClose }: Props) {
           </button>
         </div>
       </div>
-    </div>
+    </ModalOverlay>
   );
 }

@@ -5,7 +5,6 @@ import { LuPanelLeft } from "react-icons/lu";
 
 import HeaderNotifications from "./HeaderNotifications";
 import HeaderUserMenu from "./HeaderUserMenu";
-import SearchInput from "@/src/shared/components/SearchInput";
 
 type Props = {
   onMenuClick: () => void;
@@ -29,8 +28,6 @@ export default function Header({ onMenuClick, onCollapseClick }: Props) {
         >
           <LuPanelLeft className="text-xl text-(--color-text)" />
         </button>
-
-        <SearchInput placeholder="Search projects, tasks..." className="w-65" />
       </div>
 
       <div className="flex items-center gap-6">
