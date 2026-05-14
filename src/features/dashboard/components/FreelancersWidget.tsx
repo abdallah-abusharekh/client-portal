@@ -1,10 +1,13 @@
 import Card from "@/src/shared/components/Card";
 import Badge from "@/src/shared/components/Badge";
-import { freelancers } from "../mocks/dashboard.mock";
 import MembersList from "./members/MembersList";
 import { Freelancer } from "../types/dashboard.types";
 
-export default function FreelancersWidget() {
+type Props = {
+  freelancers: Freelancer[];
+};
+
+export default function FreelancersWidget({ freelancers }: Props) {
   return (
     <Card className="flex flex-col h-70">
       <h3 className="mb-4 font-semibold text-lg">Your Freelancers</h3>

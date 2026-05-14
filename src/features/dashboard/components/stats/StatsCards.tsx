@@ -1,6 +1,6 @@
 import StatCard from "./StatCard";
 import { DashboardStat } from "../../types/dashboard.types";
-import { statIconMap } from "../../mocks/dashboard.mock";
+import { statIconMap } from "../../constants/statIcons";
 
 type Props = {
   stats: DashboardStat[];
