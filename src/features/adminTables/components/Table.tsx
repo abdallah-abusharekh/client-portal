@@ -1,7 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { FiDownload, FiPauseCircle, FiPlayCircle, FiTrash2 } from "react-icons/fi";
+import {
+  FiDownload,
+  FiPauseCircle,
+  FiPlayCircle,
+  FiTrash2,
+} from "react-icons/fi";
 import { useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import ConfirmModal from "@/src/shared/components/ConfirmModal";
@@ -29,7 +34,7 @@ function isUserRow(item: RowData): item is BaseUser {
 }
 
 export default function Table({
-  users,
+  items,
   setUsers,
   selectedUserIds,
   onToggleUserSelection,
@@ -39,7 +44,7 @@ export default function Table({
   onDeleteProject,
   onDownloadReport,
 }: {
-  users: RowData[];
+  items: RowData[];
   setUsers?: Dispatch<SetStateAction<BaseUser[]>>;
   selectedUserIds?: string[];
   onToggleUserSelection?: (id: string) => void;
@@ -87,8 +92,8 @@ export default function Table({
   };
 
   const columnKeys =
-    users.length > 0
-      ? Object.keys(users[0]).filter(
+    items.length > 0
+      ? Object.keys(items[0]).filter(
           (key) => key !== "id" && key !== "avatarUrl",
         )
       : [];
@@ -127,7 +132,7 @@ export default function Table({
         </tr>
       </thead>
       <tbody>
-        {users.map((item) => (
+        {items.map((item) => (
           <tr key={item.id} className="even:bg-gray-50 odd:bg-white">
             {columnKeys.map((key) => {
               const row = item as Record<string, unknown>;
@@ -175,8 +180,8 @@ export default function Table({
                               ? "bg-yellow-200 text-yellow-700"
                               : val === "resolved"
                                 ? "bg-green-200 text-green-700"
-                            : projectStatusClassMap[val as ProjectStatus] ||
-                              "bg-gray-200 text-gray-700"
+                                : projectStatusClassMap[val as ProjectStatus] ||
+                                  "bg-gray-200 text-gray-700"
                       }`}
                     >
                       {val}
@@ -230,7 +235,9 @@ export default function Table({
                     )}
                   </button>
                   <ConfirmModal
-                    open={openConfirm === "suspend"}
+                    open={
+                      openConfirm === "suspend" && selectedUser?.id === item.id
+                    }
                     variant="alert"
                     title={`${item.status === "active" ? "Suspend" : "Activate"} User`}
                     description={`Are you sure that you want to ${item.status === "active" ? "suspend" : "activate"} this user?`}
@@ -252,7 +259,9 @@ export default function Table({
                     <FiTrash2 size={18} />
                   </button>
                   <ConfirmModal
-                    open={openConfirm === "delete"}
+                    open={
+                      openConfirm === "delete" && selectedUser?.id === item.id
+                    }
                     variant="danger"
                     title="Delete User"
                     description="Are you sure that you want to delete this user?"

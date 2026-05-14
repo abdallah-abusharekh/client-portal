@@ -31,7 +31,10 @@ export default function ReportsPage() {
 
   return (
     <div className="flex flex-col space-y-5 h-full">
-      <PageHeader title="Reports" subtitle="Review generated operational reports" />
+      <PageHeader
+        title="Reports"
+        subtitle="Review generated operational reports"
+      />
 
       <ReportsFiltersBar
         search={search}
@@ -42,7 +45,7 @@ export default function ReportsPage() {
       />
 
       <Table
-        users={paginatedItems}
+        items={paginatedItems}
         variant="reports"
         onDownloadReport={handleDownloadReport}
       />

@@ -2,6 +2,7 @@
 
 import Button from "./Button";
 import { FiAlertTriangle } from "react-icons/fi";
+import ModalOverlay from "./ModalOverlay";
 
 type Props = {
   open: boolean | string;
@@ -32,16 +33,9 @@ export default function ConfirmModal({
   const isAlert = variant === "alert";
 
   return (
-    <div className="z-50 fixed inset-0 flex justify-center items-center">
-      {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/20 backdrop-blur-[1px]"
-        onClick={onClose}
-      />
-
-      {/* Modal */}
+    <ModalOverlay open={Boolean(open)} onClose={onClose}>
       <div className="relative space-y-4 bg-white shadow-lg p-6 rounded-2xl w-full max-w-md text-center">
-        {/* 🔥 Icon */}
+        {/* Icon */}
         {isDanger && (
           <div className="flex justify-center">
             <div className="bg-red-100 p-3 rounded-full">
@@ -84,6 +78,6 @@ export default function ConfirmModal({
           </Button>
         </div>
       </div>
-    </div>
+    </ModalOverlay>
   );
 }

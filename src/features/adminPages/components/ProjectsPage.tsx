@@ -31,7 +31,10 @@ export default function ProjectsPage() {
 
   return (
     <div className="flex flex-col space-y-5 h-full">
-      <PageHeader title="All projects" subtitle="Manage client-portal projects" />
+      <PageHeader
+        title="All projects"
+        subtitle="Manage client-portal projects"
+      />
 
       <ProjectsFiltersBar
         search={search}
@@ -42,7 +45,7 @@ export default function ProjectsPage() {
       />
 
       <Table
-        users={paginatedItems}
+        items={paginatedItems}
         variant="projects"
         onDeleteProject={handleDeleteProject}
       />

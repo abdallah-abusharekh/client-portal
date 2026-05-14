@@ -40,7 +40,7 @@ export default function AlertsPage() {
         statusOptions={statusOptions}
       />
 
-      <Table users={paginatedItems} variant="default" />
+      <Table items={paginatedItems} variant="default" />
 
       <Pagination
         currentPage={currentPage}

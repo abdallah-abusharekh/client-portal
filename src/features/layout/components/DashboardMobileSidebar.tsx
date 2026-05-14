@@ -2,6 +2,7 @@
 
 import { NavItem } from "../types/layout";
 import Sidebar from "./sidebar/Sidebar";
+import ModalOverlay from "@/src/shared/components/ModalOverlay";
 
 type Props = {
   open: boolean;
@@ -19,12 +20,14 @@ export default function DashboardMobileSidebar({
   if (!open) return null;
 
   return (
-    <div className="md:hidden z-50 fixed inset-0 flex">
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
-
+    <ModalOverlay
+      open={open}
+      onClose={onClose}
+      containerClassName="md:hidden justify-start items-stretch"
+    >
       <div className="relative bg-white shadow-lg w-64 h-full">
         <Sidebar collapsed={false} primaryNav={primaryNav} mainNav={mainNav} />
       </div>
-    </div>
+    </ModalOverlay>
   );
 }

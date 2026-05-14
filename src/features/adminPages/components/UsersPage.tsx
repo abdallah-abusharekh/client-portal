@@ -61,7 +61,7 @@ export default function UsersPage() {
       />
 
       <Table
-        users={paginatedItems}
+        items={paginatedItems}
         setUsers={setData}
         selectedUserIds={selectedUserIds}
         onToggleUserSelection={handleToggleUserSelection}

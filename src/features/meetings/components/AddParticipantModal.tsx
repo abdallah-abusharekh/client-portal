@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { Participant } from "./ParticipantSelector";
 import { useClickOutside } from "@/src/shared/hooks/useClickOutside";
+import ModalOverlay from "@/src/shared/components/ModalOverlay";
 
 type Props = {
   open: boolean;
@@ -42,7 +43,7 @@ export default function AddParticipantModal({
   };
 
   return (
-    <div className="z-50 fixed inset-0 flex justify-center items-center bg-black/40 backdrop-blur-[2px]">
+    <ModalOverlay open={open} onClose={onClose}>
       <div
         ref={ref}
         className="space-y-3 bg-white shadow-xl p-5 rounded-xl w-full max-w-md"
@@ -88,6 +89,6 @@ export default function AddParticipantModal({
           </button>
         </div>
       </div>
-    </div>
+    </ModalOverlay>
   );
 }

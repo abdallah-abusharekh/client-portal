@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import Button from "@/src/shared/components/Button";
+import ModalOverlay from "@/src/shared/components/ModalOverlay";
 import TaskFormFields from "../forms/TaskFormFields";
 import { Task, TaskFormBase } from "../../types/task.types";
 
@@ -48,12 +49,7 @@ export default function EditTaskModal({
   }
 
   return (
-    <div className="z-50 fixed inset-0 flex justify-center items-center">
-      <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-xs"
-        onClick={onClose}
-      />
-
+    <ModalOverlay open={open} onClose={onClose}>
       <div className="relative space-y-5 bg-white shadow-lg p-6 rounded-2xl w-full max-w-lg">
         <h2 className="font-semibold text-lg">Edit Task</h2>
 
@@ -71,6 +67,6 @@ export default function EditTaskModal({
           </div>
         </form>
       </div>
-    </div>
+    </ModalOverlay>
   );
 }
