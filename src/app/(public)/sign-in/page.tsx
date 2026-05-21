@@ -4,7 +4,8 @@ import AuthShell from "@/src/features/auth/components/AuthShell";
 export default function SignInPage() {
   return (
     <AuthShell
-      title="Secure Projects, Faster Delivery."
+      title={`Secure Projects, Faster 
+Delivery.`}
       subtitle="Manage clients, tasks, meetings, and milestones in one focused workspace."
       ctaLabel="Explore Platform"
       ctaHref="/"
