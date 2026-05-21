@@ -1,9 +1,15 @@
 import SignInCard from "@/src/features/auth/components/SignInCard";
+import AuthShell from "@/src/features/auth/components/AuthShell";
 
 export default function SignInPage() {
   return (
-    <main className="flex justify-center items-center bg-background-sky min-h-screen">
+    <AuthShell
+      title="Secure Projects, Faster Delivery."
+      subtitle="Manage clients, tasks, meetings, and milestones in one focused workspace."
+      ctaLabel="Explore Platform"
+      ctaHref="/"
+    >
       <SignInCard />
-    </main>
+    </AuthShell>
   );
 }

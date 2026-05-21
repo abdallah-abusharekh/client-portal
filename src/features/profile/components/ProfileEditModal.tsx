@@ -1,16 +1,24 @@
-import { useState, useEffect } from "react";
+"use client";
+
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
+
+import Button from "../../../shared/components/Button";
+import { useAuth } from "../../auth/contexts/AuthContext";
 import {
   profileEditSchema,
   ProfileEditValues,
 } from "../schemas/profileEdit.schema";
-import Card from "../../../shared/components/Card";
-import Button from "../../../shared/components/Button";
-import { useAuth } from "../../auth/contexts/AuthContext";
-import ModalOverlay from "@/src/shared/components/ModalOverlay";
 
-export default function ProfileEditModal({ onClose }: { onClose: () => void }) {
+export default function ProfileEditForm({
+  onCancel,
+  onSuccess,
+}: {
+  onCancel: () => void;
+  onSuccess: () => void;
+}) {
   const { user, setUser } = useAuth();
   const [saving, setSaving] = useState(false);
 
@@ -40,105 +48,105 @@ export default function ProfileEditModal({ onClose }: { onClose: () => void }) {
 
   async function onSubmit(data: ProfileEditValues) {
     if (!user) return;
+
     setSaving(true);
+
     const updatedUser = { ...user, ...data };
+
     setUser(updatedUser);
     localStorage.setItem("client-portal-session", JSON.stringify(updatedUser));
+
     setSaving(false);
-    onClose();
+
+    toast.success("Profile updated successfully!");
+    onSuccess();
   }
 
   return (
-    <ModalOverlay open={true}>
-      <Card className="relative p-6 w-full max-w-md">
-        <button
-          className="top-2 right-2 absolute text-gray-400 hover:text-gray-600"
-          onClick={onClose}
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <h2 className="mb-4 font-bold text-xl">Edit Profile</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div>
-            <label className="block mb-1 font-medium text-sm" htmlFor="name">
-              Name
-            </label>
-            <input
-              className="mt-1 px-3 py-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary w-full text-sm transition"
-              id="name"
-              {...register("name")}
-              value={undefined}
-              placeholder="Name"
-              required
-            />
-            {errors.name && (
-              <div className="mt-1 text-red-500 text-xs">
-                {errors.name.message}
-              </div>
-            )}
-          </div>
-          <div>
-            <label
-              className="block mb-1 font-medium text-sm"
-              htmlFor="jobTitle"
-            >
-              Job Title
-            </label>
-            <input
-              className="mt-1 px-3 py-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary w-full text-sm transition"
-              id="jobTitle"
-              {...register("jobTitle")}
-              value={undefined}
-              placeholder="Job Title"
-            />
-            {errors.jobTitle && (
-              <div className="mt-1 text-red-500 text-xs">
-                {errors.jobTitle.message}
-              </div>
-            )}
-          </div>
-          <div>
-            <label className="block mb-1 font-medium text-sm" htmlFor="email">
-              Email
-            </label>
-            <input
-              className="mt-1 px-3 py-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary w-full text-sm transition"
-              id="email"
-              type="email"
-              {...register("email")}
-              value={undefined}
-              placeholder="Email"
-              required
-            />
-            {errors.email && (
-              <div className="mt-1 text-red-500 text-xs">
-                {errors.email.message}
-              </div>
-            )}
-          </div>
-          <div>
-            <label className="block mb-1 font-medium text-sm" htmlFor="bio">
-              Bio
-            </label>
-            <textarea
-              className="mt-1 px-3 py-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary w-full text-sm transition"
-              id="bio"
-              {...register("bio")}
-              rows={3}
-              placeholder="Bio"
-            />
-            {errors.bio && (
-              <div className="mt-1 text-red-500 text-xs">
-                {errors.bio.message}
-              </div>
-            )}
-          </div>
-          <Button type="submit" loading={saving} className="w-full">
-            Save
-          </Button>
-        </form>
-      </Card>
-    </ModalOverlay>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+      <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+        <div>
+          <label htmlFor="name" className="block mb-1 font-medium text-sm">
+            Name
+          </label>
+
+          <input
+            id="name"
+            {...register("name")}
+            placeholder="Name"
+            className="px-3 py-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary/20 w-full text-sm transition"
+          />
+
+          {errors.name && (
+            <p className="mt-1 text-red-500 text-xs">{errors.name.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="jobTitle" className="block mb-1 font-medium text-sm">
+            Job Title
+          </label>
+
+          <input
+            id="jobTitle"
+            {...register("jobTitle")}
+            placeholder="Job Title"
+            className="px-3 py-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary/20 w-full text-sm transition"
+          />
+
+          {errors.jobTitle && (
+            <p className="mt-1 text-red-500 text-xs">
+              {errors.jobTitle.message}
+            </p>
+          )}
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="email" className="block mb-1 font-medium text-sm">
+          Email
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          {...register("email")}
+          placeholder="Email"
+          className="px-3 py-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary/20 w-full text-sm transition"
+        />
+
+        {errors.email && (
+          <p className="mt-1 text-red-500 text-xs">{errors.email.message}</p>
+        )}
+      </div>
+
+      <div>
+        <label htmlFor="bio" className="block mb-1 font-medium text-sm">
+          Bio
+        </label>
+
+        <textarea
+          id="bio"
+          {...register("bio")}
+          rows={4}
+          placeholder="Bio"
+          className="px-3 py-2 border border-gray-300 focus:border-primary rounded-lg outline-none focus:ring-2 focus:ring-primary/20 w-full text-sm transition resize-none"
+        />
+
+        {errors.bio && (
+          <p className="mt-1 text-red-500 text-xs">{errors.bio.message}</p>
+        )}
+      </div>
+
+      <div className="flex justify-end gap-3 pt-2">
+        <Button type="button" variant="secondary" onClick={onCancel}>
+          Cancel
+        </Button>
+
+        <Button type="submit" loading={saving}>
+          Save Changes
+        </Button>
+      </div>
+    </form>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { reports } from "../../adminTables/mocks/reports.mock";
+import { reports } from "../mocks/reports.mock";
 
 type ReportCategory = "all" | "users" | "projects" | "finance";
 

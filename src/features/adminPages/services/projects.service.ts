@@ -1,4 +1,4 @@
-import { projects } from "../../adminTables/mocks/projects.mock";
+import { projects } from "../mocks/projects.mock";
 import { Project, ProjectStatus } from "../../projects/types/project.types";
 import { delay } from "../../../shared/utils/delay";
 

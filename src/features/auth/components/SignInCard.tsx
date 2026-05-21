@@ -13,7 +13,6 @@ import { signInSchema, SignInFormValues } from "../schemas/auth.schema";
 import RoleSelector from "./RoleLoginButtons";
 import BasicFields from "./BasicFields";
 
-import Logo from "@/src/shared/components/Logo";
 import Button from "@/src/shared/components/Button";
 
 export default function SignInCard() {
@@ -51,9 +50,11 @@ export default function SignInCard() {
 
       if (user.role === "admin") router.push(`/admin/dashboard`);
       else router.push(`/dashboard`);
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Invalid credentials";
       setError("root", {
-        message: err.message || "Invalid credentials",
+        message,
       });
     }
   };
@@ -61,14 +62,12 @@ export default function SignInCard() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center gap-4 bg-background shadow-xl px-12 py-8 rounded-2xl"
+      className="flex flex-col gap-3 shadow-lg lg:shadow-none p-7 border-2 border-primary lg:border-none rounded-2xl"
     >
-      <Logo />
-
-      <div className="mb-4 text-center">
-        <h1 className="font-semibold text-2xl">Client Portal</h1>
-        <p className="text-gray-500 text-sm">
-          Professional project management platform
+      <div className="space-y-1 mb-4">
+        <h1 className="font-semibold text-slate-900 text-2xl">Sign in</h1>
+        <p className="text-slate-500 text-sm">
+          Welcome back. Access your Client Portal workspace.
         </p>
       </div>
 
@@ -80,24 +79,20 @@ export default function SignInCard() {
           {errors.root.message}
         </div>
       )}
-      <Button
-        type="submit"
-        loading={loading}
-        loader="Signing In..."
-        className="w-full"
-      >
-        Sign In
-      </Button>
-
-      <p className="text-gray-500 text-sm">
-        Don't have an account?{" "}
-        <span
-          onClick={() => router.push("/sign-up")}
-          className="text-primary hover:underline cursor-pointer"
-        >
-          Sign Up
-        </span>
-      </p>
+      <div className="flex justify-between items-center mt-2">
+        <p className="text-gray-500 text-sm">
+          Don&apos;t have an account?{" "}
+          <span
+            onClick={() => router.push("/sign-up")}
+            className="text-primary hover:underline cursor-pointer"
+          >
+            Sign Up
+          </span>
+        </p>{" "}
+        <Button type="submit" loading={loading} loader="Signing In...">
+          Sign In
+        </Button>
+      </div>
     </form>
   );
 }

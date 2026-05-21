@@ -1,4 +1,4 @@
-import { reports, ReportItem } from "../../adminTables/mocks/reports.mock";
+import { reports, ReportItem } from "../mocks/reports.mock";
 import { delay } from "../../../shared/utils/delay";
 
 let reportsDB: ReportItem[] = [...reports];

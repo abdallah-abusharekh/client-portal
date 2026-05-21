@@ -1,4 +1,4 @@
-import { FiPaperclip } from "react-icons/fi";
+import { FiPaperclip, FiSend } from "react-icons/fi";
 import Button from "@/src/shared/components/Button";
 import Input from "@/src/shared/components/Input";
 
@@ -41,7 +41,9 @@ export default function ChatInput({
         }}
       />
 
-      <Button onClick={onSend}>Send</Button>
+      <Button onClick={onSend}>
+        <FiSend />
+      </Button>
     </div>
   );
 }

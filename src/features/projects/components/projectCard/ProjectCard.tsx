@@ -17,7 +17,7 @@ type Props = {
 
 export default function ProjectCard({ project }: Props) {
   return (
-    <Link href={`/projects/${project.id}`}>
+    <Link href={`/projects/1`}>
       <Card className="flex flex-col hover:shadow-md p-5 h-full transition hover:-translate-y-0.5 cursor-pointer">
         <div className="flex-1 space-y-4">
           <div>

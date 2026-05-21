@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { AlertItem } from "../../adminTables/mocks/alerts.mock";
+import { AlertItem } from "../mocks/alerts.mock";
 
 type AlertStatus = "all" | AlertItem["status"];
 

@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import { FiEdit2 } from "react-icons/fi";
+
 import Card from "../../../shared/components/Card";
 import { Container } from "../../../shared/components/Container";
 import Reveal from "../../../shared/animation/Reveal";
@@ -8,13 +11,11 @@ import { useAuth } from "../../auth/contexts/AuthContext";
 import ProfileAvatar from "./ProfileAvatar";
 import ProfileHeader from "./ProfileHeader";
 import ProfileStats from "./ProfileStats";
-import ProfileEditModal from "./ProfileEditModal";
-import { useState } from "react";
-import { FiEdit2 } from "react-icons/fi";
+import ProfileEditForm from "./ProfileEditModal";
 
 export default function ProfilePage() {
   const { user, loading } = useAuth();
-  const [editOpen, setEditOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   if (loading) {
     return (
@@ -44,22 +45,46 @@ export default function ProfilePage() {
   return (
     <Container>
       <Reveal>
-        <Card className="relative flex flex-col items-center gap-4 mx-auto mt-12 p-8 max-w-lg">
-          <ProfileAvatar
-            src={user.avatarUrl || "/avatars/avatar1.png"}
-            alt={user.name}
-          />
-          <ProfileHeader user={user} />
-          <ProfileStats user={user} />
-          <button
-            className="top-0 right-3 absolute bg-primary hover:bg-primary-dark mt-4 p-2 rounded-full text-white transition"
-            onClick={() => setEditOpen(true)}
-          >
-            <FiEdit2 />
-          </button>
+        <Card className="relative flex flex-col gap-6 mx-auto mt-12 p-8 max-w-lg">
+          {!isEditing ? (
+            <>
+              <div className="flex flex-col items-center gap-4">
+                <ProfileAvatar
+                  src={user.avatarUrl || "/avatars/avatar1.png"}
+                  alt={user.name}
+                />
+
+                <ProfileHeader user={user} />
+                <ProfileStats user={user} />
+              </div>
+
+              <button
+                className="top-3 right-3 absolute bg-primary hover:bg-primary-dark p-2 rounded-full text-white transition"
+                onClick={() => setIsEditing(true)}
+                aria-label="Edit profile"
+              >
+                <FiEdit2 />
+              </button>
+            </>
+          ) : (
+            <div>
+              <div className="mb-6">
+                <h2 className="font-bold text-gray-900 text-2xl">
+                  Edit Profile
+                </h2>
+                <p className="mt-1 text-gray-500 text-sm">
+                  Update your personal information.
+                </p>
+              </div>
+
+              <ProfileEditForm
+                onCancel={() => setIsEditing(false)}
+                onSuccess={() => setIsEditing(false)}
+              />
+            </div>
+          )}
         </Card>
       </Reveal>
-      {editOpen && <ProfileEditModal onClose={() => setEditOpen(false)} />}
     </Container>
   );
 }
