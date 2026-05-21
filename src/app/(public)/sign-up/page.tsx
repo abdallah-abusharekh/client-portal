@@ -1,5 +1,3 @@
-"use client";
-
 import SignUpCard from "@/src/features/auth/components/SignUpCard";
 import AuthShell from "@/src/features/auth/components/AuthShell";
 

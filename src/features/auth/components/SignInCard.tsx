@@ -60,7 +60,7 @@ export default function SignInCard() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
       <div className="space-y-1 mb-4">
         <h1 className="font-semibold text-slate-900 text-2xl">Sign in</h1>
         <p className="text-slate-500 text-sm">
@@ -76,7 +76,7 @@ export default function SignInCard() {
           {errors.root.message}
         </div>
       )}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mt-2">
         <p className="text-gray-500 text-sm">
           Don&apos;t have an account?{" "}
           <span

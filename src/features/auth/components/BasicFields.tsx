@@ -21,7 +21,7 @@ export default function BasicFields<T extends FieldValues>({
           <input
             type="email"
             placeholder="email@example.com"
-            className="bg-transparent outline-none w-full"
+            className="outline-none w-full"
             {...register("email" as any)}
           />
         </div>
@@ -42,7 +42,7 @@ export default function BasicFields<T extends FieldValues>({
           <input
             type="password"
             placeholder="Enter password"
-            className="bg-transparent outline-none w-full"
+            className="outline-none w-full"
             {...register("password" as any)}
           />
         </div>

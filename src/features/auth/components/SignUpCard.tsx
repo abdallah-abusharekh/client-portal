@@ -14,6 +14,7 @@ import RoleSelector from "./RoleLoginButtons";
 import BasicFields from "./BasicFields";
 
 import Button from "@/src/shared/components/Button";
+import { FiUser } from "react-icons/fi";
 
 export default function SignUpCard() {
   const router = useRouter();
@@ -55,7 +56,7 @@ export default function SignUpCard() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-      <div className="space-y-1 mb-6">
+      <div className="space-y-1 mb-4">
         <h1 className="font-semibold text-slate-900 text-2xl">
           Create account
         </h1>
@@ -69,13 +70,16 @@ export default function SignUpCard() {
       <div className="space-y-1 w-full">
         <label className="font-medium text-sm">Full Name</label>
 
-        <input
-          {...register("name")}
-          type="text"
-          placeholder="John Doe"
-          className="bg-white px-3 py-2 border border-gray-300 rounded-lg outline-none ring-1 ring-primary focus:ring-2 w-full transition"
-        />
+        <div className="flex items-center bg-white px-3 py-2 border border-gray-300 rounded-lg ring-1 ring-primary focus-within:ring-2 transition">
+          <FiUser className="mr-2 text-gray-400" />
 
+          <input
+            {...register("name")}
+            type="text"
+            placeholder="John Doe"
+            className="outline-none w-full"
+          />
+        </div>
         {errors.name && (
           <p className="text-red-500 text-sm">{errors.name.message}</p>
         )}

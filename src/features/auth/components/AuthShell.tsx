@@ -66,9 +66,16 @@ export default function AuthShell({
               <p className="mb-4 font-semibold text-slate-500 text-xs uppercase tracking-[0.2em]">
                 Client Portal Suite
               </p>
-
               <h1 className="mb-3 font-bold text-slate-900 text-5xl leading-[1.05] tracking-tight">
-                {title}
+                {title.split("").map((char, i) => (
+                  <span
+                    key={`${char}-${i}`}
+                    className="inline-block auth-title-letter"
+                    style={{ animationDelay: `${0.15 + i * 0.035}s` }}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                ))}
               </h1>
               <p className="max-w-sm text-slate-600 text-lg leading-relaxed">
                 {subtitle}
@@ -77,17 +84,17 @@ export default function AuthShell({
             <div className="mt-6">
               <Link
                 href={ctaHref}
-                className="inline-flex items-center gap-2 pb-1 border-slate-800 border-b font-semibold text-slate-900 text-sm"
+                className="inline-flex items-center gap-2 Hover:border-primary hover:border-b font-semibold text-slate-900 hover:text-primary text-sm transition"
               >
                 {ctaLabel}
-                <span aria-hidden="true">
+                <span aria-hidden="true" className="inline-block auth-arrow-bounce">
                   <FaArrowRight />
                 </span>
               </Link>
             </div>
           </div>
 
-          <div className="right-20 bottom-20 absolute flex justify-center items-center bg-transparent rounded-3xl w-44 h-44 rotate-6">
+          <div className="right-20 bottom-20 absolute flex justify-center items-center bg-transparent rounded-3xl w-44 h-44 rotate-6 auth-logo-float">
             <svg
               viewBox="0 0 24 24"
               className="w-46 h-46 text-primary"
