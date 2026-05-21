@@ -12,8 +12,8 @@ export default function BasicFields<T extends FieldValues>({
 }: Props<T>) {
   return (
     <>
-      <div className="space-y-1 w-full">
-        <label className="font-medium text-sm">Email Address</label>
+      <div className="space-y-1">
+        <label className="block mb-2 font-medium text-sm">Email Address</label>
 
         <div className="flex items-center bg-white px-3 py-2 border border-gray-300 rounded-lg ring-1 ring-primary focus-within:ring-2 transition">
           <FiMail className="mr-2 text-gray-400" />
@@ -33,8 +33,8 @@ export default function BasicFields<T extends FieldValues>({
         )}
       </div>
 
-      <div className="space-y-1 w-full">
-        <label className="font-medium text-sm">Password</label>
+      <div className="space-y-1">
+        <label className="block mb-2 font-medium text-sm">Password</label>
 
         <div className="flex items-center bg-white px-3 py-2 border border-gray-300 rounded-lg ring-1 ring-primary focus-within:ring-2 transition">
           <FiLock className="mr-2 text-gray-400" />

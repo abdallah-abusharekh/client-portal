@@ -16,7 +16,7 @@ const roles = [
 
 export default function RoleSelector({ role, onChange }: Props) {
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 mb-4">
       <div className="flex justify-center items-center gap-4">
         {roles.map((r) => {
           const Icon = r.icon;
