@@ -43,6 +43,7 @@ export default function UserGrowthWidget() {
               stroke="#2563eb"
               strokeWidth={3}
               dot={{ r: 4 }}
+              isAnimationActive={false}
             />
 
             <Line
@@ -51,6 +52,7 @@ export default function UserGrowthWidget() {
               stroke="#10b981"
               strokeWidth={3}
               dot={{ r: 4 }}
+              isAnimationActive={false}
             />
           </LineChart>
         </ResponsiveContainer>

@@ -12,12 +12,15 @@ import {
 } from "recharts";
 import { revenueData } from "../../../mocks/dashboard.mock";
 
+const formatYAxis = (value: number) => `$${value / 1000}k`;
+
 export default function RevenueChartWidget() {
   return (
     <Card className="col-start-1 col-end-3 p-6">
       <div className="flex justify-between items-start mb-6">
         <div>
           <h3 className="font-semibold text-gray-900">Revenue Overview</h3>
+
           <p className="text-gray-500 text-sm">Monthly revenue and projects</p>
         </div>
 
@@ -39,7 +42,7 @@ export default function RevenueChartWidget() {
             />
 
             <YAxis
-              tickFormatter={(value) => `$${value / 1000}k`}
+              tickFormatter={formatYAxis}
               tick={{ fontSize: 12 }}
               axisLine={false}
               tickLine={false}
@@ -52,6 +55,8 @@ export default function RevenueChartWidget() {
               fill="#2563eb"
               radius={[6, 6, 0, 0]}
               barSize={40}
+              animationDuration={500}
+              animationEasing="ease-out"
             />
           </BarChart>
         </ResponsiveContainer>
