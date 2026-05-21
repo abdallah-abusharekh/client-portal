@@ -38,7 +38,7 @@ export default function AddParticipantModal({ open, onClose }: Props) {
     <ModalOverlay open={open} onClose={onClose}>
       <div
         ref={ref}
-        className="space-y-3 bg-white shadow-xl p-5 rounded-xl w-full max-w-md"
+        className="z-10 space-y-3 bg-white shadow-xl p-5 rounded-xl w-full max-w-md"
       >
         <h2 className="font-semibold text-lg">Invite a Participant</h2>
 
