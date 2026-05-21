@@ -1,4 +1,4 @@
-import { users } from "../../adminTables/mocks/users.mock";
+import { users } from "../mocks/users.mock";
 import { BaseUser } from "../../auth/types/user.types";
 
 import { delay } from "../../../shared/utils/delay";

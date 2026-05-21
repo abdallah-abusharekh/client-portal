@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { projects } from "../../adminTables/mocks/projects.mock";
+import { projects } from "../mocks/projects.mock";
 import { Project, ProjectStatus } from "../../projects/types/project.types";
 
 type StatusFilter = "all" | ProjectStatus;
@@ -74,4 +74,3 @@ export function useProjectsPageState() {
     handleDeleteProject,
   };
 }
-

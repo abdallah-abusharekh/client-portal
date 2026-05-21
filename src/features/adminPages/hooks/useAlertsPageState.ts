@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { alerts } from "../../adminTables/mocks/alerts.mock";
+import { alerts } from "../mocks/alerts.mock";
 
 type AlertStatus = "all" | "open" | "resolved";
 

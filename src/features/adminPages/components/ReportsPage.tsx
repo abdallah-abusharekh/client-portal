@@ -3,7 +3,7 @@
 import PageHeader from "@/src/shared/components/PageHeader";
 import Pagination from "@/src/shared/components/Pagination";
 import { usePagination } from "@/src/shared/hooks/usePagination";
-import Table from "../../adminTables/components/Table";
+import Table from "./Table";
 import ReportsFiltersBar from "./ReportsFiltersBar";
 import { useReportsQuery } from "../hooks/useReportsQuery";
 import { useReportsFilters } from "../hooks/useReportsFilters";

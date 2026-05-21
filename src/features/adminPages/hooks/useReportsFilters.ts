@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ReportItem } from "../../adminTables/mocks/reports.mock";
+import { ReportItem } from "../mocks/reports.mock";
 
 type ReportCategory = "all" | ReportItem["category"];
 

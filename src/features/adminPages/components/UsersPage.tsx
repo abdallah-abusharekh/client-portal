@@ -4,7 +4,7 @@ import UsersFiltersBar from "../components/UsersFiltersBar";
 import { usePagination } from "@/src/shared/hooks/usePagination";
 import Pagination from "@/src/shared/components/Pagination";
 import PageHeader from "@/src/shared/components/PageHeader";
-import Table from "../../adminTables/components/Table";
+import Table from "./Table";
 import { useUsers } from "../hooks/useUsers";
 import { useUsersFilters } from "../hooks/useUsersFilters";
 import { useUsersSelection } from "../hooks/useUsersSelection";

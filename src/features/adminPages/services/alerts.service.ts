@@ -1,4 +1,4 @@
-import { alerts, AlertItem } from "../../adminTables/mocks/alerts.mock";
+import { alerts, AlertItem } from "../mocks/alerts.mock";
 import { delay } from "../../../shared/utils/delay";
 
 let alertsDB: AlertItem[] = [...alerts];
