@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
+import Logo from "@/src/shared/components/Logo";
+
 type Props = {
   children: ReactNode;
   title: string;
@@ -14,17 +16,7 @@ function BrandMark() {
   return (
     <div className="flex items-center gap-3">
       <div className="flex justify-center items-center bg-primary rounded-xl w-10 h-10">
-        <svg
-          viewBox="0 0 24 24"
-          className="w-6 h-6 text-white"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-        >
-          <rect x="5" y="7" width="14" height="12" rx="2" />
-          <path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
-          <path d="M9 11h6M9 15h6" />
-        </svg>
+        <Logo />
       </div>
       <p className="font-semibold text-slate-900 text-xl tracking-tight">
         ClientPortal
@@ -43,7 +35,7 @@ export default function AuthShell({
   return (
     <main className="bg-slate-100 min-h-screen">
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
-        <section className="relative flex flex-col bg-slate-50 p-6 sm:p-8 overflow-hidden">
+        <section className="relative flex flex-col bg-slate-50 bg-linear-to-br from-[#76b8ff] via-[#c2dfff] to-[#d7eaff] lg:bg-none p-6 sm:p-8 overflow-hidden">
           <div className="z-10 relative">
             <BrandMark />
           </div>
@@ -87,14 +79,17 @@ export default function AuthShell({
                 className="inline-flex items-center gap-2 Hover:border-primary hover:border-b font-semibold text-slate-900 hover:text-primary text-sm transition"
               >
                 {ctaLabel}
-                <span aria-hidden="true" className="inline-block auth-arrow-bounce">
+                <span
+                  aria-hidden="true"
+                  className="inline-block auth-arrow-bounce"
+                >
                   <FaArrowRight />
                 </span>
               </Link>
             </div>
           </div>
 
-          <div className="right-20 bottom-20 absolute flex justify-center items-center bg-transparent rounded-3xl w-44 h-44 rotate-6 auth-logo-float">
+          <div className="right-20 bottom-20 auth-logo-float absolute flex justify-center items-center bg-transparent rounded-3xl w-44 h-44 rotate-6">
             <svg
               viewBox="0 0 24 24"
               className="w-46 h-46 text-primary"

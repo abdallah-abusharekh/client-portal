@@ -55,7 +55,10 @@ export default function SignUpCard() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 p-7">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-3 shadow-lg lg:shadow-none p-7 border-2 border-primary lg:border-none rounded-2xl"
+    >
       <div className="space-y-1 mb-4">
         <h1 className="font-semibold text-slate-900 text-2xl">
           Create account
@@ -70,8 +73,8 @@ export default function SignUpCard() {
       <div className="space-y-1 w-full">
         <label className="block mb-2 font-medium text-sm">Full Name</label>
 
-        <div className="flex items-center bg-white px-3 py-2 border border-gray-300 rounded-lg ring-1 ring-primary focus-within:ring-2 transition">
-          <FiUser className="mr-2 text-gray-400" />
+        <div className="flex items-center px-3 py-2 border border-gray-300 rounded-lg ring-1 ring-primary focus-within:ring-2 transition">
+          <FiUser className="mr-2 text-white lg:text-gray-400" />
 
           <input
             {...register("name")}

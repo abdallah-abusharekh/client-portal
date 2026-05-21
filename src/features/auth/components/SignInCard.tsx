@@ -60,7 +60,10 @@ export default function SignInCard() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 p-7">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-3 shadow-lg lg:shadow-none p-7 border-2 border-primary lg:border-none rounded-2xl"
+    >
       <div className="space-y-1 mb-4">
         <h1 className="font-semibold text-slate-900 text-2xl">Sign in</h1>
         <p className="text-slate-500 text-sm">
