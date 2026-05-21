@@ -1,9 +1,15 @@
 import SignupSuccessCard from "@/src/features/auth/components/SignupSuccessCard";
+import AuthShell from "@/src/features/auth/components/AuthShell";
 
 export default function SignupSuccessPage() {
   return (
-    <main className="flex justify-center items-center bg-background-sky min-h-screen">
+    <AuthShell
+      title="One Step Left."
+      subtitle="Verify your email to unlock your dashboard and start collaborating with your team."
+      ctaLabel="Back to Home"
+      ctaHref="/"
+    >
       <SignupSuccessCard />
-    </main>
+    </AuthShell>
   );
 }

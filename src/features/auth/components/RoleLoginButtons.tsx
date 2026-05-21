@@ -17,7 +17,7 @@ const roles = [
 export default function RoleSelector({ role, onChange }: Props) {
   return (
     <div className="space-y-2">
-      <div className="gap-3 grid grid-cols-3">
+      <div className="flex justify-center items-center gap-4">
         {roles.map((r) => {
           const Icon = r.icon;
           const active = role === r.value;
@@ -27,7 +27,7 @@ export default function RoleSelector({ role, onChange }: Props) {
               type="button"
               key={r.value}
               onClick={() => onChange(r.value as UserRole)}
-              className={`flex flex-col items-center justify-center gap-2 rounded-xl border py-2 px-4 transition
+              className={`flex flex-col w-full items-center justify-center gap-2 rounded-xl border p-2 transition
               ${
                 active
                   ? "border-primary bg-primary-light/10"
@@ -35,7 +35,7 @@ export default function RoleSelector({ role, onChange }: Props) {
               }`}
             >
               <div
-                className={`w-10 h-10 flex items-center justify-center rounded-lg
+                className={`w-8 h-8 flex items-center justify-center rounded-lg
                 ${active ? "bg-primary text-white" : "bg-gray-100 text-gray-500"}`}
               >
                 <Icon />
