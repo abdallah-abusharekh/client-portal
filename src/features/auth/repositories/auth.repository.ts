@@ -39,6 +39,7 @@ export async function signupRepository(
   email: string,
   role: UserRole,
 ): Promise<AppUser> {
+  await delay(500);
   return {
     id: crypto.randomUUID(),
     name,

@@ -14,7 +14,7 @@ import RoleSelector from "./RoleLoginButtons";
 import BasicFields from "./BasicFields";
 
 import Button from "@/src/shared/components/Button";
-import { FiUser } from "react-icons/fi";
+import { FiLock, FiUser } from "react-icons/fi";
 
 export default function SignUpCard() {
   const router = useRouter();
@@ -31,8 +31,10 @@ export default function SignUpCard() {
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       name: "Test User",
+      phone: "+970596699123",
       email: DEMO_CREDENTIALS.freelancer.email,
       password: DEMO_CREDENTIALS.freelancer.password,
+      confirmPassword: DEMO_CREDENTIALS.freelancer.password,
     },
   });
 
@@ -43,6 +45,7 @@ export default function SignUpCard() {
 
     setValue("email", creds.email);
     setValue("password", creds.password);
+    setValue("confirmPassword", creds.password);
   };
 
   const onSubmit = async (data: SignUpFormValues) => {
@@ -70,25 +73,70 @@ export default function SignUpCard() {
 
       <RoleSelector role={role} onChange={handleRoleChange} />
 
-      <div className="space-y-1 w-full">
-        <label className="block mb-2 font-medium text-sm">Full Name</label>
+      <div className="gap-3 grid grid-cols-1 md:grid-cols-2">
+        <div className="space-y-1 w-full">
+          <label className="block mb-2 font-medium text-sm">Full Name</label>
 
-        <div className="flex items-center px-3 py-2 border border-gray-300 rounded-lg ring-1 ring-primary focus-within:ring-2 transition">
-          <FiUser className="mr-2 text-white lg:text-gray-400" />
+          <div className="flex items-center px-3 py-2 border border-gray-300 rounded-lg ring-1 ring-primary focus-within:ring-2 transition">
+            <FiUser className="mr-2 text-white lg:text-gray-400" />
 
-          <input
-            {...register("name")}
-            type="text"
-            placeholder="John Doe"
-            className="outline-none w-full"
-          />
+            <input
+              {...register("name")}
+              type="text"
+              placeholder="John Doe"
+              className="outline-none w-full"
+            />
+          </div>
+
+          {errors.name && (
+            <p className="text-red-500 text-sm">{errors.name.message}</p>
+          )}
         </div>
-        {errors.name && (
-          <p className="text-red-500 text-sm">{errors.name.message}</p>
-        )}
+
+        <div className="space-y-1 w-full">
+          <label className="block mb-2 font-medium text-sm">
+            Phone Number <span className="text-gray-400">(optional)</span>
+          </label>
+
+          <div className="flex items-center px-3 py-2 border border-gray-300 rounded-lg ring-1 ring-primary focus-within:ring-2 transition">
+            <input
+              {...register("phone")}
+              type="tel"
+              placeholder="+970 59 000 0000"
+              className="outline-none w-full"
+            />
+          </div>
+
+          {errors.phone && (
+            <p className="text-red-500 text-sm">{errors.phone.message}</p>
+          )}
+        </div>
       </div>
 
       <BasicFields register={register} errors={errors} />
+
+      <div className="space-y-1">
+        <label className="block mb-2 font-medium text-sm">
+          Confirm Password
+        </label>
+
+        <div className="flex items-center px-3 py-2 border border-gray-300 rounded-lg ring-1 ring-primary focus-within:ring-2 transition">
+          <FiLock className="mr-2 text-white lg:text-gray-400" />
+
+          <input
+            {...register("confirmPassword")}
+            type="password"
+            placeholder="Confirm your password"
+            className="outline-none w-full"
+          />
+        </div>
+
+        {errors.confirmPassword && (
+          <p className="text-red-500 text-sm">
+            {errors.confirmPassword.message}
+          </p>
+        )}
+      </div>
 
       <div className="flex justify-between items-center mt-2">
         <p className="text-gray-500 text-sm">
