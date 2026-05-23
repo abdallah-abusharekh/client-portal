@@ -95,7 +95,7 @@ export default function AuthShell({
             </div>
           </div>
 
-          <div className="right-20 bottom-20 auth-logo-float absolute flex justify-center items-center bg-transparent rounded-3xl w-44 h-44 rotate-6">
+          <div className="right-20 bottom-20 absolute flex justify-center items-center bg-transparent rounded-3xl w-44 h-44 rotate-6 animate-bouncing">
             <svg
               viewBox="0 0 24 24"
               className="w-46 h-46 text-primary"

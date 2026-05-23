@@ -118,7 +118,7 @@ select:-webkit-autofill {
   }
 }
 
-@keyframes auth-logo-float {
+@keyframes animate-bouncing {
   0%,
   100% {
     transform: translateY(0);
@@ -137,17 +137,30 @@ select:-webkit-autofill {
   animation: auth-arrow-bounce 1.1s ease-in-out infinite;
 }
 
-.auth-logo-float {
-  animation: auth-logo-float 2.1s ease-in-out infinite;
+.animate-bouncing {
+  animation: animate-bouncing 2.1s ease-in-out infinite;
   will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .auth-title-letter,
   .auth-arrow-bounce,
-  .auth-logo-float {
+  .animate-bouncing {
     animation: none !important;
     opacity: 1;
     transform: none;
+  }
+}
+
+.line {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
