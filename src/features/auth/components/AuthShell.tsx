@@ -59,14 +59,20 @@ export default function AuthShell({
                 Client Portal Suite
               </p>
               <h1 className="mb-3 font-bold text-slate-900 text-5xl leading-[1.05] tracking-tight">
-                {title.split("").map((char, i) => (
-                  <span
-                    key={`${char}-${i}`}
-                    className="inline-block auth-title-letter"
-                    style={{ animationDelay: `${0.15 + i * 0.035}s` }}
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </span>
+                {title.split("\n").map((line, lineIndex) => (
+                  <div key={lineIndex} className="whitespace-nowrap">
+                    {line.split("").map((char, i) => (
+                      <span
+                        key={`${char}-${i}`}
+                        className="inline-block auth-title-letter"
+                        style={{
+                          animationDelay: `${0.15 + (lineIndex * 20 + i) * 0.035}s`,
+                        }}
+                      >
+                        {char === " " ? "\u00A0" : char}
+                      </span>
+                    ))}
+                  </div>
                 ))}
               </h1>
               <p className="max-w-sm text-slate-600 text-lg leading-relaxed">
@@ -89,7 +95,7 @@ export default function AuthShell({
             </div>
           </div>
 
-          <div className="right-20 bottom-20 auth-logo-float absolute flex justify-center items-center bg-transparent rounded-3xl w-44 h-44 rotate-6">
+          <div className="right-20 bottom-20 absolute flex justify-center items-center bg-transparent rounded-3xl w-44 h-44 rotate-6 animate-bouncing">
             <svg
               viewBox="0 0 24 24"
               className="w-46 h-46 text-primary"
