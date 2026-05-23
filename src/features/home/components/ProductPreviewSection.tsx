@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function ProductPreviewSection() {
   return (
-    <section className="bg-background py-24">
+    <section id="product-preview" className="bg-background py-24">
       <Container className="flex flex-col items-center">
         <div className="relative w-full max-w-6xl">
           <div className="flex items-center bg-[#1e293b] px-4 rounded-t-xl h-10">

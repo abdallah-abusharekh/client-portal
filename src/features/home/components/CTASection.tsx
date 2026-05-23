@@ -16,10 +16,6 @@ export function CTASection() {
 
         <div className="flex sm:flex-row flex-col gap-4 mt-8">
           <Button href="/sign-up">Start Managing Projects →</Button>
-
-          <Button href="/sign-up" variant="secondary">
-            Create Free Account
-          </Button>
         </div>
       </Container>
     </section>
