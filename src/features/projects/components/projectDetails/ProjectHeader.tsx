@@ -52,7 +52,10 @@ export default function ProjectHeader({ project }: Props) {
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <p className="flex items-center gap-1 text-gray-500 text-sm">
-          <Link href="/projects" className="flex items-center gap-2">
+          <Link
+            href="/projects"
+            className="flex items-center gap-2 hover:text-black transition-colors"
+          >
             <BiArrowBack />
             Projects /
           </Link>{" "}
