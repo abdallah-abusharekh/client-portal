@@ -12,7 +12,7 @@ type Props = {
 
 export default function ViewToggle({ view, onChange }: Props) {
   return (
-    <div className="flex items-center bg-gray-100 p-1 rounded-lg">
+    <div className="hidden md:flex items-center bg-gray-100 p-1 rounded-lg">
       <button
         onClick={() => onChange("grid")}
         className="relative flex justify-center items-center p-2 rounded-md"
