@@ -20,13 +20,15 @@ export default function ProjectsFiltersBar({
   statusOptions,
 }: Props) {
   return (
-    <div className="items-center gap-2 grid grid-cols-3">
-      <SearchInput
-        value={search}
-        onChange={onSearchChange}
-        placeholder="Search by project title or client"
-        className="w-full max-w-md"
-      />
+    <div className="flex md:flex-row flex-col justify-between md:items-center md:">
+      <div className="mb-2 w-full md:w-[50%]">
+        <SearchInput
+          value={search}
+          onChange={onSearchChange}
+          placeholder="Search by project title or client"
+          className="w-full max-w-md"
+        />
+      </div>
 
       <div className="w-fit h-full">
         <Select

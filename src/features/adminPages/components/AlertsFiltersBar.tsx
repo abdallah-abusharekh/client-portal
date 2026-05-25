@@ -19,13 +19,15 @@ export default function AlertsFiltersBar({
   statusOptions,
 }: Props) {
   return (
-    <div className="flex items-center gap-4">
-      <SearchInput
-        value={search}
-        onChange={onSearchChange}
-        placeholder="Search alerts"
-        className="w-full max-w-md"
-      />
+    <div className="flex md:flex-row flex-col justify-between md:items-center md:">
+      <div className="mb-2 w-full md:w-[50%]">
+        <SearchInput
+          value={search}
+          onChange={onSearchChange}
+          placeholder="Search alerts"
+          className="w-full max-w-md"
+        />
+      </div>
       <div className="w-fit max-w-xs h-full">
         <Select
           value={statusFilter}
