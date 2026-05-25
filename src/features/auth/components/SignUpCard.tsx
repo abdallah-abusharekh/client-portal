@@ -31,7 +31,6 @@ export default function SignUpCard() {
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       name: "Test User",
-      phone: "+970596699123",
       email: DEMO_CREDENTIALS.freelancer.email,
       password: DEMO_CREDENTIALS.freelancer.password,
       confirmPassword: DEMO_CREDENTIALS.freelancer.password,
