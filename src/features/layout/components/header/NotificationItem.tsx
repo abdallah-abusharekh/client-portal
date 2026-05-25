@@ -22,13 +22,15 @@ export default function NotificationItem({
         )}
       />
 
-      <div className="flex flex-col">
-        <p className="text-sm font-medium text-(--color-text)">
+      <div className="flex flex-col min-w-0">
+        <p className="text-sm font-medium text-(--color-text) break-words">
           {notification.title}
         </p>
 
         {notification.message && (
-          <p className="text-gray-500 text-xs">{notification.message}</p>
+          <p className="text-gray-500 text-xs break-words">
+            {notification.message}
+          </p>
         )}
 
         <span className="text-gray-400 text-xs">
