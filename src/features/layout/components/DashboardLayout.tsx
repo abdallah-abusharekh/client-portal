@@ -20,7 +20,7 @@ export default function DashboardLayout({
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <Sidebar
           collapsed={collapsed}
           primaryNav={navigation.primary}
