@@ -15,7 +15,7 @@ import { userGrowthData } from "../../../mocks/dashboard.mock";
 
 export default function UserGrowthWidget() {
   return (
-    <Card className="col-start-2 col-end-4 p-6">
+    <Card className="hidden md:block col-start-2 col-end-4 p-6">
       <div className="mb-6">
         <h3 className="font-semibold text-gray-900">User Growth</h3>
         <p className="text-gray-500 text-sm">Customer vs Freelancer signups</p>

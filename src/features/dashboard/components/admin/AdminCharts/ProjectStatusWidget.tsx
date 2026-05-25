@@ -14,7 +14,7 @@ const COLORS = ["#10b981", "#6366f1", "#f59e0b", "#94a3b8"];
 
 export default function ProjectStatusWidget() {
   return (
-    <Card className="p-6">
+    <Card className="hidden md:block p-6">
       <h3 className="mb-6 font-semibold text-gray-900">Project Status</h3>
 
       <div className="flex flex-col items-center">
@@ -38,13 +38,13 @@ export default function ProjectStatusWidget() {
           </ResponsiveContainer>
         </div>
 
-        <div className="gap-x-8 gap-y-2 grid grid-cols-2 mt-4 text-sm">
+        <div className="gap-x-2 gap-y-2 lg:gap-x-8 grid grid-cols-2 mt-4 text-sm">
           {data.map((item, i) => (
             <div
               key={item.name}
               className="flex justify-between items-center gap-2"
             >
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 lg:gap-2">
                 <span
                   className="rounded-full w-3 h-3"
                   style={{ background: COLORS[i] }}
@@ -52,7 +52,7 @@ export default function ProjectStatusWidget() {
                 {item.name}
               </div>
 
-              <span className="font-medium">{item.value}</span>
+              <span className="hidden lg:block font-medium">{item.value}</span>
             </div>
           ))}
         </div>

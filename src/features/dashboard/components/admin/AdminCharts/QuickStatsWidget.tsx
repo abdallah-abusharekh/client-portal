@@ -11,7 +11,7 @@ const stats = [
 
 export default function QuickStatsWidget() {
   return (
-    <Card className="p-6">
+    <Card className="p-6 w-full h-full">
       <h3 className="mb-4 font-semibold text-gray-900">Quick Stats</h3>
 
       <div className="space-y-3">
