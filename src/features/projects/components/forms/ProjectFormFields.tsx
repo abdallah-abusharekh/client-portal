@@ -47,7 +47,7 @@ export default function ProjectFormFields({ register, errors }: Props) {
       </div>
 
       {/* Budget + Due Date */}
-      <div className="gap-4 grid grid-cols-1 sm:grid-cols-2">
+      <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
         {/* Budget */}
         <div>
           <label className="block font-medium text-gray-700 text-sm">
@@ -85,7 +85,7 @@ export default function ProjectFormFields({ register, errors }: Props) {
       </div>
 
       {/* Priority + Status */}
-      <div className="gap-4 grid grid-cols-1 sm:grid-cols-2">
+      <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
         {/* Priority */}
         <div>
           <label className="block font-medium text-gray-700 text-sm">

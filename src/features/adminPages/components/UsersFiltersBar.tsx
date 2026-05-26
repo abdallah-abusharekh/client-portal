@@ -43,8 +43,8 @@ export default function UsersFiltersBar({
   onActivate,
 }: Props) {
   return (
-    <div className="flex justify-between items-center">
-      <div className="gap-2 grid grid-cols-4">
+    <div className="flex flex-wrap justify-between items-start md:items-center">
+      <div className="gap-2 grid grid-cols-1 md:grid-cols-4 mb-2">
         <SearchInput
           value={search}
           onChange={onSearchChange}

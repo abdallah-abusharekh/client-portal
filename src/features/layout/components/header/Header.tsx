@@ -17,14 +17,14 @@ export default function Header({ onMenuClick, onCollapseClick }: Props) {
       <div className="flex items-center gap-4">
         <button
           onClick={onMenuClick}
-          className="md:hidden p-2 rounded-lg hover:bg-(--color-background-sky)"
+          className="lg:hidden p-2 rounded-lg hover:bg-(--color-background-sky)"
         >
           <FiMenu className="text-xl text-(--color-text)" />
         </button>
 
         <button
           onClick={onCollapseClick}
-          className="hidden md:flex p-2 rounded-lg hover:bg-(--color-background-sky)"
+          className="hidden lg:flex p-2 rounded-lg hover:bg-(--color-background-sky)"
         >
           <LuPanelLeft className="text-xl text-(--color-text)" />
         </button>

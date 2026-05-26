@@ -50,9 +50,13 @@ export default function CreateProjectModal({ open, onClose, onCreate }: Props) {
   };
 
   return (
-    <ModalOverlay open={open} onClose={onClose}>
+    <ModalOverlay
+      open={open}
+      onClose={onClose}
+      containerClassName="p-3 sm:p-4 items-start sm:items-center overflow-y-auto"
+    >
       {/* Modal Content */}
-      <div className="relative space-y-5 bg-white shadow-lg p-6 rounded-2xl w-full max-w-lg">
+      <div className="relative space-y-5 bg-white shadow-lg p-4 sm:p-6 rounded-2xl w-full max-w-lg max-h-[calc(100vh-1.5rem)] sm:max-h-[calc(100vh-2rem)] overflow-y-auto my-3 sm:my-4">
         {/* Header */}
         <div>
           <h2 className="font-semibold text-lg">Create New Project</h2>
@@ -63,7 +67,7 @@ export default function CreateProjectModal({ open, onClose, onCreate }: Props) {
           <ProjectFormFields register={register} errors={errors} />
 
           {/* Actions */}
-          <div className="flex justify-end gap-2 pt-2">
+          <div className="flex sm:flex-row flex-col-reverse justify-end gap-2 pt-2">
             <Button type="button" variant="secondary" onClick={onClose}>
               Cancel
             </Button>

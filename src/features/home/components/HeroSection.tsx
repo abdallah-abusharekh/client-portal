@@ -43,7 +43,7 @@ export function HeroSection() {
             href="#product-preview"
             className="flex items-center gap-2 bg-white hover:bg-gray-50 px-4 sm:px-6 py-3 sm:py-3 border border-gray-200 rounded-xl text-text sm:text-[16px] text-sm transition"
           >
-            ▶ Watch Demo
+            Watch Demo
           </a>
         </div>
 
